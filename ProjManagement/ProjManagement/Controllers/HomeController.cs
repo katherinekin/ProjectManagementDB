@@ -42,8 +42,15 @@ namespace ProjManagement.Controllers
             if (ModelState.IsValid)
             {
                 //Redirects to another page
-                return RedirectToAction("Index");
+                return RedirectToAction("Success");
             }
+
+            return View();
+        }
+        //test page
+        public ActionResult Success()
+        {
+            ViewBag.Message = "SUCCESS.";
 
             return View();
         }
