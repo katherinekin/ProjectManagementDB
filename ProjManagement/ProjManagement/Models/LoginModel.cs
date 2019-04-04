@@ -10,7 +10,7 @@ namespace ProjManagement.Models
     {
         [Required(ErrorMessage = "You must enter a username")]
         [Display(Name = "Username")]
-        public string LName { get; set; }
+        public string Username { get; set; }
 
 
         [Required(ErrorMessage = "You must enter a password")]

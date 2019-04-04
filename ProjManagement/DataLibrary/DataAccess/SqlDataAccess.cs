@@ -14,7 +14,7 @@ namespace DataLibrary.DataAccess
     public static class SqlDataAccess
     {
         // Grabs the connection string needed to connect to the database, default name COSC3380_Group6_Project
-        public static string GetConnectionString(string connectionName = "COSC3380_Group6_Project")
+        public static string GetConnectionString(string connectionName = "DefaultConnection")
         {
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }

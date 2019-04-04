@@ -1,4 +1,5 @@
-﻿using ProjManagement.Models;
+﻿using DataLibrary.BusinessLogic;
+using ProjManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,12 +40,20 @@ namespace ProjManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 //Redirects to another page
-                return RedirectToAction("Success");
+                //return RedirectToAction("Success");
+                return View(model);
             }
-
+            List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
+            foreach (DataLibrary.Models.LoginModel item in loginList)
+            {
+               if (model.Username==item.Username && model.Password==item.Password)
+                {
+                    return RedirectToAction("Success");
+                }
+            }
             return View();
         }
         //test page

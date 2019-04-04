@@ -238,3 +238,7 @@ C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\obj
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\obj\Debug\ProjManagement.csproj.CopyComplete
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\obj\Debug\ProjManagement.dll
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\obj\Debug\ProjManagement.pdb
+C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.dll
+C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
+C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
+C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml
