@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.539
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjManagement", "ProjManagement\ProjManagement.csproj", "{05EF2D94-31E9-4D3D-A2CD-A5733BBFF09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{BA794867-C4FE-4B2C-B67A-1425D29D7D65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{05EF2D94-31E9-4D3D-A2CD-A5733BBFF09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05EF2D94-31E9-4D3D-A2CD-A5733BBFF09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05EF2D94-31E9-4D3D-A2CD-A5733BBFF09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA794867-C4FE-4B2C-B67A-1425D29D7D65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA794867-C4FE-4B2C-B67A-1425D29D7D65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA794867-C4FE-4B2C-B67A-1425D29D7D65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA794867-C4FE-4B2C-B67A-1425D29D7D65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

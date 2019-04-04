@@ -37,7 +37,7 @@ namespace ProjManagement.Controllers
         //Validation of correct Login information
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(EmployeeModel model)
+        public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -48,5 +48,12 @@ namespace ProjManagement.Controllers
             return View();
         }
 
+        //TEMPORARILY place here
+        public ActionResult Employee()
+        {
+            ViewBag.Message = "Create an employee profile.";
+
+            return View();
+        }
     }
 }
