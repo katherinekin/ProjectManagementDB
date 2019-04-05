@@ -12,11 +12,10 @@ namespace DataLibrary.BusinessLogic
     {
         // Not nulls are employeeID, fname, lname, and ssn, but I also think DOB is important
         //This method creates an employee setting not null values, and returns number of records affected
-        public static int CreateEmployee(int employeeId, string fname, string lname, string dob, int ssn)
+        public static int CreateEmployee(string fname, string lname, string dob, int ssn)
         {
             EmployeeModel data = new EmployeeModel
             {
-                EmployeeID = employeeId,
                 Fname = fname,
                 Lname = lname,
                 DateOfBirth = dob,
@@ -29,8 +28,7 @@ namespace DataLibrary.BusinessLogic
         // Loads all of the employees back into DataLibrary.Models.EmployeeModel
         public static List<EmployeeModel> LoadEmployees()
         {
-            string sql = @"select EmployeeId, Fname, Lname, Date_Of_Birth, Ssn
-                            from PM.Employee;";
+            string sql = @"select Employee_ID, Fname, Lname, Ssn from PM.Employee;";
             return SqlDataAccess.LoadData<EmployeeModel>(sql);
         }
     }

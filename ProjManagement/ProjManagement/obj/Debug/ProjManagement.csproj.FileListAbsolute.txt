@@ -242,3 +242,7 @@ C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.dll
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml

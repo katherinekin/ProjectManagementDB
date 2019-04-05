@@ -7,3 +7,12 @@ C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\DataLibrary\obj\De
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.csproj.CopyComplete
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.dll
 C:\Users\Katherine\Desktop\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.pdb
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\bin\Debug\DataLibrary.dll
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\bin\Debug\DataLibrary.pdb
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\bin\Debug\Dapper.dll
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\bin\Debug\Dapper.xml
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.csprojAssemblyReference.cache
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.csproj.CopyComplete
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.dll
+C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\DataLibrary\obj\Debug\DataLibrary.pdb

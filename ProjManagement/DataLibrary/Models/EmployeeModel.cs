@@ -15,13 +15,14 @@ namespace DataLibrary.Models
         public string Lname { get; set; }
         public string DateOfBirth { get; set; }
         public int Ssn { get; set; }
-        //public string Address { get; set; }
-        //public int Type { get; set; }
-        //public char Gender { get; set; }
-        //public double Salary { get; set; }
-        //public int StartDate { get; set; }
-        //public int Estatus { get; set; }
-        //public string EDname { get; set; }
-        //public int Profession { get; set; }
+        public string Address { get; set; }
+        public int Type { get; set; }
+        public char Gender { get; set; }
+        public double Salary { get; set; }
+        public int StartDate { get; set; }
+        public int Estatus { get; set; }
+        public string EDname { get; set; }
+        public int Profession { get; set; }
+        public int SuperSsn { get; set; }
     }
 }

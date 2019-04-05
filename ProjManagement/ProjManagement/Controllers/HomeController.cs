@@ -34,42 +34,5 @@ namespace ProjManagement.Controllers
 
             return View();
         }
-
-        //Validation of correct Login information
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                //Redirects to another page
-                //return RedirectToAction("Success");
-                return View(model);
-            }
-            List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
-            foreach (DataLibrary.Models.LoginModel item in loginList)
-            {
-               if (model.Username==item.Username && model.Password==item.Password)
-                {
-                    return RedirectToAction("Success");
-                }
-            }
-            return View();
-        }
-        //test page
-        public ActionResult Success()
-        {
-            ViewBag.Message = "SUCCESS.";
-
-            return View();
-        }
-
-        //TEMPORARILY place here
-        public ActionResult Employee()
-        {
-            ViewBag.Message = "Create an employee profile.";
-
-            return View();
-        }
     }
 }
