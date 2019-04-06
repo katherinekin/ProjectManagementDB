@@ -18,11 +18,24 @@ namespace DataLibrary.BusinessLogic
             {
                 Fname = fname,
                 Lname = lname,
-                DateOfBirth = dob,
+                Date_Of_Birth = dob,
                 Ssn = ssn
             };
-            string sql = @"insert into PM.Employee (EmployeeID, Fname, Lname, Date_Of_Birth, Ssn) 
-                            values (@EmployeeID, @Fname, @Lname, @DateOfBirth, @Ssn);";
+            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn) 
+                            values (0, @Fname, @Lname, cast (@DateOfBirth to datetime), @Ssn);";
+            return SqlDataAccess.SaveData(sql, data);
+        }
+        
+        public static int DeleteEmployee(int employeeid, string fname, string lname)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid,
+                Fname = fname,
+                Lname = lname
+            };
+        string sql = @"delete from PM.Employee 
+                        where Employee_ID = @EmployeeID and Fname = @Fname and Lname = @Lname;";
             return SqlDataAccess.SaveData(sql, data);
         }
         // Loads all of the employees back into DataLibrary.Models.EmployeeModel
@@ -30,6 +43,21 @@ namespace DataLibrary.BusinessLogic
         {
             string sql = @"select Employee_ID, Fname, Lname, Ssn from PM.Employee;";
             return SqlDataAccess.LoadData<EmployeeModel>(sql);
+        }
+
+        // Assume there is only one item found per primary key, but returns empty list if not found
+        public static List<EmployeeModel> FindEmployee(int employeeid)
+        {
+            var list = LoadEmployees();
+            List<EmployeeModel> found = new List<EmployeeModel>();
+            foreach(EmployeeModel item in list)
+            {
+                if(item.Employee_ID == employeeid)
+                {
+                    found.Add(item);
+                }
+            }
+            return found;
         }
     }
 }

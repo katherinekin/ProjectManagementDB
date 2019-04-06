@@ -19,8 +19,6 @@ namespace DataLibrary.DataAccess
             return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
         // Executes the sql query string sql, loads it into model type T (such as EmployeeModel)
-        // This method returns a list of that model
-        // cnn.Query<T>(sql) returns an ienumerable, want to make it a list
         public static List<T> LoadData<T>(string sql)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
@@ -28,9 +26,7 @@ namespace DataLibrary.DataAccess
                 return cnn.Query<T>(sql).ToList();
             }
         }
-        // data represents the parameters we are passing in
-        // data needs to match the columns in the string sql
-        // this method returns number of records affected, expect at least one
+        // Executes sql query with given parameters
         public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))

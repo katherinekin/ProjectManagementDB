@@ -3,6 +3,7 @@ using ProjManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -20,9 +21,10 @@ namespace ProjManagement.Controllers
             {
                 employees.Add(new EmployeeModel
                 {
-                    EmployeeID = row.EmployeeID,
+                    EmployeeID = row.Employee_ID,
                     FName = row.Fname,
                     LName = row.Lname,
+                    //DateOfBirth = row.Date_Of_Birth,
                     Ssn = row.Ssn
                 });
             }
@@ -44,13 +46,31 @@ namespace ProjManagement.Controllers
             int recordsCreated = EmployeeProcessor.CreateEmployee(
                 model.FName, model.LName, model.DateOfBirth, model.Ssn);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", model);
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count==0)
+            {
+                return HttpNotFound();
+            }
+            List<EmployeeModel> foundEmployee = new List<EmployeeModel>();
+            foreach (var row in data)
+            {
+                foundEmployee.Add(new EmployeeModel
+                {
+                    EmployeeID = row.Employee_ID,
+                    FName = row.Fname,
+                    LName = row.Lname,
+                    DateOfBirth = row.Date_Of_Birth,
+                    Ssn = row.Ssn
+                });
+            }
+            
+            return View(foundEmployee[0]);
         }
 
         // GET: Employee/Create

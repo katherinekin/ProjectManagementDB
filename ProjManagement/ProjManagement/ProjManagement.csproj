@@ -189,6 +189,7 @@
     <Content Include="Views\Shared\ManagerLayout.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
