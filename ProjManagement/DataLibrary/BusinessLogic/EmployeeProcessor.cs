@@ -10,7 +10,6 @@ namespace DataLibrary.BusinessLogic
 {
     public static class EmployeeProcessor
     {
-        // Not nulls are employeeID, fname, lname, and ssn, but I also think DOB is important
         //This method creates an employee setting not null values, and returns number of records affected
         public static int CreateEmployee(string fname, string lname, string dob, int ssn)
         {
@@ -22,7 +21,7 @@ namespace DataLibrary.BusinessLogic
                 Ssn = ssn
             };
             string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn) 
-                            values (0, @Fname, @Lname, cast (@DateOfBirth to datetime), @Ssn);";
+                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn);";
             return SqlDataAccess.SaveData(sql, data);
         }
         

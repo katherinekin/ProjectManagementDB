@@ -43,10 +43,20 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
-            int recordsCreated = EmployeeProcessor.CreateEmployee(
+            EmployeeProcessor.CreateEmployee(
                 model.FName, model.LName, model.DateOfBirth, model.Ssn);
-
-            return RedirectToAction("Details", model);
+            
+            var data = EmployeeProcessor.LoadEmployees();
+            /*
+            foreach(var row in data)
+            {
+                if (model.FName == row.Fname && model.LName==row.Lname && model.Ssn==row.Ssn)
+                {
+                    model.EmployeeID = row.Employee_ID;
+                }
+            }
+            */
+            return RedirectToAction("Index");
         }
 
         // GET: Employee/Details/5
@@ -71,28 +81,6 @@ namespace ProjManagement.Controllers
             }
             
             return View(foundEmployee[0]);
-        }
-
-        // GET: Employee/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Employee/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: Employee/Edit/5
