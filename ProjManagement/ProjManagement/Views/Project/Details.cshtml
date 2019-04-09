@@ -1,0 +1,107 @@
+﻿@model ProjManagement.Models.ProjectModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<h2>Project Details</h2>
+
+<div>
+    <h4>(This site is under construction)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PDName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PDName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deliverables)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deliverables)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Open_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Open_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Close_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Close_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Completion_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Completion_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pstatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pstatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Collaborators)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Collaborators)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

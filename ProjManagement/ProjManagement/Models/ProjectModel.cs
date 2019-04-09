@@ -8,33 +8,23 @@ namespace ProjManagement.Models
 {
     public class ProjectModel
     {
-        /*
-        [Display(Name = "Employee ID")]
-        [Range(0, 999999999, ErrorMessage = "Please input a valid Employee ID")]
-        public int EmployeeId { get; set; }
+        
+        [Display(Name = "Project ID")]
+        [Range(0, 999999999, ErrorMessage = "Please input a valid Project ID")]
+        public int ProjectID { get; set; }
         [Required(ErrorMessage = "You must enter a value")]
-        [Display(Name = "First Name")]
-        public string FName { get; set; }
+        [Display(Name = "Project Name")]
+        public string PName { get; set; }
+        
+        public string PDName { get; set; }
+        public string Client { get; set; }
+        public string PDescription { get; set; }
+        public string Deliverables { get; set; }
+        public string Open_Date { get; set; }
+        public string Close_Date { get; set; }
+        public string Completion_Date { get; set; }
+        public int Pstatus { get; set; }
+        public string Collaborators { get; set; }
 
-        [Required(ErrorMessage = "You must enter a value")]
-        [Display(Name = "Last Name")]
-        public string LName { get; set; }
-
-        [Required(ErrorMessage = "You must enter a value")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
-        public string DateOfBirth { get; set; }
-
-        [Required(ErrorMessage = "You must have a password")]
-        [Display(Name = "Password")]
-        [DataType(DataType.Password)]
-        [StringLength(100, MinimumLength = 1, ErrorMessage = "You need to provide a long enough password.")]
-        public string Password { get; set; }
-
-        [Display(Name = "Confirm Password")]
-        [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Does not match entered password")]
-        public string ConfirmPassword { get; set; }
-        */
     }
 }
