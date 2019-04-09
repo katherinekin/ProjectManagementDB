@@ -25,22 +25,20 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
         
-        public static int DeleteEmployee(int employeeid, string fname, string lname)
+        public static int DeleteEmployee(int employeeid)
         {
             EmployeeModel data = new EmployeeModel
             {
-                Employee_ID = employeeid,
-                Fname = fname,
-                Lname = lname
+                Employee_ID = employeeid
             };
-        string sql = @"delete from PM.Employee 
-                        where Employee_ID = @EmployeeID and Fname = @Fname and Lname = @Lname;";
+            string sql = @"delete from PM.Employee where Employee_ID = @Employee_ID;";
             return SqlDataAccess.SaveData(sql, data);
         }
         // Loads all of the employees back into DataLibrary.Models.EmployeeModel
         public static List<EmployeeModel> LoadEmployees()
         {
-            string sql = @"select Employee_ID, Fname, Lname, Ssn from PM.Employee;";
+            //string sql = @"select Employee_ID, Fname, Lname, Date_Of_Birth, Ssn from PM.Employee;";
+            string sql = "select * from PM.Employee;";
             return SqlDataAccess.LoadData<EmployeeModel>(sql);
         }
 

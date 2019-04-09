@@ -1,10 +1,6 @@
 ﻿using DataLibrary.BusinessLogic;
 using ProjManagement.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
@@ -45,28 +41,15 @@ namespace ProjManagement.Controllers
             }
             EmployeeProcessor.CreateEmployee(
                 model.FName, model.LName, model.DateOfBirth, model.Ssn);
-            
+
             var data = EmployeeProcessor.LoadEmployees();
-            /*
-            foreach(var row in data)
-            {
-                if (model.FName == row.Fname && model.LName==row.Lname && model.Ssn==row.Ssn)
-                {
-                    model.EmployeeID = row.Employee_ID;
-                }
-            }
-            */
+
+            //Add a way to get the details page for the new employee here, or success page
             return RedirectToAction("Index");
         }
-
-        // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        // Map EmployeeModel from DataLibrary to EmployeeModel from ProjManagement if found, for Edit, Details, Delete
+        public EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
         {
-            var data = EmployeeProcessor.FindEmployee(id);
-            if (data.Count==0)
-            {
-                return HttpNotFound();
-            }
             List<EmployeeModel> foundEmployee = new List<EmployeeModel>();
             foreach (var row in data)
             {
@@ -79,8 +62,18 @@ namespace ProjManagement.Controllers
                     Ssn = row.Ssn
                 });
             }
-            
-            return View(foundEmployee[0]);
+            return foundEmployee[0];
+        }
+        // GET: Employee/Details/5
+        public ActionResult Details(int id)
+        {
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            EmployeeModel found = mapToModel(data);
+            return View(found);
         }
 
         // GET: Employee/Edit/5
@@ -108,22 +101,27 @@ namespace ProjManagement.Controllers
         // GET: Employee/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            EmployeeModel found = mapToModel(data);
+            return View(found);
         }
 
         // POST: Employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, EmployeeModel model)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                EmployeeProcessor.DeleteEmployee(id);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
     }
