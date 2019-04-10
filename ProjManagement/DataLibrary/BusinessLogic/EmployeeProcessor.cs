@@ -11,20 +11,41 @@ namespace DataLibrary.BusinessLogic
     public static class EmployeeProcessor
     {
         //This method creates an employee setting not null values, and returns number of records affected
-        public static int CreateEmployee(string fname, string lname, string dob, int ssn)
+        public static int CreateEmployee(string fname, string lname, string dob, int ssn,
+            int type, string start, string edname, int profession)
         {
             EmployeeModel data = new EmployeeModel
             {
                 Fname = fname,
                 Lname = lname,
                 Date_Of_Birth = dob,
-                Ssn = ssn
-            };
-            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn) 
-                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn);";
+                Ssn = ssn,
+                //Address = "", employee fills this out
+                Type = type,
+                //Gender = "", employee fills this out
+                Start_Date = start,
+                //Estatus = 0, always 1
+                EDname = edname,
+                Profession = profession
+                //Super_ssn = superssn, always 32145678
+        };
+            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, 
+                            Type, Start_Date, Estatus, EDname, Profession, Super_ssn) 
+                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 32145678);";
             return SqlDataAccess.SaveData(sql, data);
         }
-        
+        /*
+        public static int EditEmployee(int employeeid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid
+            };
+            string sql = @"update pm.employee
+                    set from PM.Employee where Employee_ID = @Employee_ID;";
+            return SqlDataAccess.SaveData(sql, data);
+        }
+        */
         public static int DeleteEmployee(int employeeid)
         {
             EmployeeModel data = new EmployeeModel

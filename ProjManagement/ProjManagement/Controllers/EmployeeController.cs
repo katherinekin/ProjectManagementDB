@@ -39,10 +39,10 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
-            EmployeeProcessor.CreateEmployee(
-                model.FName, model.LName, model.DateOfBirth, model.Ssn);
-
-            var data = EmployeeProcessor.LoadEmployees();
+            EmployeeProcessor.CreateEmployee(model.FName, model.LName, model.DateOfBirth, model.Ssn,
+                model.Type, model.StartDate, model.EDname, model.Profession);
+            
+            //var data = EmployeeProcessor.LoadEmployees();
 
             //Add a way to get the details page for the new employee here, or success page
             return RedirectToAction("Index");

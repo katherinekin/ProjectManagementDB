@@ -18,7 +18,7 @@ namespace DataLibrary.Models
         
         public string Address { get; set; }
         public int Type { get; set; }
-        public char Gender { get; set; }
+        public string Gender { get; set; }
         public double Salary { get; set; }
         public string Start_Date { get; set; }
         public int Estatus { get; set; }
@@ -36,7 +36,7 @@ namespace DataLibrary.Models
             Ssn = 0;
             Address = "";
             Type = 0;
-            Gender = '\0';
+            Gender = "";
             Start_Date = "";
             Estatus = 0;
             EDname = "";
