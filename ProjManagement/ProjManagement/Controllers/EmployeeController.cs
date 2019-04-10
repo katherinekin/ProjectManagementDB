@@ -41,11 +41,15 @@ namespace ProjManagement.Controllers
             }
             EmployeeProcessor.CreateEmployee(model.FName, model.LName, model.DateOfBirth, model.Ssn,
                 model.Type, model.StartDate, model.EDname, model.Profession);
-            
+
             //var data = EmployeeProcessor.LoadEmployees();
 
             //Add a way to get the details page for the new employee here, or success page
-            return RedirectToAction("Index");
+            return RedirectToAction("SuccessEmployee", new { Model = model });
+        }
+        public ActionResult SuccessEmployee(EmployeeModel model)
+        {
+            return View(model);
         }
         // Map EmployeeModel from DataLibrary to EmployeeModel from ProjManagement if found, for Edit, Details, Delete
         public EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
@@ -79,23 +83,33 @@ namespace ProjManagement.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            EmployeeModel found = mapToModel(data);
+            return View(found);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, EmployeeModel model)
         {
-            try
+            /*
+            if (!ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                return View(model);
             }
-            catch
-            {
-                return View();
-            }
+            List<KeyValuePair<string, string>> pairList = new List<KeyValuePair<string, string>>();
+            pairList.Add( new KeyValuePair<string, string> ( "Employee_ID", (model.EmployeeID).ToString()));
+            pairList.Add(new KeyValuePair<string, string>("Employee_ID", (model.EmployeeID).ToString()));
+            //...
+            //EmployeeProcessor.EditEmployee(model.FName, model.LName, model.DateOfBirth, model.Ssn,
+            //model.Type, model.StartDate, model.EDname, model.Profession);
+            */
+            return RedirectToAction("Details", new { id = model.EmployeeID });
+            
         }
 
         // GET: Employee/Delete/5

@@ -35,14 +35,23 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
         /*
-        public static int EditEmployee(int employeeid)
+        public static int EditEmployee(KeyValuePair<string,string> pair, int id)
         {
-            EmployeeModel data = new EmployeeModel
+            string columnName = pair.Key;
+            string newValue = pair.Value;
+            string sql = "";
+            if (newValue contains only numbers)
             {
-                Employee_ID = employeeid
-            };
-            string sql = @"update pm.employee
-                    set from PM.Employee where Employee_ID = @Employee_ID;";
+                int newValueNum = newValue.toInteger();
+                string sql = @"update pm.employee
+                    set @columnName = @newValueNum where Employee_ID = @Employee_ID;";
+            }
+            else
+            {
+                string sql = @"update pm.employee
+                    set @columnName = @newValue where Employee_ID = @Employee_ID;";
+            }
+            
             return SqlDataAccess.SaveData(sql, data);
         }
         */
