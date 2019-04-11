@@ -5,10 +5,10 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
+
     public class EmployeeController : Controller
     {
-        private bool isUpdated = false;
-        private HashSet<KeyValuePair<string,string>> oldModelHashSet = new HashSet<KeyValuePair<string, string>>(); 
+         
         // GET: Employee
         public ActionResult Index()
         {
@@ -65,7 +65,15 @@ namespace ProjManagement.Controllers
                     FName = row.Fname,
                     LName = row.Lname,
                     DateOfBirth = row.Date_Of_Birth,
-                    Ssn = row.Ssn
+                    Ssn = row.Ssn,
+                    Address = row.Address,
+                    Type = row.Type,
+                    Gender = row.Gender,
+                    StartDate = row.Start_Date,
+                    Estatus = row.Estatus,
+                    EDname = row.EDname,
+                    Profession = row.Profession,
+                    SuperSsn = row.Super_ssn
                 });
             }
             return foundEmployee[0];
@@ -93,17 +101,18 @@ namespace ProjManagement.Controllers
             EmployeeModel found = mapToModel(data);
             return View(found);
         }
-
+        
         // POST: Employee/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, EmployeeModel model)
         {
-            if (isUpdated == false)
-                oldModelHashSet = model.setToPairs();  //returns a HashSet of the old model only if has not been set
+            var data = EmployeeProcessor.FindEmployee(id);
+            EmployeeModel oldModel = mapToModel(data);
+            HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.setToPairs();  
+            //returns a HashSet of the old model only if has not been set
                 
             if (!ModelState.IsValid)
             {
-                isUpdated = true;
                 return View(model);
             }
             HashSet<KeyValuePair<string,string>> newModelHashSet = model.setToPairs();
@@ -112,8 +121,6 @@ namespace ProjManagement.Controllers
             {
                 EmployeeProcessor.EditEmployee(pair, model.EmployeeID);
             }
-           
-            isUpdated = false;
             return RedirectToAction("Details", new { id = model.EmployeeID });   
         }
 

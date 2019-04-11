@@ -67,24 +67,23 @@ namespace ProjManagement.Models
 
         public HashSet<KeyValuePair<string, string>> setToPairs()
         {
-            HashSet<KeyValuePair<string, string>> hashSetPairs = new HashSet<KeyValuePair<string, string>>();
-            KeyValuePair<string, string> somePair = new KeyValuePair<string, string>();
-            //set attributes of model to keyvaluepairs, stringify the ints
-            somePair = new KeyValuePair<string, string>("Employee_ID", EmployeeID.ToString()); hashSetPairs.Add(somePair);
-            somePair = new KeyValuePair<string, string>("Fname", FName); hashSetPairs.Add(somePair);
-            somePair = new KeyValuePair<string, string>("Lname", LName); hashSetPairs.Add(somePair);
-            somePair = new KeyValuePair<string, string>("Date_Of_Birth", DateOfBirth); hashSetPairs.Add(somePair);
-            /*
-            Ssn = 0;
-            Address = "";
-            Type = 0;
-            Gender = "";
-            Start_Date = "";
-            Estatus = 0;
-            EDname = "";
-            Profession = 0;
-            Super_ssn = 0;
-            */
+            HashSet<KeyValuePair<string, string>> hashSetPairs = new HashSet<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("Employee_ID", this.EmployeeID.ToString()),
+                new KeyValuePair<string, string>("Fname", this.FName),
+                new KeyValuePair<string, string>("Lname", this.LName),
+                new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
+                new KeyValuePair<string, string>("Ssn", this.Ssn.ToString()),
+                new KeyValuePair<string, string>("Address", this.Address),
+                new KeyValuePair<string, string>("Type", this.Type.ToString()),
+                new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
+                new KeyValuePair<string, string>("Gender", this.Gender),
+                new KeyValuePair<string, string>("Start_Date", this.StartDate),
+                new KeyValuePair<string, string>("Estatus", this.Estatus.ToString()),
+                new KeyValuePair<string, string>("EDname", this.EDname),
+                new KeyValuePair<string, string>("Profession", this.Profession.ToString()),
+                new KeyValuePair<string, string>("Super_ssn", this.SuperSsn.ToString())
+            };   
             return hashSetPairs;
         }
     }

@@ -28,7 +28,7 @@ namespace DataLibrary.BusinessLogic
                 EDname = edname,
                 Profession = profession
                 //Super_ssn = superssn, always 32145678
-        };
+            };
             string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, 
                             Type, Start_Date, Estatus, EDname, Profession, Super_ssn) 
                             values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 32145678);";
@@ -37,28 +37,31 @@ namespace DataLibrary.BusinessLogic
         
         public static int EditEmployee(KeyValuePair<string,string> pair, int id)
         {
-            string columnName = pair.Key;
-            string setToString = pair.Value;
+            ColumnModel data;
+
             string sql = "";
             int setToNum = 0;
-
+            
             // Tries to convert value as an integer
-            try
+            if (Int32.TryParse(pair.Value, out setToNum))
             {
-                setToNum = Int32.Parse(setToString);
+                data = new ColumnModel()
+                {
+                    Employee_ID = id,
+                    IntValue = setToNum
+                };
                 sql = @"update pm.employee
-                set @columnName = @setToNum where Employee_ID = @Employee_ID;";
+                set "+pair.Key+" = @IntValue where Employee_ID = @Employee_ID;";
+                return SqlDataAccess.SaveData(sql, data);
             }
-            // Uses the value as a string
-            catch (Exception e)
+            data = new ColumnModel()
             {
-                sql = @"update pm.employee
-                set @columnName = @setToString where Employee_ID = @Employee_ID;";
-            }
-            
-            //find out how to set data! also check if exceptfor was used correctly!
-            
-            
+                Employee_ID = id,
+                StringValue = pair.Value
+            };
+            sql = @"update pm.employee
+            set "+pair.Key+" = @StringValue where Employee_ID = @Employee_ID;";
+              
             return SqlDataAccess.SaveData(sql, data);
         }
         
