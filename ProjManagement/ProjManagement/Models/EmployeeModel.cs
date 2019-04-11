@@ -27,7 +27,7 @@ namespace ProjManagement.Models
         public string DateOfBirth { get; set; } = "";
 
         [Required(ErrorMessage = "You must enter a value.")]
-        [Display(Name = "Social Security")]
+        [Display(Name = "SSN")]
         [Range(1, 999999999, ErrorMessage = "Please input a valid social security number.")]
         public int Ssn { get; set; }
 
