@@ -246,3 +246,7 @@ C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\
 C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
 C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
 C:\Users\Katherine\Desktop\UH\COSC3380\repos\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml

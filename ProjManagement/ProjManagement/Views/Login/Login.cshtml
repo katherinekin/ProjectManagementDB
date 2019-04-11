@@ -1,18 +1,89 @@
 ﻿@model ProjManagement.Models.LoginModel
 
-@{
-    ViewBag.Title = "Login";
-}
+<style>
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    select,
+    textarea {
+        max-width: 280px;
+    }
 
-<h2>Login</h2>
+    .column {
+        float: left;
+        width: 50%;
+        padding: 50px;
+        text-align: center;
+        font-size: 25px;
+        cursor: pointer;
+        color: white;
+    }
 
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
+    /* Closable button inside the image */
+    .closebtn {
+        float: right;
+        color: white;
+        font-size: 35px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="row">
+    <div class="column" onclick="openTab('login');" style="background:green;">Login</div>
+    <div class="column" onclick="openTab('register');" style="background:blue;">Register</div>
+</div>
+
+<!-- The expanding grid (hidden by default) -->
+<div id="login" class="hideable" style="display:none">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn"></span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Enter your information</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <div>@Html.ActionLink("Forgot Password?", "Index", "Home") </div>
+</div>
+
+<div id="register" class="hideable" style="display:none">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn"></span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
     <div class="form-horizontal">
-        <h4>LoginModel</h4>
+        <h4>Enter your information</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,16 +103,33 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Confirm, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Confirm, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Confirm, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+                <input type="submit" value="Register" class="btn btn-default" />
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
+
+<script>
+    // Hide all elements with class="hideable", except for the one that matches the clickable grid column
+    function openTab(tabName) {
+        var i, x;
+        x = document.getElementsByClassName("hideable");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+    }
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

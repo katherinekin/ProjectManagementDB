@@ -18,5 +18,11 @@ namespace ProjManagement.Models
         [DataType(DataType.Password)]
         [StringLength(100, ErrorMessage = "Password is too long.")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Passwords do not match")]
+        [Display(Name = "Confirm password")]
+        [DataType(DataType.Password)]
+        [StringLength(100, ErrorMessage = "Password is too long.")]
+        public string Confirm { get; set; }
     }
 }
