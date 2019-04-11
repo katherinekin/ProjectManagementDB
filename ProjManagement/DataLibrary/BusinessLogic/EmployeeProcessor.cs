@@ -34,27 +34,34 @@ namespace DataLibrary.BusinessLogic
                             values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 32145678);";
             return SqlDataAccess.SaveData(sql, data);
         }
-        /*
+        
         public static int EditEmployee(KeyValuePair<string,string> pair, int id)
         {
             string columnName = pair.Key;
-            string newValue = pair.Value;
+            string setToString = pair.Value;
             string sql = "";
-            if (newValue contains only numbers)
+            int setToNum = 0;
+
+            // Tries to convert value as an integer
+            try
             {
-                int newValueNum = newValue.toInteger();
-                string sql = @"update pm.employee
-                    set @columnName = @newValueNum where Employee_ID = @Employee_ID;";
+                setToNum = Int32.Parse(setToString);
+                sql = @"update pm.employee
+                set @columnName = @setToNum where Employee_ID = @Employee_ID;";
             }
-            else
+            // Uses the value as a string
+            catch (Exception e)
             {
-                string sql = @"update pm.employee
-                    set @columnName = @newValue where Employee_ID = @Employee_ID;";
+                sql = @"update pm.employee
+                set @columnName = @setToString where Employee_ID = @Employee_ID;";
             }
+            
+            //find out how to set data! also check if exceptfor was used correctly!
+            
             
             return SqlDataAccess.SaveData(sql, data);
         }
-        */
+        
         public static int DeleteEmployee(int employeeid)
         {
             EmployeeModel data = new EmployeeModel

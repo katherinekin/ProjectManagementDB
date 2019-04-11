@@ -64,5 +64,28 @@ namespace ProjManagement.Models
             Profession = 0;
             SuperSsn = 0;
         }
+
+        public HashSet<KeyValuePair<string, string>> setToPairs()
+        {
+            HashSet<KeyValuePair<string, string>> hashSetPairs = new HashSet<KeyValuePair<string, string>>();
+            KeyValuePair<string, string> somePair = new KeyValuePair<string, string>();
+            //set attributes of model to keyvaluepairs, stringify the ints
+            somePair = new KeyValuePair<string, string>("Employee_ID", EmployeeID.ToString()); hashSetPairs.Add(somePair);
+            somePair = new KeyValuePair<string, string>("Fname", FName); hashSetPairs.Add(somePair);
+            somePair = new KeyValuePair<string, string>("Lname", LName); hashSetPairs.Add(somePair);
+            somePair = new KeyValuePair<string, string>("Date_Of_Birth", DateOfBirth); hashSetPairs.Add(somePair);
+            /*
+            Ssn = 0;
+            Address = "";
+            Type = 0;
+            Gender = "";
+            Start_Date = "";
+            Estatus = 0;
+            EDname = "";
+            Profession = 0;
+            Super_ssn = 0;
+            */
+            return hashSetPairs;
+        }
     }
 }

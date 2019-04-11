@@ -7,6 +7,8 @@ namespace ProjManagement.Controllers
 {
     public class EmployeeController : Controller
     {
+        private bool isUpdated = false;
+        private HashSet<KeyValuePair<string,string>> oldModelHashSet = new HashSet<KeyValuePair<string, string>>(); 
         // GET: Employee
         public ActionResult Index()
         {
@@ -96,20 +98,23 @@ namespace ProjManagement.Controllers
         [HttpPost]
         public ActionResult Edit(int id, EmployeeModel model)
         {
-            /*
+            if (isUpdated == false)
+                oldModelHashSet = model.setToPairs();  //returns a HashSet of the old model only if has not been set
+                
             if (!ModelState.IsValid)
             {
+                isUpdated = true;
                 return View(model);
             }
-            List<KeyValuePair<string, string>> pairList = new List<KeyValuePair<string, string>>();
-            pairList.Add( new KeyValuePair<string, string> ( "Employee_ID", (model.EmployeeID).ToString()));
-            pairList.Add(new KeyValuePair<string, string>("Employee_ID", (model.EmployeeID).ToString()));
-            //...
-            //EmployeeProcessor.EditEmployee(model.FName, model.LName, model.DateOfBirth, model.Ssn,
-            //model.Type, model.StartDate, model.EDname, model.Profession);
-            */
-            return RedirectToAction("Details", new { id = model.EmployeeID });
-            
+            HashSet<KeyValuePair<string,string>> newModelHashSet = model.setToPairs();
+            newModelHashSet.ExceptWith(oldModelHashSet);
+            foreach (var pair in newModelHashSet)
+            {
+                EmployeeProcessor.EditEmployee(pair, model.EmployeeID);
+            }
+           
+            isUpdated = false;
+            return RedirectToAction("Details", new { id = model.EmployeeID });   
         }
 
         // GET: Employee/Delete/5
