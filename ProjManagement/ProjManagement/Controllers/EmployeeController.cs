@@ -22,7 +22,7 @@ namespace ProjManagement.Controllers
                     EmployeeID = row.Employee_ID,
                     FName = row.Fname,
                     LName = row.Lname,
-                    //DateOfBirth = row.Date_Of_Birth,
+                    DateOfBirth = row.Date_Of_Birth,
                     Ssn = row.Ssn
                 });
             }
