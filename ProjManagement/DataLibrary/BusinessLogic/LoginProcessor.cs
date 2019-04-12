@@ -14,14 +14,14 @@ namespace DataLibrary.BusinessLogic
         // Edit an existing record in 
         public static int EditLogin(int employeeId, string username, string password)
         {
-            LoginModel data = new LoginModel
+            LoginModelForgot data = new LoginModelForgot
             {
                 EmployeeID = employeeId,
-                Username = username,
-                Password = password
+                NewUsername = username,
+                NewPassword = password
             };
             string sql = @"update PM.Login 
-                            set Username = @Username, Password = @Password
+                            set Username = @NewUsername, Password = @NewPassword
                             where LEmployee_Id = @EmployeeID;";
             return SqlDataAccess.SaveData(sql, data);
         }

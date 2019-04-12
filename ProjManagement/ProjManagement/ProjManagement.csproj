@@ -197,6 +197,9 @@
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Employee\SuccessEmployee.cshtml" />
+    <Content Include="Views\Shared\LoginPartialView.cshtml" />
+    <Content Include="Views\Shared\ForgotPartialView.cshtml" />
+    <Content Include="Views\Login\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

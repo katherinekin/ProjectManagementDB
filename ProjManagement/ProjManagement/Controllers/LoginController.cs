@@ -13,7 +13,12 @@ namespace ProjManagement.Controllers
         // GET: Login
         public ActionResult Login()
         {
-            return View();
+            AuthVM model = new AuthVM
+            {
+                RecoverForm = new LoginModelForgot(),
+                LoginForm = new LoginModel()
+            };
+            return View(model);
         }
         //Validation of correct Login information
         [HttpPost]
@@ -22,10 +27,9 @@ namespace ProjManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //Redirects to another page
-                //return RedirectToAction("Success");
-                return View(model);
+                return View();
             }
+
             List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
             foreach (DataLibrary.Models.LoginModel item in loginList)
             {
@@ -34,10 +38,31 @@ namespace ProjManagement.Controllers
                     return RedirectToAction("Success");
                 }
             }
+
             return View();
         }
-        //test page
-        public ActionResult Success()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(LoginModelForgot model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Login");
+            }
+            if (model.ConfirmUsername == model.NewUsername && model.ConfirmPass == model.NewPassword)
+            {
+                int x = LoginProcessor.EditLogin(model.EmployeeID, model.ConfirmUsername, model.ConfirmPass);
+                if (x != 0)
+                {
+                    return View();
+                }
+            }
+            return RedirectToAction("Login");
+        }
+
+            //test page
+            public ActionResult Success()
         {
             ViewBag.Message = "SUCCESS.";
 
