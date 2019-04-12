@@ -58,6 +58,7 @@ namespace ProjManagement.Models
             Address = "";
             Type = 0;
             Gender = "";
+            Salary = 0;
             StartDate = "";
             Estatus = 0;
             EDname = "";
@@ -78,6 +79,7 @@ namespace ProjManagement.Models
                 new KeyValuePair<string, string>("Type", this.Type.ToString()),
                 new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
                 new KeyValuePair<string, string>("Gender", this.Gender),
+                new KeyValuePair<string, string>("Salary", this.Salary.ToString()),
                 new KeyValuePair<string, string>("Start_Date", this.StartDate),
                 new KeyValuePair<string, string>("Estatus", this.Estatus.ToString()),
                 new KeyValuePair<string, string>("EDname", this.EDname),

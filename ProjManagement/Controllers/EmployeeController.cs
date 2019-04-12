@@ -69,6 +69,7 @@ namespace ProjManagement.Controllers
                     Address = row.Address,
                     Type = row.Type,
                     Gender = row.Gender,
+                    Salary = row.Salary,
                     StartDate = row.Start_Date,
                     Estatus = row.Estatus,
                     EDname = row.EDname,

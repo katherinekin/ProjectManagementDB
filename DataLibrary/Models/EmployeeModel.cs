@@ -37,6 +37,7 @@ namespace DataLibrary.Models
             Address = "";
             Type = 0;
             Gender = "";
+            Salary = 0;
             Start_Date = "";
             Estatus = 0;
             EDname = "";
