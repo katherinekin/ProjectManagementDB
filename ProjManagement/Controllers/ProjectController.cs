@@ -159,18 +159,15 @@ namespace ProjManagement.Controllers
         [HttpPost]
         public ActionResult Delete(int pid, ProjectModel collection)
         {
-
-
             try
             {
-               ProjectProcessor.DeleteProject(pid);
+                ProjectProcessor.DeleteProject(pid);
                 return RedirectToAction("Index");
             }
             catch
             {
                 return View(collection);
             }
-
         }
     }
 }

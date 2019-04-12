@@ -55,7 +55,7 @@ namespace DataLibrary.BusinessLogic
         public static int EditProject(KeyValuePair<string, string> pair, int Pid)
         {
             
-            PColumnMode data;
+            PColumnModel data;
 
             string sql = "";
             int PsetToNum = 0;
@@ -63,7 +63,7 @@ namespace DataLibrary.BusinessLogic
             // Tries to convert value as an integer
             if (Int32.TryParse(pair.Value, out PsetToNum))
             {
-                data = new PColumnMode()
+                data = new PColumnModel()
                 {
                     Project_ID = Pid,
                     IntValue = PsetToNum
@@ -72,7 +72,7 @@ namespace DataLibrary.BusinessLogic
                 set " + pair.Key + " = @IntValue where Project_ID = @Project_ID;";
                 return SqlDataAccess.SaveData(sql, data);
             }
-            data = new PColumnMode()
+            data = new PColumnModel()
             {
                 Project_ID = Pid,
                 StringValue = pair.Value
