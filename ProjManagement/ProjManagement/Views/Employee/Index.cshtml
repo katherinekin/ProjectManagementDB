@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/ManagerLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Employee List</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateEmployee")
@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.LName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ssn)
+            @Html.DisplayNameFor(model => model.DateOfBirth)
         </th>
    
         <th></th>
@@ -40,7 +40,7 @@
             @Html.DisplayFor(modelItem => item.LName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ssn)
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
         </td>
         
         <td>
