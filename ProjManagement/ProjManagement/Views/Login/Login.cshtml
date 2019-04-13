@@ -25,14 +25,6 @@
         display: table;
         clear: both;
     }
-
-    /* Closable button inside the image */
-    .closebtn {
-        float: right;
-        color: white;
-        font-size: 35px;
-        cursor: pointer;
-    }
 </style>
 
 <div class="row">
@@ -41,21 +33,25 @@
 </div>
 
 <!-- The expanding grid (hidden by default) -->
-<div id="login" class="hideable" style="display:none">
-    <span onclick="this.parentElement.style.display='none'" class="closebtn"></span>
+<div id="login" class="hideable" style="display:block">
     @Html.Partial("LoginPartialView", Model.LoginForm)
-    <div>@Html.ActionLink("New User?", "Index", "Home") </div>
+    <div>@Html.ActionLink("New user? Click here to regiser.", "Index", "Home") </div>
 </div>
 
 <div id="forgot" class="hideable" style="display:none">
-    <span onclick="this.parentElement.style.display='none'" class="closebtn"></span>
     @Html.Partial("ForgotPartialView", Model.RecoverForm)
 </div>
 
+<text class="text-danger" id="errmsg"> @ViewBag.ErrorMessage </text>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 <script>
+
     // Hide all elements with class="hideable", except for the one that matches the clickable grid column
     function openTab(tabName) {
-        var i, x;
+        var i, x, y, z;
         x = document.getElementsByClassName("hideable");
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
@@ -64,7 +60,12 @@
         for (i = 0; i < y.length; i++) {
             y[i].style.display = "none";
         }
+        z = document.getElementsByClassName("form-control");
+        for (i = 0; i < z.length; i++) {
+            z[i].value = null;
+        }
         document.getElementById(tabName).style.display = "block";
+        document.getElementById("errmsg").style.display = "none";
     }
 
     function syncP() {
@@ -81,15 +82,35 @@
 
     // Hide all elements with class="hideable", except for the one that matches the clickable grid column
     function openTab2(tabName) {
-        var i, x;
-        x = document.getElementsByClassName("hideable2");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        var i, y, z;
+        y = document.getElementsByClassName("hideable2");
+        for (i = 0; i < y.length; i++) {
+            y[i].style.display = "none";
+        }
+        z = document.getElementsByClassName("form-control");
+        for (i = 0; i < z.length; i++) {
+            z[i].value = null;
         }
         document.getElementById(tabName).style.display = "block";
+        document.getElementById("errmsg").style.display = "none";
     }
+
+    
 </script>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+        $(document).ready(function () {
+            var test = '@ViewData["State"].ToString()';
+            if (test == "user") {
+                document.getElementById('login').style.display = "none";
+                document.getElementById('forgot').style.display = "block";
+                document.getElementById('username').style.display = "block";
+            }
+            else if (test == "pass") {
+                document.getElementById('login').style.display = "none";
+                document.getElementById('forgot').style.display = "block";
+                document.getElementById('password').style.display = "block";
+            }
+        });
+</script>
 }

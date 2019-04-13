@@ -18,6 +18,7 @@ namespace ProjManagement.Controllers
                 RecoverForm = new LoginModelForgot(),
                 LoginForm = new LoginModel()
             };
+            ViewData["State"] = "initial";
             return View(model);
         }
         //Validation of correct Login information
@@ -44,21 +45,49 @@ namespace ProjManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Update(LoginModelForgot model)
+        public ActionResult Update(LoginModelForgot model, string forgot)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Login");
             }
-            if (model.ConfirmUsername == model.NewUsername && model.ConfirmPass == model.NewPassword)
+
+            ModelState.Clear();
+
+            AuthVM old = new AuthVM
             {
-                int x = LoginProcessor.EditLogin(model.EmployeeID, model.ConfirmUsername, model.ConfirmPass);
-                if (x != 0)
+                RecoverForm = model,
+                LoginForm = new LoginModel()
+            };
+
+            List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
+            foreach (DataLibrary.Models.LoginModel item in loginList)
+            {
+                if ((model.EmployeeID == item.LEmployee_ID) && ((model.NewPassword == item.Password && forgot == "user") || (model.NewUsername == item.Username && forgot == "pass")))
                 {
+                    int x = LoginProcessor.EditLogin(model.EmployeeID, model.NewUsername, model.NewPassword);
                     return View();
                 }
+                else if (model.EmployeeID == item.LEmployee_ID && forgot == "user" && model.NewPassword != item.Password)
+                {
+                    ViewBag.ErrorMessage = "Wrong password";
+                    old.RecoverForm.NewPassword = old.RecoverForm.ConfirmPass = null;
+                    ViewData["State"] = forgot;
+                    return View("Login", old);
+                }
+                else if (model.EmployeeID == item.LEmployee_ID && forgot == "pass" && model.NewUsername != item.Username)
+                {
+                    ViewBag.ErrorMessage = "Wrong username";
+                    old.RecoverForm.NewUsername = old.RecoverForm.ConfirmUsername = null;
+                    ViewData["State"] = forgot;
+                    return View("Login", old);
+                }
             }
-            return RedirectToAction("Login");
+
+            ViewBag.ErrorMessage = "ID not found";
+            old.RecoverForm.EmployeeID = 0;
+            ViewData["State"] = forgot;
+            return View("Login", old);
         }
 
             //test page

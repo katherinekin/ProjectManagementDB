@@ -14,6 +14,8 @@ namespace ProjManagement.Models
 
     public class LoginModel
     {
+        public int LEmployee_ID { get; set; }
+
         [Required(ErrorMessage = "You must enter a username")]
         [Display(Name = "Username")]
         public string Username { get; set; }
