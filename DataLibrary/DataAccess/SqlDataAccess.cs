@@ -26,6 +26,13 @@ namespace DataLibrary.DataAccess
                 return cnn.Query<T>(sql).ToList();
             }
         }
+        public static List<T> LoadData<T>(string sql, T data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, data).ToList();
+            }
+        }
         // Executes sql query with given parameters
         public static int SaveData<T>(string sql, T data)
         {

@@ -24,7 +24,7 @@ namespace DataLibrary.Models
         public int Estatus { get; set; }
         public string EDname { get; set; }
         public int Profession { get; set; }
-        public int Super_ssn { get; set; }
+        public int Super_Ssn { get; set; }        
 
         // Default values, in case some fields are null
         public EmployeeModel()
@@ -42,7 +42,7 @@ namespace DataLibrary.Models
             Estatus = 0;
             EDname = "";
             Profession = 0;
-            Super_ssn = 0;
+            Super_Ssn = 0;       
         }
     }
 }

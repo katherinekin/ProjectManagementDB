@@ -27,11 +27,11 @@ namespace DataLibrary.BusinessLogic
                 //Estatus = 0, always 1
                 EDname = edname,
                 Profession = profession
-                //Super_ssn = superssn, always 32145678
+                
             };
             string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, 
                             Type, Start_Date, Estatus, EDname, Profession, Super_ssn) 
-                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 32145678);";
+                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 377093932);";
             return SqlDataAccess.SaveData(sql, data);
         }
         
@@ -95,6 +95,24 @@ namespace DataLibrary.BusinessLogic
                 }
             }
             return found;
+        }
+        public static String getManagerName(int superssn)
+        {            
+            EmployeeModel data = new EmployeeModel
+            {
+                Super_Ssn = superssn
+            };
+           
+            try
+            {
+                string sql = @"select Fname, Lname from PM.Employee where Ssn = 377093932;";
+                var found = SqlDataAccess.LoadData<EmployeeModel>(sql, data);
+                return found[0].Fname + " " + found[0].Lname;                
+            }
+            catch
+            {
+                return "No manager found";
+            }
         }
     }
 }

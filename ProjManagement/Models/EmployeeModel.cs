@@ -47,6 +47,7 @@ namespace ProjManagement.Models
         public int Profession { get; set; }
         [Display(Name = "Manager")]
         public int SuperSsn { get; set; } //call in edit function, not create
+        public string SuperName { get; set; }
 
         public EmployeeModel()
         {
@@ -64,6 +65,7 @@ namespace ProjManagement.Models
             EDname = "";
             Profession = 0;
             SuperSsn = 0;
+            SuperName = "";
         }
 
         public HashSet<KeyValuePair<string, string>> setToPairs()

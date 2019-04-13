@@ -74,8 +74,9 @@ namespace ProjManagement.Controllers
                     Estatus = row.Estatus,
                     EDname = row.EDname,
                     Profession = row.Profession,
-                    SuperSsn = row.Super_ssn
-                });
+                    SuperSsn = row.Super_Ssn,
+                    SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn)
+                });                
             }
             return foundEmployee[0];
         }
