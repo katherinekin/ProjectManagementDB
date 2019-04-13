@@ -5,10 +5,8 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
-
     public class EmployeeController : Controller
-    {
-         
+    {         
         // GET: Employee
         public ActionResult Index()
         {
@@ -151,6 +149,11 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
+        }
+        public ActionResult ViewProjects(int id)
+        {
+            //displays list of projects the employee is involved in
+            //return View(model);
         }
     }
 }
