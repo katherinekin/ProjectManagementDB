@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace ProjManagement.Controllers
 {
@@ -36,7 +37,7 @@ namespace ProjManagement.Controllers
             {
                 if (model.Username == item.Username && model.Password == item.Password)
                 {
-                    return RedirectToAction("Success");
+                    return RedirectToAction("Index", "Employee");
                 }
             }
 

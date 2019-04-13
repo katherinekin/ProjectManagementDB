@@ -250,3 +250,11 @@ C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManageme
 C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.dll
 C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\DataLibrary.pdb
 C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Dapper.xml
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\EntityFramework.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\EntityFramework.SqlServer.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\EntityFramework.xml
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\EntityFramework.SqlServer.xml
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Patri\Desktop\UH Spring 2019\COSC 3380\ProjectManagementDB\ProjManagement\ProjManagement\bin\Microsoft.AspNet.Identity.EntityFramework.xml
