@@ -193,8 +193,15 @@ namespace ProjManagement.Controllers
                         EDname = row.EDname,
                         Profession = row.Profession,
                         SuperSsn = row.Super_Ssn,
-                        SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn)
-
+                        SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
+                        ProjectID = id
+                    });
+                }
+                if (employees.Count == 0)
+                {
+                    employees.Add(new EmployeeModel
+                    {
+                        ProjectID = id
                     });
                 }
                 return View(employees);

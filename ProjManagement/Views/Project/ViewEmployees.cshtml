@@ -111,3 +111,7 @@
 }
 
 </table>
+<div>
+    @Html.ActionLink("Back to Project", "Details", "Project", new { id = Model.Cast<ProjManagement.Models.EmployeeModel>().First().ProjectID }, null) |
+    @Html.ActionLink("Back to Project List", "Index", "Project")
+</div>

@@ -175,7 +175,15 @@ namespace ProjManagement.Controllers
                         Close_Date = row.Close_Date,
                         Completion_Date = row.Close_Date,
                         Collaborators = row.Close_Date,
-                        Pstatus = row.Pstatus
+                        Pstatus = row.Pstatus,
+                        EmployeeID = id
+                    });
+                }
+                if (projects.Count==0)
+                {
+                    projects.Add(new ProjectModel
+                    {
+                        EmployeeID = id
                     });
                 }
                 return View(projects);

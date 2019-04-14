@@ -91,5 +91,6 @@
 </table>
 <hr />
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Employee Profile", "Details", "Employee", new { id = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null) |
+    @Html.ActionLink("Back to Employee List", "Index", "Employee")
 </div>
