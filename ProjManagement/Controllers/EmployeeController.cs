@@ -154,19 +154,28 @@ namespace ProjManagement.Controllers
         }
         //displays list of projects the employee is involved in
         //return View(model);
-        /*
+        
         public ActionResult ViewProjects(int id)
         {
             try
             {
-                var data = EmployeeProcessor.FindProjects(id);                
+                var data = ProjectProcessor.FindProjectsByEmployee(id);                
                 List<ProjectModel> projects = new List<ProjectModel>();
                 foreach (var row in data)
                 {
                     projects.Add(new ProjectModel
                     {
                         ProjectID = row.Project_ID,
-
+                        PName = row.Pname,
+                        PDName = row.PDname,
+                        Client = row.Client,
+                        PDescription = row.Pdescription,
+                        Deliverables = row.Deliverables,
+                        Open_Date = row.Open_Date,
+                        Close_Date = row.Close_Date,
+                        Completion_Date = row.Close_Date,
+                        Collaborators = row.Close_Date,
+                        Pstatus = row.Pstatus
                     });
                 }
                 return View(projects);
@@ -177,6 +186,6 @@ namespace ProjManagement.Controllers
             }
             
         }
-        */
+        
     }
 }

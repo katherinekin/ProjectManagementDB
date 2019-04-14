@@ -100,7 +100,6 @@ namespace DataLibrary.BusinessLogic
             {
                 Super_Ssn = superssn
             };
-           
             try
             {
                 string sql = @"select Fname, Lname from PM.Employee where Ssn = @Super_Ssn;";
@@ -112,6 +111,17 @@ namespace DataLibrary.BusinessLogic
                 return "No manager found";
             }
         }
-        
+        public static List<EmployeeModel> FindEmployeesByProject(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid                
+            };
+            string sql = @"select * from pm.employee where Employee_ID in 
+                            (select distinct Employee_ID from PM.Project, PM.PROJECT_EMPLOYEES, PM.EMPLOYEE
+                            where EProject_ID = @Project_ID and PEmployee_ID = Employee_ID);";
+
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data);
+        }
     }
 }

@@ -206,6 +206,8 @@
     <Content Include="Views\Employee\SuccessEmployee.cshtml" />
     <Content Include="Views\Project\SuccessProject.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Employee\ViewProjects.cshtml" />
+    <Content Include="Views\Project\ViewEmployees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
