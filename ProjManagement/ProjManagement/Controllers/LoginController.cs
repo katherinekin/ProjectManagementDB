@@ -1,11 +1,12 @@
 ﻿using DataLibrary.BusinessLogic;
+using System.Web.Security;
+using DataLibrary;
 using ProjManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 
 namespace ProjManagement.Controllers
 {
@@ -27,9 +28,10 @@ namespace ProjManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid && Membership.ValidateUser(model.Username, model.Password))
             {
-                return View();
+                FormsAuthentication.SetAuthCookie(model.LEmployee_ID.ToString(), false);
+                return RedirectToAction("Index", "Employee");
             }
 
             List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
