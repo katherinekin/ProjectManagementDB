@@ -52,7 +52,7 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
         //-----------------------------------------------------------------------------------------Edit Project
-        public static int EditProject(KeyValuePair<string, string> pair, int Pid)
+        public static int EditProject(KeyValuePair<string, string> pair, int id)
         {
             
             PColumnModel data;
@@ -65,7 +65,7 @@ namespace DataLibrary.BusinessLogic
             {
                 data = new PColumnModel()
                 {
-                    Project_ID = Pid,
+                    Project_ID = id,
                     IntValue = PsetToNum
                 };
                 sql = @"update pm.project
@@ -74,7 +74,7 @@ namespace DataLibrary.BusinessLogic
             }
             data = new PColumnModel()
             {
-                Project_ID = Pid,
+                Project_ID = id,
                 StringValue = pair.Value
             };
             sql = @"update pm.project
