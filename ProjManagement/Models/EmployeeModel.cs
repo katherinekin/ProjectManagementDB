@@ -47,6 +47,8 @@ namespace ProjManagement.Models
         public int Profession { get; set; }
         [Display(Name = "Manager")]
         public int SuperSsn { get; set; } //call in edit function, not create
+        public string SuperName { get; set; }
+        public int ProjectID { get; set; }
 
         public EmployeeModel()
         {
@@ -58,11 +60,14 @@ namespace ProjManagement.Models
             Address = "";
             Type = 0;
             Gender = "";
+            Salary = 0;
             StartDate = "";
             Estatus = 0;
             EDname = "";
             Profession = 0;
             SuperSsn = 0;
+            SuperName = "";
+            ProjectID = 0;
         }
 
         public HashSet<KeyValuePair<string, string>> setToPairs()
@@ -78,6 +83,7 @@ namespace ProjManagement.Models
                 new KeyValuePair<string, string>("Type", this.Type.ToString()),
                 new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
                 new KeyValuePair<string, string>("Gender", this.Gender),
+                new KeyValuePair<string, string>("Salary", this.Salary.ToString()),
                 new KeyValuePair<string, string>("Start_Date", this.StartDate),
                 new KeyValuePair<string, string>("Estatus", this.Estatus.ToString()),
                 new KeyValuePair<string, string>("EDname", this.EDname),

@@ -100,6 +100,14 @@
         </dd>
 
     </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("View Employees", "ViewEmployees", new { id = Model.ProjectID },
+           new { @class = "btn btn-primary btn-lg" })
+
+        </div>
+    </div>
+
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

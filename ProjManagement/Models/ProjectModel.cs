@@ -50,6 +50,7 @@ namespace ProjManagement.Models
 
         [Display(Name = "Collaborators")]
         public string Collaborators { get; set; }
+        public int EmployeeID { get; set; }
 
 
         public ProjectModel()
@@ -65,7 +66,7 @@ namespace ProjManagement.Models
             Completion_Date = "";
             Pstatus = 0;
             Collaborators = "";
-
+            EmployeeID = 0;
         }
 
         public HashSet<KeyValuePair<string, string>> PsetToPairs()

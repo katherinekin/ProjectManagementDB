@@ -8,6 +8,7 @@ using Dapper;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using DataLibrary.Models;
 
 namespace DataLibrary.DataAccess
 {
@@ -26,6 +27,29 @@ namespace DataLibrary.DataAccess
                 return cnn.Query<T>(sql).ToList();
             }
         }
+        public static List<T> LoadData<T>(string sql, T data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, data).ToList();
+            }
+        }
+        public static List<T> LoadData<T>(string sql, EmployeeModel data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, data).ToList();
+            }
+            throw new NotImplementedException();
+        }
+        public static List<T> LoadData<T>(string sql, ProjectModel data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, data).ToList();
+            }
+            throw new NotImplementedException();
+        }
         // Executes sql query with given parameters
         public static int SaveData<T>(string sql, T data)
         {
@@ -34,5 +58,7 @@ namespace DataLibrary.DataAccess
                 return cnn.Execute(sql, data);
             }
         }
+
+        
     }
 }

@@ -16,7 +16,7 @@ namespace DataLibrary.BusinessLogic
         {
             LoginModel data = new LoginModel
             {
-                EmployeeID = employeeId,
+                LEmployee_ID = employeeId,
                 Username = username,
                 Password = password
             };
@@ -31,6 +31,13 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select *
                             from PM.Login;";
             return SqlDataAccess.LoadData<LoginModel>(sql);
+        }
+        
+        // gets a list of manager ids from department
+        public static List<int> LoadManagers()
+        {
+            string sql = @"select Manager_ID from pm.department";
+            return SqlDataAccess.LoadData<int>(sql);
         }
     }
 }

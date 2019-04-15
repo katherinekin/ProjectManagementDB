@@ -10,7 +10,7 @@ namespace ProjManagement.Controllers
     {
         // GET: Manager
         public ActionResult Index()
-        {
+        {            
             return View();
         }
         public ActionResult Employee()

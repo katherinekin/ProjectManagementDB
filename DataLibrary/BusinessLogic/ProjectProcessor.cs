@@ -10,7 +10,8 @@ namespace DataLibrary.BusinessLogic
 {
     public class ProjectProcessor
     {
-        public static int CreateProject(int projectid, string PName1, string PDName1, string Client1, string PDescription1, string Deliverables1, string Open_Date1, string Close_Date1, string Completion_Date1, string Collaborators1, int Pstatus1)
+        public static int CreateProject(int projectid, string PName1, string PDName1, string Client1, string PDescription1, 
+            string Deliverables1, string Open_Date1, string Close_Date1, string Completion_Date1, string Collaborators1, int Pstatus1)
         {
             ProjectModel data = new ProjectModel
             {
@@ -94,11 +95,20 @@ namespace DataLibrary.BusinessLogic
                 {
                     found.Add(item);
                 }
-
             }
-            return (list);
+            return (found);
         }
-
-
+        public static List<ProjectModel> FindProjectsByEmployee(int employeeid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid
+            };
+            string sql = @"select * from pm.project where Pname in 
+                            (select distinct Pname from PM.Project, PM. PROJECT_EMPLOYEES, PM.EMPLOYEE
+                            where EProject_ID = Project_ID and PEmployee_ID = @Employee_ID);";
+            
+            return SqlDataAccess.LoadData<ProjectModel>(sql, data);
+        }
     }
 }

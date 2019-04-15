@@ -27,21 +27,25 @@ namespace DataLibrary.BusinessLogic
                 //Estatus = 0, always 1
                 EDname = edname,
                 Profession = profession
-                //Super_ssn = superssn, always 32145678
+                
             };
             string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, 
                             Type, Start_Date, Estatus, EDname, Profession, Super_ssn) 
-                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 32145678);";
+                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 377093932);";
             return SqlDataAccess.SaveData(sql, data);
         }
-        
+        // Loads all of the employees back into DataLibrary.Models.EmployeeModel
+        public static List<EmployeeModel> LoadEmployees()
+        {
+            //string sql = @"select Employee_ID, Fname, Lname, Date_Of_Birth, Ssn from PM.Employee;";
+            string sql = "select * from PM.Employee;";
+            return SqlDataAccess.LoadData<EmployeeModel>(sql);
+        }
         public static int EditEmployee(KeyValuePair<string,string> pair, int id)
         {
             ColumnModel data;
-
-            string sql = "";
             int setToNum = 0;
-            
+            string sql = "";
             // Tries to convert value as an integer
             if (Int32.TryParse(pair.Value, out setToNum))
             {
@@ -74,13 +78,7 @@ namespace DataLibrary.BusinessLogic
             string sql = @"delete from PM.Employee where Employee_ID = @Employee_ID;";
             return SqlDataAccess.SaveData(sql, data);
         }
-        // Loads all of the employees back into DataLibrary.Models.EmployeeModel
-        public static List<EmployeeModel> LoadEmployees()
-        {
-            //string sql = @"select Employee_ID, Fname, Lname, Date_Of_Birth, Ssn from PM.Employee;";
-            string sql = "select * from PM.Employee;";
-            return SqlDataAccess.LoadData<EmployeeModel>(sql);
-        }
+        
 
         // Assume there is only one item found per primary key, but returns empty list if not found
         public static List<EmployeeModel> FindEmployee(int employeeid)
@@ -95,6 +93,35 @@ namespace DataLibrary.BusinessLogic
                 }
             }
             return found;
+        }
+        public static String getManagerName(int superssn)
+        {            
+            EmployeeModel data = new EmployeeModel
+            {
+                Super_Ssn = superssn
+            };
+            try
+            {
+                string sql = @"select Fname, Lname from PM.Employee where Ssn = @Super_Ssn;";
+                var found = SqlDataAccess.LoadData<EmployeeModel>(sql, data);
+                return found[0].Fname + " " + found[0].Lname;                
+            }
+            catch
+            {
+                return "No manager found";
+            }
+        }
+        public static List<EmployeeModel> FindEmployeesByProject(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid                
+            };
+            string sql = @"select * from pm.employee where Employee_ID in 
+                            (select distinct Employee_ID from PM.Project, PM.PROJECT_EMPLOYEES, PM.EMPLOYEE
+                            where EProject_ID = @Project_ID and PEmployee_ID = Employee_ID);";
+
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data);
         }
     }
 }
