@@ -26,14 +26,25 @@ namespace ProjManagement.Controllers
                 //return RedirectToAction("Success");
                 return View(model);
             }
-            List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
+            var loginList = LoginProcessor.LoadLogins();
+            var managerList = LoginProcessor.LoadManagers();
             foreach (DataLibrary.Models.LoginModel item in loginList)
             {
                 if (model.Username == item.Username && model.Password == item.Password)
                 {
-                    return RedirectToAction("Success");
+                    int EmployeeID = item.LEmployee_ID;
+                    
+                    foreach (int managerID in managerList)
+                    {
+                        if (EmployeeID == managerID)
+                        {
+                            return RedirectToAction("Index", "Manager");
+                        }
+                    }
+                    return RedirectToAction("Index", "User", new { id = EmployeeID });
                 }
-            }
+            }         
+            
             return View();
         }
         //test page

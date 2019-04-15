@@ -11,8 +11,9 @@ namespace DataLibrary.Models
     
     public class LoginModel
     {
-        public int EmployeeID { get; set; }
+        public int LEmployee_ID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        
     }
 }

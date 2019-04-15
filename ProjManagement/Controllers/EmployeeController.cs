@@ -5,10 +5,8 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
-
     public class EmployeeController : Controller
     {
-         
         // GET: Employee
         public ActionResult Index()
         {
@@ -76,7 +74,9 @@ namespace ProjManagement.Controllers
                     Profession = row.Profession,
                     SuperSsn = row.Super_Ssn,
                     SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn)
-                });                
+
+                });
+                
             }
             return foundEmployee[0];
         }
@@ -103,27 +103,27 @@ namespace ProjManagement.Controllers
             EmployeeModel found = mapToModel(data);
             return View(found);
         }
-        
+
         // POST: Employee/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, EmployeeModel model)
         {
             var data = EmployeeProcessor.FindEmployee(id);
             EmployeeModel oldModel = mapToModel(data);
-            HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.setToPairs();  
+            HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.setToPairs();
             //returns a HashSet of the old model only if has not been set
-                
+
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            HashSet<KeyValuePair<string,string>> newModelHashSet = model.setToPairs();
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.setToPairs();
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
             {
                 EmployeeProcessor.EditEmployee(pair, model.EmployeeID);
             }
-            return RedirectToAction("Details", new { id = model.EmployeeID });   
+            return RedirectToAction("Details", new { id = model.EmployeeID });
         }
 
         // GET: Employee/Delete/5
@@ -152,5 +152,48 @@ namespace ProjManagement.Controllers
                 return View(model);
             }
         }
+        //displays list of projects the employee is involved in
+        //return View(model);
+        
+        public ActionResult ViewProjects(int id)
+        {
+            try
+            {
+                var data = ProjectProcessor.FindProjectsByEmployee(id);                
+                List<ProjectModel> projects = new List<ProjectModel>();
+                foreach (var row in data)
+                {
+                    projects.Add(new ProjectModel
+                    {
+                        ProjectID = row.Project_ID,
+                        PName = row.Pname,
+                        PDName = row.PDname,
+                        Client = row.Client,
+                        PDescription = row.Pdescription,
+                        Deliverables = row.Deliverables,
+                        Open_Date = row.Open_Date,
+                        Close_Date = row.Close_Date,
+                        Completion_Date = row.Close_Date,
+                        Collaborators = row.Close_Date,
+                        Pstatus = row.Pstatus,
+                        EmployeeID = id
+                    });
+                }
+                if (projects.Count==0)
+                {
+                    projects.Add(new ProjectModel
+                    {
+                        EmployeeID = id
+                    });
+                }
+                return View(projects);
+            }
+            catch
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+            
+        }
+        
     }
 }

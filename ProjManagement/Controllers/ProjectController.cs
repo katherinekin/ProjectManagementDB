@@ -166,5 +166,48 @@ namespace ProjManagement.Controllers
                 return View(model);
             }
         }
+        public ActionResult ViewEmployees(int id)
+        {
+            try
+            {
+                var data = EmployeeProcessor.FindEmployeesByProject(id);
+                List<EmployeeModel> employees = new List<EmployeeModel>();
+                foreach (var row in data)
+                {
+                    employees.Add(new EmployeeModel
+                    {
+                        EmployeeID = row.Employee_ID,
+                        FName = row.Fname,
+                        LName = row.Lname,
+                        DateOfBirth = row.Date_Of_Birth,
+                        Ssn = row.Ssn,
+                        Address = row.Address,
+                        Type = row.Type,
+                        Gender = row.Gender,
+                        Salary = row.Salary,
+                        StartDate = row.Start_Date,
+                        Estatus = row.Estatus,
+                        EDname = row.EDname,
+                        Profession = row.Profession,
+                        SuperSsn = row.Super_Ssn,
+                        SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
+                        ProjectID = id
+                    });
+                }
+                if (employees.Count == 0)
+                {
+                    employees.Add(new EmployeeModel
+                    {
+                        ProjectID = id
+                    });
+                }
+                return View(employees);
+            }
+            catch
+            {
+                return RedirectToAction("Details", new { id = id });
+            }
+
+        }
     }
 }
