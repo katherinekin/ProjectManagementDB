@@ -145,5 +145,16 @@ namespace DataLibrary.BusinessLogic
             string sql = "select * from PM.Employee_Status;";
             return SqlDataAccess.LoadData<EStatusModel>(sql);
         }
+        public static List<ActivitiesModel> loadHoursForEmployee(int projectid, int employeeid)
+        {
+            ActivitiesModel data = new ActivitiesModel
+            {
+                AProject_ID = projectid,
+                AEmployee_ID = employeeid
+            };
+            string sql = @"select * from pm.activities where AProject_ID = @AProject_ID and AEmployee_ID = @AEmployee_ID;";
+
+            return SqlDataAccess.LoadData<ActivitiesModel>(sql, data);
+        }
     }
 }
