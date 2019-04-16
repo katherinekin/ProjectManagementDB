@@ -50,7 +50,9 @@
     <Compile Include="BusinessLogic\LoginProcessor.cs" />
     <Compile Include="BusinessLogic\ProjectProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
+    <Compile Include="Models\EProfessionModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PColumnModel.cs" />

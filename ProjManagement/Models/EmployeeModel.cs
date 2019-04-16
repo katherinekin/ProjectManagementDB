@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProjManagement.Models
 {
@@ -41,9 +42,10 @@ namespace ProjManagement.Models
         public string StartDate { get; set; }
 
         public int Estatus { get; set; } //call in manager edit function, not create
-        [Display(Name = "Department")]
+
+        //[Display(Name = "Department")]
         public string EDname { get; set; } 
-        
+                
         public int Profession { get; set; }
         [Display(Name = "Manager")]
         public int SuperSsn { get; set; } //call in edit function, not create

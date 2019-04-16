@@ -1,7 +1,10 @@
 ﻿using DataLibrary.BusinessLogic;
 using ProjManagement.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace ProjManagement.Controllers
 {
@@ -27,24 +30,24 @@ namespace ProjManagement.Controllers
             return View(employees);
         }
         public ActionResult CreateEmployee()
-        {
-            return View();
+        {            
+            return View(new ViewEmployeeModel());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateEmployee(EmployeeModel model)
+        public ActionResult CreateEmployee(ViewEmployeeModel model)
         {
             ViewBag.Message = "Create a new employee profile.";
             if (!ModelState.IsValid)
             {
                 return View(model);
-            }
-            EmployeeProcessor.CreateEmployee(model.FName, model.LName, model.DateOfBirth, model.Ssn,
-                model.Type, model.StartDate, model.EDname, model.Profession);
-
-            //var data = EmployeeProcessor.LoadEmployees();
-
-            //Add a way to get the details page for the new employee here, or success page
+            }  
+            EmployeeProcessor.CreateEmployee(model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn, 
+                model.employee.Address, model.employee.Type, model.employee.Gender, model.employee.Salary, model.employee.StartDate, 
+                model.SelectedDep, Int32.Parse(model.SelectedProf));
+                      
+            
             return RedirectToAction("SuccessEmployee", new { Model = model });
         }
         public ActionResult SuccessEmployee(EmployeeModel model)
@@ -191,8 +194,7 @@ namespace ProjManagement.Controllers
             catch
             {
                 return RedirectToAction("Details", new { id = id });
-            }
-            
+            }            
         }
         
     }

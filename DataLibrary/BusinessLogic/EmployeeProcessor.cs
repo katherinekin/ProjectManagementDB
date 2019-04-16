@@ -11,8 +11,8 @@ namespace DataLibrary.BusinessLogic
     public static class EmployeeProcessor
     {
         //This method creates an employee setting not null values, and returns number of records affected
-        public static int CreateEmployee(string fname, string lname, string dob, int ssn,
-            int type, string start, string edname, int profession)
+        public static int CreateEmployee(string fname, string lname, string dob, int ssn, string address,
+            int type, string gender, double salary, string start, string edname, int profession)
         {
             EmployeeModel data = new EmployeeModel
             {
@@ -20,18 +20,19 @@ namespace DataLibrary.BusinessLogic
                 Lname = lname,
                 Date_Of_Birth = dob,
                 Ssn = ssn,
-                //Address = "", employee fills this out
+                Address = address,
                 Type = type,
-                //Gender = "", employee fills this out
+                Gender = gender, 
                 Start_Date = start,
-                //Estatus = 0, always 1
+                Estatus = 0,
                 EDname = edname,
                 Profession = profession
                 
             };
-            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, 
-                            Type, Start_Date, Estatus, EDname, Profession, Super_ssn) 
-                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Type, @Start_Date, 1, @EDname, @Profession, 377093932);";
+            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, Address,
+                            Type, Gender, Salary, Start_Date, Estatus, EDname, Profession, Super_ssn) 
+                            values (0, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Address, @Type, @Gender, @Salary, 
+                            @Start_Date, 1, @EDname, @Profession, 377093932);";
             return SqlDataAccess.SaveData(sql, data);
         }
         // Loads all of the employees back into DataLibrary.Models.EmployeeModel
@@ -122,6 +123,16 @@ namespace DataLibrary.BusinessLogic
                             where EProject_ID = @Project_ID and PEmployee_ID = Employee_ID);";
 
             return SqlDataAccess.LoadData<EmployeeModel>(sql, data);
+        }
+        public static List<DepartmentModel> LoadDepartmentNames()
+        {
+            string sql = "select Dname from PM.Department;";
+            return SqlDataAccess.LoadData<DepartmentModel>(sql);
+        }
+        public static List<EProfessionModel> LoadProfessions()
+        {
+            string sql = "select * from PM.Employee_Profession;";
+            return SqlDataAccess.LoadData<EProfessionModel>(sql);
         }
     }
 }
