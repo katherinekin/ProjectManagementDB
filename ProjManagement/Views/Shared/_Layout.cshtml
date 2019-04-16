@@ -41,8 +41,8 @@
                     {
                             <ul class="nav navbar-nav">
                                 <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
-                                <li>@Html.ActionLink("My Projects-EMPTY", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
-                                <li>@Html.ActionLink("Log Hours-EMPTY", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                                <li>@Html.ActionLink("My Projects", "MyProjects", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                                <li>@Html.ActionLink("Log Hours", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
                             </ul>
                     }
                     else if (ViewData["role"].Equals("Manager"))

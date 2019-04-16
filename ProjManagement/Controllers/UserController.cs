@@ -70,8 +70,41 @@ namespace ProjManagement.Controllers
         }
         public ActionResult MyProjects(int id)
         {
-            
-            return View();
+            try
+            {
+                var data = ProjectProcessor.FindProjectsByEmployee(id);
+                List<ProjectModel> projects = new List<ProjectModel>();
+                foreach (var row in data)
+                {
+                    projects.Add(new ProjectModel
+                    {
+                        ProjectID = row.Project_ID,
+                        PName = row.Pname,
+                        PDName = row.PDname,
+                        Client = row.Client,
+                        PDescription = row.Pdescription,
+                        Deliverables = row.Deliverables,
+                        Open_Date = row.Open_Date,
+                        Close_Date = row.Close_Date,
+                        Completion_Date = row.Close_Date,
+                        Collaborators = row.Close_Date,
+                        Pstatus = row.Pstatus,
+                        EmployeeID = id
+                    });
+                }
+                if (projects.Count == 0)
+                {
+                    projects.Add(new ProjectModel
+                    {
+                        EmployeeID = id
+                    });
+                }
+                return View(projects);
+            }
+            catch
+            {
+                return RedirectToAction("Index", new { id = id });
+            }
         }
     }
 }
