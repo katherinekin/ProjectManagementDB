@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ProjManagement.Controllers
 {
@@ -13,8 +14,15 @@ namespace ProjManagement.Controllers
         // GET: Login
         public ActionResult Login()
         {
-            return View();
+            AuthVM model = new AuthVM
+            {
+                RecoverForm = new LoginModelForgot(),
+                LoginForm = new LoginModel()
+            };
+            ViewData["State"] = "initial";
+            return View(model);
         }
+
         //Validation of correct Login information
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -32,6 +40,7 @@ namespace ProjManagement.Controllers
             {
                 if (model.Username == item.Username && model.Password == item.Password)
                 {
+                    FormsAuthentication.SetAuthCookie(item.LEmployee_ID.ToString(), false);
                     int EmployeeID = item.LEmployee_ID;
                     
                     foreach (int managerID in managerList)
@@ -47,11 +56,66 @@ namespace ProjManagement.Controllers
             
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(LoginModelForgot model, string forgot)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Login");
+            }
+
+            ModelState.Clear();
+
+            AuthVM old = new AuthVM
+            {
+                RecoverForm = model,
+                LoginForm = new LoginModel()
+            };
+
+            List<DataLibrary.Models.LoginModel> loginList = LoginProcessor.LoadLogins();
+            foreach (DataLibrary.Models.LoginModel item in loginList)
+            {
+                if ((model.EmployeeID == item.LEmployee_ID) && ((model.NewPassword == item.Password && forgot == "user") || (model.NewUsername == item.Username && forgot == "pass")))
+                {
+                    int x = LoginProcessor.EditLogin(model.EmployeeID, model.NewUsername, model.NewPassword);
+                    return View();
+                }
+                else if (model.EmployeeID == item.LEmployee_ID && forgot == "user" && model.NewPassword != item.Password)
+                {
+                    ViewBag.ErrorMessage = "Wrong password";
+                    old.RecoverForm.NewPassword = old.RecoverForm.ConfirmPass = null;
+                    ViewData["State"] = forgot;
+                    return View("Login", old);
+                }
+                else if (model.EmployeeID == item.LEmployee_ID && forgot == "pass" && model.NewUsername != item.Username)
+                {
+                    ViewBag.ErrorMessage = "Wrong username";
+                    old.RecoverForm.NewUsername = old.RecoverForm.ConfirmUsername = null;
+                    ViewData["State"] = forgot;
+                    return View("Login", old);
+                }
+            }
+
+            ViewBag.ErrorMessage = "ID not found";
+            old.RecoverForm.EmployeeID = 0;
+            ViewData["State"] = forgot;
+            return View("Login", old);
+        }
+
+
         //test page
         public ActionResult Success()
         {
             ViewBag.Message = "SUCCESS.";
 
+            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
             return View();
         }
     }

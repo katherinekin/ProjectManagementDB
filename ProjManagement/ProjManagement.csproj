@@ -45,11 +45,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">		
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>		
-    </Reference>		
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">		
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>		
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -207,8 +207,13 @@
     <Content Include="Views\Project\SuccessProject.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\Employee\ViewProjects.cshtml" />		
+    <Content Include="Views\Employee\ViewProjects.cshtml" />
     <Content Include="Views\Project\ViewEmployees.cshtml" />
+    <Content Include="Views\Shared\ForgotPartialView.cshtml" />
+    <Content Include="Views\Shared\LoginPartialView.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialView.cshtml" />
+    <Content Include="Views\Login\Update.cshtml" />
+    <Content Include="Views\Login\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
