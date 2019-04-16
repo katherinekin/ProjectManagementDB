@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\ActivitiesModel.cs" />
+    <Compile Include="Models\ActivitiesModel.cs" />
     <Compile Include="BusinessLogic\EmployeeProcessor.cs" />
     <Compile Include="BusinessLogic\LoginProcessor.cs" />
     <Compile Include="BusinessLogic\ProjectProcessor.cs" />
