@@ -103,23 +103,23 @@ namespace ProjManagement.Controllers
 
         // GET: Project/Edit/5--------------------------------------------------------------------------
 
-        public ActionResult Edit(int Pid)
+        public ActionResult Edit(int id)
         {
-            var data1 = ProjectProcessor.FindProject(Pid);
-            if (data1.Count == 0)
+            var data = ProjectProcessor.FindProject(id);
+            if (data.Count == 0)
             {
                 return HttpNotFound();
             }
-            ProjectModel found = pToModel(data1);
+            ProjectModel found = pToModel(data);
             return View(found);
         }
 
         // POST: project/Edit/5
         [HttpPost]
-        public ActionResult Edit(int Pid, ProjectModel pmodel)
+        public ActionResult Edit(int id, ProjectModel model)
         {
-            var data1 = ProjectProcessor.FindProject(Pid);
-            ProjectModel oldModel = pToModel(data1);
+            var data = ProjectProcessor.FindProject(id);
+            ProjectModel oldModel = pToModel(data);
 
             HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.PsetToPairs();
 
@@ -127,46 +127,43 @@ namespace ProjManagement.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View(pmodel);
+                return View(model);
             }
-            HashSet<KeyValuePair<string, string>> newModelHashSet = pmodel.PsetToPairs();
+
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.PsetToPairs();
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
             {
-                ProjectProcessor.EditProject(pair, pmodel.ProjectID);
+                ProjectProcessor.EditProject(pair, model.ProjectID);
             }
-            return RedirectToAction("Details", new { pid = pmodel.ProjectID });
+            return RedirectToAction("Details", new { id = model.ProjectID });
         }
-
-
-      
-
         //--------------------------------------------------------------Edit not yet
 
-        // GET: Project/Delete/5
-        public ActionResult Delete(int pid)
+        // GET: Project/Delete
+        public ActionResult Delete(int id)
         {
-            var data = ProjectProcessor.FindProject(pid);
-            if (data.Count == 0)
+            var data1= ProjectProcessor.FindProject(id);
+            if (data1.Count == 0)
             {
                 return HttpNotFound();
             }
-            ProjectModel found = pToModel(data);
+            ProjectModel found = pToModel(data1);
             return View(found); 
         }
 
         // POST: Project/Delete/5
         [HttpPost]
-        public ActionResult Delete(int pid, ProjectModel collection)
+        public ActionResult Delete(int id, ProjectModel model)
         {
             try
             {
-                ProjectProcessor.DeleteProject(pid);
+                ProjectProcessor.DeleteProject(id);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(collection);
+                return View(model);
             }
         }
         public ActionResult ViewEmployees(int id)
