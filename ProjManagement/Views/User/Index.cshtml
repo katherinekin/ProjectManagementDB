@@ -2,9 +2,10 @@
 @model ProjManagement.Models.EmployeeModel
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Welcome, User.</h2>
+<h2>Welcome, @ViewData["name"]</h2>
 
 <div>
     <h4>My details:</h4>

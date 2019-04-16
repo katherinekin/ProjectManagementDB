@@ -7,6 +7,7 @@ using System.Web.Mvc;
 namespace ProjManagement.Controllers
 {
     [Authorize]
+    [OutputCache(NoStore = true, Duration = 0)]
     public class ManagerController : Controller
     {
         // GET: Manager

@@ -218,6 +218,7 @@
     <Content Include="Views\Login\Update.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
     <Content Include="Views\Employee\Hours.cshtml" />
+    <Content Include="Views\Shared\UserLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

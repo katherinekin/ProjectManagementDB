@@ -9,6 +9,7 @@ using ProjManagement.Models;
 namespace ProjManagement.Controllers
 {
     [Authorize]
+    [OutputCache(NoStore = true, Duration = 0)]
     public class UserController : Controller
     {
         public EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
@@ -41,6 +42,14 @@ namespace ProjManagement.Controllers
         public ActionResult Index(int id)
         {
             var data = EmployeeProcessor.FindEmployee(id);
+            
+            foreach (DataLibrary.Models.EmployeeModel single in data)
+            {
+                ViewData["name"] = single.Fname + " " + single.Lname;
+                ViewData["id"] = int.Parse(User.Identity.Name);
+                ViewData["role"] = "Employee";
+            }
+
             if (data.Count == 0)
             {
                 return HttpNotFound();
