@@ -8,6 +8,7 @@ using ProjManagement.Models;
 
 namespace ProjManagement.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         public EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
