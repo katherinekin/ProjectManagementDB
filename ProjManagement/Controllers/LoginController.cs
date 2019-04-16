@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace ProjManagement.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0)]
     public class LoginController : Controller
     {
         // GET: Login
@@ -115,8 +116,17 @@ namespace ProjManagement.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+                Session.Abandon();
+                Response.Redirect("~/Login/Logout", true);
+                return View();
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

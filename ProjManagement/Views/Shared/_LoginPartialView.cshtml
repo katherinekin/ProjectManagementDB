@@ -1,15 +1,8 @@
-﻿@using DataLibrary.BusinessLogic
-@if (Request.IsAuthenticated)
+﻿@if (Request.IsAuthenticated)
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @{List<DataLibrary.Models.EmployeeModel> dummy = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name));
-                foreach (DataLibrary.Models.EmployeeModel single in dummy)
-                {
-                    ViewData["name"] = single.Fname + " " + single.Lname;
-                    ViewData["id"] = int.Parse(User.Identity.Name);
-                }}
-            @Html.ActionLink("Welcome, "+ViewData["name"], "Index", "User", new {id = ViewData["id"]})
+            @Html.ActionLink("Welcome, " + ViewData["name"], "Index", "User", new {id = ViewData["id"]}, new { id = ViewData["id"] })
         </li>
         <li>
             @Html.ActionLink("Log Out", "Logout", "Login")

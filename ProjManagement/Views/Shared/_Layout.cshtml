@@ -19,13 +19,51 @@
                 @Html.ActionLink("Project Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Login")</li>
-                </ul>
+                @using DataLibrary.BusinessLogic;
+                @if (Request.IsAuthenticated)
+                {
+                    var managerList = LoginProcessor.LoadManagers(); 
+                    List<DataLibrary.Models.EmployeeModel> dummy = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name));
+                        foreach (DataLibrary.Models.EmployeeModel single in dummy)
+                        {
+                            ViewData["name"] = single.Fname + " " + single.Lname;
+                            ViewData["id"] = int.Parse(User.Identity.Name);
+                            ViewData["role"] = "Employee";
+                        }
+                    foreach (int managerID in managerList)
+                    {
+                        if (ViewData["id"].Equals(managerID))
+                        {
+                            ViewData["role"] = "Manager";
+                        }
+                    }
+                    if (ViewData["role"].Equals("Employee"))
+                    {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                                <li>@Html.ActionLink("My Projects-EMPTY", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                                <li>@Html.ActionLink("Log Hours-EMPTY", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                            </ul>
+                    }
+                    else if (ViewData["role"].Equals("Manager"))
+                    {
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Home", "Index", "Manager")</li>
+                                <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
+                                <li>@Html.ActionLink("Employee Management", "Index", "Employee")</li>
+                                <li>@Html.ActionLink("Project Management", "Index", "Project")</li>
+                            </ul>
+                    }
+                }
 
+                else
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                }
                 @Html.Partial("_LoginPartialView")
             </div>
         </div>
