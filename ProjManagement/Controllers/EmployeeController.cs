@@ -126,10 +126,41 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
-            model.employee.Estatus = Int32.Parse(model.SelectedStatus);
-            model.employee.Type = Int32.Parse(model.SelectedType);
-            model.employee.Profession = Int32.Parse(model.SelectedProf);
-            model.employee.EDname = model.SelectedDep.ToString();
+            // Set status, type, profession, department variables
+            try
+            {
+                model.employee.Estatus = Int32.Parse(model.SelectedStatus);
+            }
+            catch
+            {
+                model.employee.Estatus = oldModel.Estatus;
+            }
+            try
+            {
+                model.employee.Type = Int32.Parse(model.SelectedType);
+            }
+            catch
+            {
+                model.employee.Type = oldModel.Estatus;
+            }
+            try
+            {
+                model.employee.Profession = Int32.Parse(model.SelectedProf);
+            }
+            catch
+            {
+                model.employee.Profession = oldModel.Profession;
+            }
+            try
+            {
+                model.employee.EDname = model.SelectedDep.ToString();
+            }
+            catch
+            {
+                model.employee.EDname = oldModel.EDname;
+            }
+            
+            
 
             HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();
             
