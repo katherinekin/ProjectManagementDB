@@ -208,6 +208,22 @@ namespace ProjManagement.Controllers
                 return RedirectToAction("Details", new { id = id });
             }            
         }
-        
+        public ActionResult Hours(int projectid, int employeeid)
+        {
+            var data = EmployeeProcessor.loadHoursForEmployee(projectid, employeeid);
+            List<Models.ActivitiesModel> hours = new List<Models.ActivitiesModel>();
+            foreach (var row in data)
+            {
+                hours.Add(new Models.ActivitiesModel
+                {
+                    AEmployee_ID = row.AEmployee_ID,
+                    AProject_ID = row.AProject_ID,
+                    Description = row.Description,
+                    Weekly_Hours = row.Weekly_Hours,
+                    Week_Date = row.Week_Date
+            });
+            }
+            return View(hours);
+        }        
     }
 }

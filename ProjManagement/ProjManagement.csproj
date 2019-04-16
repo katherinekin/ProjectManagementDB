@@ -54,7 +54,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -142,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActivitiesModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -212,11 +212,12 @@
     <Content Include="Views\Employee\ViewProjects.cshtml" />
     <Content Include="Views\Project\ViewEmployees.cshtml" />
     <Content Include="Views\Project\Edit.cshtml" />
-    <Content Include="Views\Shared\ForgotPartialView.cshtml" />   
-    <Content Include="Views\Shared\LoginPartialView.cshtml" />    
-    <Content Include="Views\Shared\_LoginPartialView.cshtml" />   
-    <Content Include="Views\Login\Update.cshtml" />   
+    <Content Include="Views\Shared\ForgotPartialView.cshtml" />
+    <Content Include="Views\Shared\LoginPartialView.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialView.cshtml" />
+    <Content Include="Views\Login\Update.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
+    <Content Include="Views\Employee\Hours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
