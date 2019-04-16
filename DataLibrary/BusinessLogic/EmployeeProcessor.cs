@@ -23,6 +23,7 @@ namespace DataLibrary.BusinessLogic
                 Address = address,
                 Type = type,
                 Gender = gender, 
+                Salary = salary,
                 Start_Date = start,
                 Estatus = 0,
                 EDname = edname,
@@ -133,6 +134,16 @@ namespace DataLibrary.BusinessLogic
         {
             string sql = "select * from PM.Employee_Profession;";
             return SqlDataAccess.LoadData<EProfessionModel>(sql);
+        }
+        public static List<ETypeModel> LoadTypes()
+        {
+            string sql = "select * from PM.Employee_Type;";
+            return SqlDataAccess.LoadData<ETypeModel>(sql);
+        }
+        public static List<EStatusModel> LoadStatuses()
+        {
+            string sql = "select * from PM.Employee_Status;";
+            return SqlDataAccess.LoadData<EStatusModel>(sql);
         }
     }
 }

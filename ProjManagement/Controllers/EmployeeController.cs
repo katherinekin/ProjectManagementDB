@@ -45,10 +45,9 @@ namespace ProjManagement.Controllers
                 return View(model);
             }  
             EmployeeProcessor.CreateEmployee(model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn, 
-                model.employee.Address, model.employee.Type, model.employee.Gender, model.employee.Salary, model.employee.StartDate, 
+                model.employee.Address, Int32.Parse(model.SelectedType), model.employee.Gender, model.employee.Salary, model.employee.StartDate, 
                 model.SelectedDep, Int32.Parse(model.SelectedProf));
-                      
-            
+                    
             return RedirectToAction("SuccessEmployee", new { Model = model });
         }
         public ActionResult SuccessEmployee(EmployeeModel model)
@@ -78,9 +77,7 @@ namespace ProjManagement.Controllers
                     Profession = row.Profession,
                     SuperSsn = row.Super_Ssn,
                     SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn)
-
-                });
-                
+                });                
             }
             return foundEmployee[0];
         }
@@ -93,7 +90,11 @@ namespace ProjManagement.Controllers
                 return HttpNotFound();
             }
             EmployeeModel found = mapToModel(data);
-            return View(found);
+            ViewEmployeeModel viewFound = new ViewEmployeeModel
+            {
+                employee = found
+            };
+            return View(viewFound);
         }
 
         // GET: Employee/Edit/5
@@ -105,15 +106,19 @@ namespace ProjManagement.Controllers
                 return HttpNotFound();
             }
             EmployeeModel found = mapToModel(data);
-            return View(found);
+            ViewEmployeeModel viewFound = new ViewEmployeeModel
+            {
+                employee = found
+            };
+            return View(viewFound);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, EmployeeModel model)
+        public ActionResult Edit(int id, ViewEmployeeModel model)
         {
             var data = EmployeeProcessor.FindEmployee(id);
-            EmployeeModel oldModel = mapToModel(data);
+            EmployeeModel oldModel = mapToModel(data);            
             HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.setToPairs();
             //returns a HashSet of the old model only if has not been set
 
@@ -121,13 +126,19 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
-            HashSet<KeyValuePair<string, string>> newModelHashSet = model.setToPairs();
+            model.employee.Estatus = Int32.Parse(model.SelectedStatus);
+            model.employee.Type = Int32.Parse(model.SelectedType);
+            model.employee.Profession = Int32.Parse(model.SelectedProf);
+            model.employee.EDname = model.SelectedDep.ToString();
+
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();
+            
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
             {
-                EmployeeProcessor.EditEmployee(pair, model.EmployeeID);
+                EmployeeProcessor.EditEmployee(pair, model.employee.EmployeeID);
             }
-            return RedirectToAction("Details", new { id = model.EmployeeID });
+            return RedirectToAction("Details", new { id = model.employee.EmployeeID });
         }
 
         // GET: Employee/Delete/5

@@ -8,8 +8,7 @@ using System.Web.Mvc;
 namespace ProjManagement.Models
 {
     public class EmployeeModel
-    {
-        
+    {        
         [Display(Name = "Employee ID")]
         [Range(0, 9999999999, ErrorMessage = "Please input a valid Employee ID.")]
         public int EmployeeID { get; set; } = 0;
@@ -33,17 +32,22 @@ namespace ProjManagement.Models
         public int Ssn { get; set; }
 
         public string Address { get; set; }
-        [Range(1,2, ErrorMessage = "Please input 1 for part time or 2 for full time.")]
+
         [Display(Name = "Part or Full Time")]
         public int Type { get; set; }
+
         public string Gender { get; set; }
+
         public double Salary { get; set; } //call in create function, not edit
+
+        [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
         public string StartDate { get; set; }
 
+        [Display(Name = "Status")]
         public int Estatus { get; set; } //call in manager edit function, not create
 
-        //[Display(Name = "Department")]
+        [Display(Name = "Department")]
         public string EDname { get; set; } 
                 
         public int Profession { get; set; }
