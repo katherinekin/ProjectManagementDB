@@ -242,6 +242,7 @@ namespace ProjManagement.Controllers
         }
         public ActionResult Hours(int projectid, int employeeid)
         {
+            /*
             var data = EmployeeProcessor.loadHoursForEmployee(projectid, employeeid);
             List<Models.ActivitiesModel> hours = new List<Models.ActivitiesModel>();
             foreach (var row in data)
@@ -256,6 +257,8 @@ namespace ProjManagement.Controllers
             });
             }
             return View(hours);
+            */
+            return null;
         }        
     }
 }

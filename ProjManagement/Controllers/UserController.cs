@@ -68,6 +68,18 @@ namespace ProjManagement.Controllers
             EmployeeModel found = mapToModel(data);
             return View(found);
         }
+
+        public ActionResult LogHours(int id)
+        {
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            EmployeeModel found = mapToModel(data);
+            return View(found);
+        }
+
         public ActionResult MyProjects(int id)
         {
             try
