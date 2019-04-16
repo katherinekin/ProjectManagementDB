@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
+    [Authorize]
     public class ManagerController : Controller
     {
         // GET: Manager
