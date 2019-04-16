@@ -141,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActivitiesModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -220,6 +221,7 @@
     <Content Include="Views\User\MyProfile.cshtml" />
     <Content Include="Views\User\MyProjects.cshtml" />
     <Content Include="Views\User\LogHours.cshtml" />
+    <Content Include="Views\Employee\Hours.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
