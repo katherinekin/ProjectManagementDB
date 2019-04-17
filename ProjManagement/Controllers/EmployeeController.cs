@@ -20,6 +20,10 @@ namespace ProjManagement.Controllers
             List<EmployeeModel> employees = new List<EmployeeModel>();
             foreach (var row in data)
             {
+                if (row.Employee_ID == 1)
+                {
+                    continue;
+                }
                 employees.Add(new EmployeeModel
                 {
                     EmployeeID = row.Employee_ID,

@@ -9,7 +9,6 @@ using System.Web.Security;
 
 namespace ProjManagement.Controllers
 {
-    [OutputCache(NoStore = true, Duration = 0)]
     public class LoginController : Controller
     {
         // GET: Login

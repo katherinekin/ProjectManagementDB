@@ -49,9 +49,9 @@
                     {
                             <ul class="nav navbar-nav">
                                 <li>@Html.ActionLink("Home", "Index", "Manager")</li>
-                                <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, new { id = ViewData["id"] })</li>
-                                <li>@Html.ActionLink("Employee Management", "Index", "Employee")</li>
-                                <li>@Html.ActionLink("Project Management", "Index", "Project")</li>
+                                <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, null)</li>
+                                <li>@Html.ActionLink("Employee Management", "ManagerEmployees", "Manager")</li>
+                                <li>@Html.ActionLink("Project Management", "ManagerProjects", "Manager")</li>
                             </ul>
                     }
                 }

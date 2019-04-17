@@ -9,7 +9,6 @@ using ProjManagement.Models;
 namespace ProjManagement.Controllers
 {
     [Authorize]
-    [OutputCache(NoStore = true, Duration = 0)]
     public class UserController : Controller
     {
         //Copied from Project Controller, allows private detail access with less features via this controller

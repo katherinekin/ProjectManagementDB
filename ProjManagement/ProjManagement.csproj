@@ -231,6 +231,8 @@
     <Content Include="Views\User\UserLogMenu.cshtml" />
     <Content Include="Views\User\LogHoursUserFail.cshtml" />
     <Content Include="Views\User\UserProjectCoworkers.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployees.cshtml" />
+    <Content Include="Views\Manager\ManagerProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
