@@ -28,8 +28,8 @@ namespace ProjManagement.Controllers
                     Deliverables = row.Deliverables,
                     Open_Date = row.Open_Date,
                     Close_Date = row.Close_Date,
-                    Completion_Date = row.Close_Date,
-                    Collaborators = row.Close_Date,
+                    Completion_Date = row.Completion_Date,
+                    Collaborators = row.Collaborators,
                     Pstatus = row.Pstatus
                 });
             }
@@ -51,8 +51,8 @@ namespace ProjManagement.Controllers
                     Deliverables = row.Deliverables,
                     Open_Date = row.Open_Date,
                     Close_Date = row.Close_Date,
-                    Completion_Date = row.Close_Date,
-                    Collaborators = row.Close_Date,
+                    Completion_Date = row.Completion_Date,
+                    Collaborators = row.Collaborators,
                     Pstatus = row.Pstatus
                 });
             }

@@ -69,17 +69,6 @@ namespace ProjManagement.Controllers
             return View(found);
         }
 
-        public ActionResult LogHours(int id)
-        {
-            var data = EmployeeProcessor.FindEmployee(id);
-            if (data.Count == 0)
-            {
-                return HttpNotFound();
-            }
-            EmployeeModel found = mapToModel(data);
-            return View(found);
-        }
-
         public ActionResult MyProjects(int id)
         {
             try
@@ -98,8 +87,8 @@ namespace ProjManagement.Controllers
                         Deliverables = row.Deliverables,
                         Open_Date = row.Open_Date,
                         Close_Date = row.Close_Date,
-                        Completion_Date = row.Close_Date,
-                        Collaborators = row.Close_Date,
+                        Completion_Date = row.Completion_Date,
+                        Collaborators = row.Collaborators,
                         Pstatus = row.Pstatus,
                         EmployeeID = id
                     });

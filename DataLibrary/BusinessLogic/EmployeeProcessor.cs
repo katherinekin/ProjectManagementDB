@@ -156,5 +156,20 @@ namespace DataLibrary.BusinessLogic
 
             return SqlDataAccess.LoadData<ActivitiesModel>(sql, data);
         }
+
+        public static int NewHours(int a1, int a2, string a3, double a4, string a5)
+        {
+            ActivitiesModel data = new ActivitiesModel
+            {
+                AEmployee_ID = a1,
+                AProject_ID = a2,
+                Description = a3,
+                Weekly_Hours = a4,
+                Week_Date = a5
+            };
+            string sql = @"Insert Into PM.ACTIVITIES VALUES (@AEmployee_ID, @AProject_ID, @Description, @Weekly_Hours, @Week_Date);";
+
+            return SqlDataAccess.SaveData<ActivitiesModel>(sql, data);
+        }
     }
 }

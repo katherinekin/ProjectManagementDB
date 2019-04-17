@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Hours";
-    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Hours</h2>
@@ -49,5 +49,5 @@
 
 </table>
 <p>
-    @Html.ActionLink("Add New", "AddHours")
+    @Html.ActionLink("Add New", "LogHours", "Employee", new { pid = ViewData["pid"], eid = ViewData["eid"]}, null)
 </p>

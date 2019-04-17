@@ -220,8 +220,8 @@ namespace ProjManagement.Controllers
                         Deliverables = row.Deliverables,
                         Open_Date = row.Open_Date,
                         Close_Date = row.Close_Date,
-                        Completion_Date = row.Close_Date,
-                        Collaborators = row.Close_Date,
+                        Completion_Date = row.Completion_Date,
+                        Collaborators = row.Collaborators,
                         Pstatus = row.Pstatus,
                         EmployeeID = id
                     });
@@ -242,6 +242,8 @@ namespace ProjManagement.Controllers
         }
         public ActionResult Hours(int projectid, int employeeid)
         {
+            ViewData["pid"] = projectid;
+            ViewData["eid"] = employeeid;
             var data = EmployeeProcessor.loadHoursForEmployee(projectid, employeeid);
             List<Models.ActivitiesModel> hours = new List<Models.ActivitiesModel>();
             foreach (var row in data)
@@ -256,6 +258,28 @@ namespace ProjManagement.Controllers
             });
             }
             return View(hours);
-        }        
+        }
+
+
+
+        public ActionResult LogHours(int pid, int eid)
+        {
+            var model = new Models.ActivitiesModel {
+                AEmployee_ID = eid,
+                AProject_ID = pid,
+                Description = null,
+                Weekly_Hours = 0,
+                Week_Date = null };
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Success(ActivitiesModel data)
+        {
+            EmployeeProcessor.NewHours(data.AEmployee_ID, data.AProject_ID, data.Description, data.Weekly_Hours, data.Week_Date);
+            ViewData["Pname"] = 0;
+            return View();
+        }
     }
 }
