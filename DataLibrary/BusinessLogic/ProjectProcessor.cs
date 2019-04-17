@@ -110,5 +110,20 @@ namespace DataLibrary.BusinessLogic
             
             return SqlDataAccess.LoadData<ProjectModel>(sql, data);
         }
+
+        public static ProjectModel GetProject(int projectid)
+        {
+            var list = LoadProjects();
+            ProjectModel found = new ProjectModel();
+            foreach (ProjectModel item in list)
+            {
+                if (item.Project_ID == projectid)
+                {
+                    found = item;
+                    break;
+                }
+            }
+            return (found);
+        }
     }
 }

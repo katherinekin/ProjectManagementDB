@@ -279,7 +279,7 @@ namespace ProjManagement.Controllers
         {
             EmployeeProcessor.NewHours(data.AEmployee_ID, data.AProject_ID, data.Description, data.Weekly_Hours, data.Week_Date);
             ViewData["Pname"] = 0;
-            return View();
+            return View(data);
         }
     }
 }

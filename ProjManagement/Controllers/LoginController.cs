@@ -42,6 +42,10 @@ namespace ProjManagement.Controllers
                 if (model.Username == item.Username && model.Password == item.Password)
                 {
                     FormsAuthentication.SetAuthCookie(item.LEmployee_ID.ToString(), false);
+                    /*FormsIdentity identity = (FormsIdentity)HttpContext.User.Identity;
+                    string[] roles = {"user"};
+                    HttpContext.User = new System.Security.Principal.GenericPrincipal(identity, roles);
+                    var x = User.Identity.Name;*/
                     int EmployeeID = item.LEmployee_ID;
                     
                     foreach (int managerID in managerList)

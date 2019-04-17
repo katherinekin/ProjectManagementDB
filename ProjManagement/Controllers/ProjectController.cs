@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
+    [Authorize]
     public class ProjectController : Controller
     {
         // GET: Project
