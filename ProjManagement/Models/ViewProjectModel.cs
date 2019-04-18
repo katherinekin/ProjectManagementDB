@@ -11,6 +11,8 @@ namespace ProjManagement.Models
     public class ViewProjectModel
     {
         public ProjectModel project { get; set; }
+        public int ProjectID { get; set; }
+        public int EmployeeID { get; set; }
         public IEnumerable<SelectListItem> PStatusSelectList { get; set; }
 
         public IEnumerable<SelectListItem> DepSelectList { get; set; }
@@ -20,9 +22,14 @@ namespace ProjManagement.Models
 
         [Display(Name = "Department")]
         public string SelectedDep { get; set; }
+        public IEnumerable<SelectListItem> EmpSelectList { get; set; }
+        [Display(Name = "Select employee")]
+        public string SelectedEmp { get; set; }
         public ViewProjectModel()
         {
             project = new ProjectModel();
+            ProjectID = project.ProjectID;
+
             var pstatuses = ProjectProcessor.LoadPStatuses();
             PStatusSelectList = pstatuses.Select(x => new SelectListItem()
             {
@@ -35,6 +42,6 @@ namespace ProjManagement.Models
                 Text = x.Dname,
                 Value = x.Dname
             });
-        }
+        }        
     }
 }

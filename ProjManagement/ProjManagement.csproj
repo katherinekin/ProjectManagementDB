@@ -229,6 +229,8 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
     <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
+    <Content Include="Views\Project\RemoveEmployee.cshtml" />
+    <Content Include="Views\Project\AddEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

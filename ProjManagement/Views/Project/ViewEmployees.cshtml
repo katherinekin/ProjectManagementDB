@@ -7,6 +7,10 @@
 
 <h2>Employees involved in project.</h2>
 
+<p>
+    @Html.ActionLink("Add employee", "AddEmployee",
+        new { projectid = Model.Cast<ProjManagement.Models.ViewEmployeeModel>().First().ProjectID }, null)
+</p>
 <table class="table">
     <tr>
         <th>
@@ -84,7 +88,9 @@
             @Html.DisplayFor(modelItem => item.employee.SuperName)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", "Employee", new { id = item.employee.EmployeeID }, null)
+            @Html.ActionLink("Details", "Details", "Employee", new { id = item.employee.EmployeeID }, null) | 
+            @Html.ActionLink("Remove", "RemoveEmployee", "Project", 
+                new { employeeid = item.employee.EmployeeID, projectid = item.employee.ProjectID }, null)
         </td>
     </tr>
 }

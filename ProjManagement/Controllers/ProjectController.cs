@@ -170,9 +170,8 @@ namespace ProjManagement.Controllers
             }
             return RedirectToAction("Details", new { id = model.project.ProjectID });
         }
-        //--------------------------------------------------------------Edit not yet
-
-        // GET: Project/Delete
+        
+        // GET: Project/Delete--------------------------------------------------------------
         public ActionResult Delete(int id)
         {
             var data1= ProjectProcessor.FindProject(id);
@@ -198,6 +197,7 @@ namespace ProjManagement.Controllers
                 return View(model);
             }
         }
+        // GET: Project/ViewEmployees--------------------------------------------------------------
         public ActionResult ViewEmployees(int id)
         {
             try
@@ -225,7 +225,10 @@ namespace ProjManagement.Controllers
                 }
                 if (employees.Count == 0)
                 {
-                    employees.Add(new ViewEmployeeModel());
+                    employees.Add(new ViewEmployeeModel
+                    {
+                        ProjectID = id
+                    });
                 }
                 return View(employees);
             }
@@ -233,7 +236,61 @@ namespace ProjManagement.Controllers
             {
                 return RedirectToAction("Details", new { id = id });
             }
+        }
+        // Remove an employee from a project---------------------------------------------------------
+        public ActionResult RemoveEmployee(int employeeid, int projectid)
+        {
+            ViewEmployeeModel model = new ViewEmployeeModel
+            {
+                employee = new EmployeeModel
+                {
+                    EmployeeID = employeeid,
+                    ProjectID = projectid
+                }
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult RemoveEmployee(int employeeid, ViewEmployeeModel model)
+        {
+            
+            try
+            {
+                ProjectProcessor.DeleteEmployeeFromProject(employeeid, model.ProjectID);
+                return RedirectToAction("ViewEmployees", new { id = model.ProjectID });
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+        // Remove add an employee to a project---------------------------------------------------------
+        public ActionResult AddEmployee(int projectid)
+        {
+            ViewProjectModel model = new ViewProjectModel();
+            model.ProjectID = projectid;            
+            // Populate dropdown list
+            var employees = EmployeeProcessor.FindEmployeesNotInProject(projectid);
+            model.EmpSelectList = employees.Select(x => new SelectListItem()
+            {
+                Text = x.Fname +" "+ x.Lname,
+                Value = x.Employee_ID.ToString()
+            });
 
+            return View(model);                    
+        }
+        [HttpPost]
+        public ActionResult AddEmployee(int projectid, ViewProjectModel model)
+        {
+            try
+            {
+                ProjectProcessor.AddEmployeeToProject(Int32.Parse(model.SelectedEmp), projectid);
+                return RedirectToAction("ViewEmployees", new { id = projectid });
+            }
+            catch
+            {
+                return View(model);
+            }
         }
     }
 }

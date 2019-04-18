@@ -31,6 +31,8 @@ namespace ProjManagement.Models
 
         [Display(Name = "Status")]
         public string SelectedStatus { get; set; }
+        public int EmployeeID { get; set; }
+        public int ProjectID { get; set; }
 
         public ViewEmployeeModel()
         {
@@ -40,6 +42,8 @@ namespace ProjManagement.Models
             SelectedProf = "";
             SelectedType = "";
             SelectedStatus = "";
+            ProjectID = employee.ProjectID;
+            EmployeeID = employee.EmployeeID;
 
             var departments = EmployeeProcessor.LoadDepartmentNames();
             DepSelectList = departments.Select(x => new SelectListItem()
