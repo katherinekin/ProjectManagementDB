@@ -29,7 +29,7 @@ namespace ProjManagement.Models
         {
             project = new ProjectModel();
             ProjectID = project.ProjectID;
-
+            
             var pstatuses = ProjectProcessor.LoadPStatuses();
             PStatusSelectList = pstatuses.Select(x => new SelectListItem()
             {
