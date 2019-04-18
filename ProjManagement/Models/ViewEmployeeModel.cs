@@ -31,15 +31,20 @@ namespace ProjManagement.Models
 
         [Display(Name = "Status")]
         public string SelectedStatus { get; set; }
-
+        public int EmployeeID { get; set; }
+        public int ProjectID { get; set; }
+        public string Pname { get; set; }
         public ViewEmployeeModel()
         {
+            employee = new EmployeeModel();
             // Default values
             SelectedDep = "";
             SelectedProf = "";
             SelectedType = "";
             SelectedStatus = "";
-
+            ProjectID = employee.ProjectID;
+            EmployeeID = employee.EmployeeID;
+            Pname = "";
             var departments = EmployeeProcessor.LoadDepartmentNames();
             DepSelectList = departments.Select(x => new SelectListItem()
             {

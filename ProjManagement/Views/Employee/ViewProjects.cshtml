@@ -45,54 +45,55 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PDName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Client)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Deliverables)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Open_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Close_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Completion_Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pstatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Collaborators)
-        </td>
-        <td>
-            
-            @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
-            @Html.ActionLink("Hours", "Hours", "Employee", 
-                new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
-            
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PDName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deliverables)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Open_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Close_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completion_Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pstatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Collaborators)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
+                @Html.ActionLink("Hours", "Hours", "Employee",
+                    new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
+
+            </td>
+        </tr>
+    }
 
 </table>
 <hr />
-<div>
-    @Html.ActionLink("Back to Employee Profile", "Details", "Employee", new { id = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null) |
-    @Html.ActionLink("Back to Employee List", "Index", "Employee")
-</div>
+    <div>
+        @Html.ActionLink("Back to Employee Profile", "Details", "Employee", new { id = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null) |
+        @Html.ActionLink("Back to Employee List", "Index", "Employee")
+    </div>

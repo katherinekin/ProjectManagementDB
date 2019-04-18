@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjManagement.Models.ProjectModel>
+﻿@model IEnumerable<ProjManagement.Models.ViewProjectModel>
 
 @{
     ViewBag.Title = "Project List";
@@ -8,28 +8,28 @@
 <h2>Project List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateProject")
+    @Html.ActionLink("Create New", "CreateProject", "Project")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectID)
+            @Html.DisplayNameFor(model => model.project.ProjectID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PName)
+            @Html.DisplayNameFor(model => model.project.PName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDName)
+            @Html.DisplayNameFor(model => model.project.PDName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client)
+            @Html.DisplayNameFor(model => model.project.Client)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDescription)
+            @Html.DisplayNameFor(model => model.project.PDescription)
         </th>
       
         <th>
-            @Html.DisplayNameFor(model => model.Pstatus)
+            @Html.DisplayNameFor(model => model.project.Pstatus)
         </th>
         
         <th></th>
@@ -38,30 +38,31 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectID)
+            @Html.DisplayFor(modelItem => item.project.ProjectID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PName)
+            @Html.DisplayFor(modelItem => item.project.PName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PDName)
+            @Html.DisplayFor(modelItem => item.project.PDName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Client)
+            @Html.DisplayFor(modelItem => item.project.Client)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PDescription)
+            @Html.DisplayFor(modelItem => item.project.PDescription)
         </td>
        
         
         <td>
-            @Html.DisplayFor(modelItem => item.Pstatus)
+            @Html.DisplayFor(modelItem => item.PStatusSelectList.Skip(item.project.Pstatus - 1).First().Text)
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID })
+            @Html.ActionLink("Edit", "Edit", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("Details", "Details", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("Delete", "Delete", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("View Employees", "ViewEmployees", "Project", new { id = item.project.ProjectID }, null)
         </td>
     </tr>
 }

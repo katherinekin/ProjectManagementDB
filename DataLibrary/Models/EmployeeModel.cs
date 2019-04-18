@@ -24,7 +24,8 @@ namespace DataLibrary.Models
         public int Estatus { get; set; }
         public string EDname { get; set; }
         public int Profession { get; set; }
-        public int Super_Ssn { get; set; }        
+        public int Super_Ssn { get; set; }
+        public int ProjectID { get; set; }
 
         // Default values, in case some fields are null
         public EmployeeModel()

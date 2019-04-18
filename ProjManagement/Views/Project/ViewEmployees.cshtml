@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjManagement.Models.EmployeeModel>
+﻿@model IEnumerable<ProjManagement.Models.ViewEmployeeModel>
 
 @{
     ViewBag.Title = "ViewEmployees";
@@ -6,53 +6,49 @@
 }
 
 <h2>Employees involved in project.</h2>
+<div class="h4">
+    @Html.DisplayFor(model => model.First().Pname)
+</div>
 
+<p>
+    @Html.ActionLink("Add employee", "AddEmployee",
+        new { projectid = Model.Cast<ProjManagement.Models.ViewEmployeeModel>().First().ProjectID }, null)
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeID)
+            @Html.DisplayNameFor(model => model.employee.EmployeeID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FName)
+            @Html.DisplayNameFor(model => model.employee.FName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LName)
+            @Html.DisplayNameFor(model => model.employee.LName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
+            @Html.DisplayNameFor(model => model.employee.DateOfBirth)
+        </th>
+    
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Type)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Salary)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Estatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ssn)
+            @Html.DisplayNameFor(model => model.employee.EDname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.employee.Profession)
         </th>
+        
         <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EDname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Profession)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuperSsn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuperName)
+            @Html.DisplayNameFor(model => model.employee.SuperName)
         </th>
         <th></th>
     </tr>
@@ -60,58 +56,49 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EmployeeID)
+            @Html.DisplayFor(modelItem => item.employee.EmployeeID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FName)
+            @Html.DisplayFor(modelItem => item.employee.FName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LName)
+            @Html.DisplayFor(modelItem => item.employee.LName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateOfBirth)
+            @Html.DisplayFor(modelItem => item.employee.DateOfBirth)
+        </td>
+        
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeSelectList.Skip(item.employee.Type-1).First().Text)            
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.employee.Salary)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusSelectList.Skip(item.employee.Estatus-1).First().Text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ssn)
+            @Html.DisplayFor(modelItem => item.employee.EDname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Address)
+            @Html.DisplayFor(modelItem => item.ProfSelectList.Skip(item.employee.Profession-1).First().Text)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.employee.SuperName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EDname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Profession)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuperSsn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuperName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", "Employee", new { id = item.EmployeeID }, null)
+            @Html.ActionLink("Details", "Details", "Employee", new { id = item.employee.EmployeeID }, null) | 
+            @Html.ActionLink("Remove", "RemoveEmployee", "Project", 
+                new { employeeid = item.employee.EmployeeID, projectid = item.employee.ProjectID }, null)
         </td>
     </tr>
 }
 
 </table>
 <div>
-    @Html.ActionLink("Back to Project", "Details", "Project", new { id = Model.Cast<ProjManagement.Models.EmployeeModel>().First().ProjectID }, null) |
     @Html.ActionLink("Back to Project List", "Index", "Project")
 </div>

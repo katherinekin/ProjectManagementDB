@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Log Hours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ProjManagement.Models.ActivitiesModel
+@using DataLibrary.BusinessLogic
+@using (Html.BeginForm("LogHoursUserSuccess", "User", FormMethod.Post, new { name = "hourform", id = "form1" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Log Hours for my Projects</h4>
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.AProject_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.AProject_ID, new SelectList(ViewBag.dic, "Key", "Value"), "Select Project", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.AProject_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Weekly_Hours, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Weekly_Hours, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Weekly_Hours, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Week_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Week_Date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Week_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.AProject_ID, new { @class = "form-control" })
+            @Html.HiddenFor(model => model.AEmployee_ID, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" name="hours" form="form1" value="hours">Log Hours</button>
+        </div>
+    </div>
+</div>
+}
+@{Html.EndForm();}

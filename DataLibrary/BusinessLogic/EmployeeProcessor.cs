@@ -125,6 +125,19 @@ namespace DataLibrary.BusinessLogic
 
             return SqlDataAccess.LoadData<EmployeeModel>(sql, data);
         }
+        //------------------------------
+        public static List<EmployeeModel> FindEmployeesNotInProject(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid
+            };
+            string sql = @"select * from pm.employee where Employee_ID not in 
+                            (select distinct Employee_ID from PM.Project, PM.PROJECT_EMPLOYEES, PM.EMPLOYEE
+                            where EProject_ID = @Project_ID and PEmployee_ID = Employee_ID);";
+
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data);
+        }
         public static List<DepartmentModel> LoadDepartmentNames()
         {
             string sql = "select Dname from PM.Department;";

@@ -1,0 +1,119 @@
+﻿@model ProjManagement.Models.ViewEmployeeModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>View employee profile details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.EmployeeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.EmployeeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeSelectList.
+                Skip((model.employee.Type - 1) > -1 ? (model.employee.Type - 1) : 0).First().Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Estatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusSelectList.
+                    Skip((model.employee.Estatus - 1) > -1 ? (model.employee.Estatus - 1) : 0).First().Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.Profession)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfSelectList.
+                    Skip((model.employee.Profession - 1) > -1 ? (model.employee.Profession - 1) : 0).First().Text)
+        </dd>
+    </dl>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("View Projects", "ManagerEmployeeProjects", new { id = Model.employee.EmployeeID },
+           new { @class = "btn btn-primary btn-lg"})
+
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "ManagerEmployeeEdit", "Manager", new { id = Model.employee.EmployeeID }, null) |
+    @Html.ActionLink("Back to List", "ManagerEmployees")
+</p>
+
+

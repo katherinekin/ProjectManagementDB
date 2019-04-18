@@ -55,7 +55,14 @@ namespace DataLibrary.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
             {
-                return cnn.Execute(sql, data);
+                try
+                {
+                    return cnn.Execute(sql, data);
+                }
+                catch
+                {
+                    return 0;
+                }
             }
         }
 

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Logged Hours Successfully";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model ProjManagement.Models.ActivitiesModel
+@using DataLibrary.BusinessLogic
+<h2>ERROR: Unable to log @Model.Weekly_Hours hours for @ProjectProcessor.GetProject(Model.AProject_ID).Pname on @Model.Week_Date</h2>
+
+<div>@Html.ActionLink("Return to project hours", "Hours", "Employee", new { projectid = Model.AProject_ID, employeeid = Model.AEmployee_ID }, null) </div>
+
+<div>@Html.ActionLink("Return to project details", "Details", "Project", new { id = Model.AProject_ID }, null) </div>
+
+<div>@Html.ActionLink("Return to my projects", "ViewProjects", "Employee", new { id = Model.AEmployee_ID }, null) </div>

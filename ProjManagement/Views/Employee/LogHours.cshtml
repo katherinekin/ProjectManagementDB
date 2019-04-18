@@ -5,12 +5,13 @@
 }
 
 @model ProjManagement.Models.ActivitiesModel
+    @using DataLibrary.BusinessLogic
 @using (Html.BeginForm("Success", "Employee", FormMethod.Post, new { name = "hourform", id = "form1" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Enter your information</h4>
+    <h4>Enter your hours for @ProjectProcessor.GetProject(Model.AProject_ID).Pname</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">

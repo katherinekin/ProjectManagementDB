@@ -17,11 +17,13 @@ namespace ProjManagement.Models
         public int AProject_ID { get; set; }
 
         public string Description { get; set; }
-
+        
         [Required(ErrorMessage = "You must enter hours")]
         [Display(Name = "Weekly Hours")]
         public double Weekly_Hours { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Required(ErrorMessage = "You must enter a week")]
         [Display(Name = "Week Date")]
         public string Week_Date { get; set; }

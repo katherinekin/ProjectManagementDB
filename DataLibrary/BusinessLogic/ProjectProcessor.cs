@@ -98,6 +98,15 @@ namespace DataLibrary.BusinessLogic
             }
             return (found);
         }
+        public static string getProjectName(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid
+            };            
+            string sql = "select Pname from pm.project where Project_ID = @Project_ID;";
+            return SqlDataAccess.LoadData<string>(sql, data)[0];
+        }
         public static List<ProjectModel> FindProjectsByEmployee(int employeeid)
         {
             EmployeeModel data = new EmployeeModel
@@ -110,5 +119,55 @@ namespace DataLibrary.BusinessLogic
             
             return SqlDataAccess.LoadData<ProjectModel>(sql, data);
         }
+        // Add and Delete employees
+        public static int AddEmployeeToProject(int employeeid, int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid,
+                ProjectID = projectid
+            };
+            string sql = @"insert into pm.project_employees (EProject_ID, PEmployee_ID, Role_In_Project)
+                            values (@ProjectID, @Employee_ID, 'default');";
+            return SqlDataAccess.SaveData<EmployeeModel>(sql, data);
+        }
+        public static int DeleteEmployeeFromProject(int employeeid, int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid,
+                ProjectID = projectid
+            };
+            string sql = @"delete from pm.project_employees where PEmployee_ID = @Employee_ID and EProject_ID = @ProjectID;";
+            return SqlDataAccess.SaveData<EmployeeModel>(sql, data);
+        }
+        public static List<PStatusModel> LoadPStatuses()
+        {
+            string sql = "select * from PM.Project_Status;";
+            return SqlDataAccess.LoadData<PStatusModel>(sql);
+        }
+        public static int getTotalEmployees(int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                ProjectID = projectid
+            };
+            string sql = @"select distinct PEmployee_ID from pm.project_employees where eproject_id = @ProjectID;";
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data).Count;
+        }
+		public static ProjectModel GetProject(int projectid)
+        {
+            var list = LoadProjects();
+            ProjectModel found = new ProjectModel();
+            foreach (ProjectModel item in list)
+            {
+                if (item.Project_ID == projectid)
+                {
+                    found = item;
+                    break;
+                }
+            }
+            return (found);
+		}
     }
 }

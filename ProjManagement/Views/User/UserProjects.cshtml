@@ -83,8 +83,8 @@
             </td>
             <td>
 
-                @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
-                @Html.ActionLink("Hours", "Hours", "Employee",
+                @Html.ActionLink("Details", "UserProjectDetails", "User", new { id = item.ProjectID }, null)
+                @Html.ActionLink("Hours", "UserHours", "User",
                 new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
 
             </td>

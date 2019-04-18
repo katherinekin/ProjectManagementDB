@@ -9,7 +9,6 @@ using System.Web.Security;
 
 namespace ProjManagement.Controllers
 {
-    [OutputCache(NoStore = true, Duration = 0)]
     public class LoginController : Controller
     {
         // GET: Login
@@ -42,8 +41,17 @@ namespace ProjManagement.Controllers
                 if (model.Username == item.Username && model.Password == item.Password)
                 {
                     FormsAuthentication.SetAuthCookie(item.LEmployee_ID.ToString(), false);
+                    /*FormsIdentity identity = (FormsIdentity)HttpContext.User.Identity;
+                    string[] roles = {"user"};
+                    HttpContext.User = new System.Security.Principal.GenericPrincipal(identity, roles);
+                    var x = User.Identity.Name;*/
                     int EmployeeID = item.LEmployee_ID;
                     
+                    if (EmployeeID == 1)
+                    {
+                        return RedirectToAction("Index", "Employee");
+                    }
+
                     foreach (int managerID in managerList)
                     {
                         if (EmployeeID == managerID)

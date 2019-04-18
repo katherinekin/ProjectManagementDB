@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ProjManagement.Models.ViewEmployeeModel>
+    @using DataLibrary.BusinessLogic
+
+@{
+    ViewBag.Title = "ViewEmployees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employees involved in project.</h2>
+<div class="h4">
+    @Html.DisplayFor(model => model.First().Pname)
+</div>
+
+<p>
+    @Html.ActionLink("Add employee", "ManagerProjectAddEmployee",
+        new { projectid = Model.Cast<ProjManagement.Models.ViewEmployeeModel>().First().ProjectID }, null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.EmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.DateOfBirth)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Type)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Salary)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Estatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.EDname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.Profession)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.employee.SuperName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.EmployeeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.LName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.DateOfBirth)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeSelectList.Skip(item.employee.Type - 1).First().Text)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.Salary)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusSelectList.Skip(item.employee.Estatus - 1).First().Text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.EDname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfSelectList.Skip(item.employee.Profession - 1).First().Text)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.employee.SuperName)
+            </td>
+            <td>
+                @if (item.employee.SuperSsn == EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().Ssn)
+                {
+                    @Html.ActionLink("Details", "ManagerEmployeeDetails", "Manager", new { id = item.employee.EmployeeID }, null)
+                }
+                @Html.ActionLink("Remove", "ManagerProjectRemoveEmployee", "Manager",
+                    new { employeeid = item.employee.EmployeeID, projectid = item.employee.ProjectID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Project List", "ManagerProjects", "Manager")
+</div>
