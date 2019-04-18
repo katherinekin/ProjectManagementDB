@@ -110,8 +110,43 @@ namespace DataLibrary.BusinessLogic
             
             return SqlDataAccess.LoadData<ProjectModel>(sql, data);
         }
-
-        public static ProjectModel GetProject(int projectid)
+        // Add and Delete employees
+        public static int AddEmployeeToProject(int employeeid, int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid,
+                ProjectID = projectid
+            };
+            string sql = @"insert into pm.project_employees (EProject_ID, PEmployee_ID, Role_In_Project)
+                            values (@ProjectID, @Employee_ID, 'default');";
+            return SqlDataAccess.SaveData<EmployeeModel>(sql, data);
+        }
+        public static int DeleteEmployeeFromProject(int employeeid, int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = employeeid,
+                ProjectID = projectid
+            };
+            string sql = @"delete from pm.project_employees where PEmployee_ID = @Employee_ID and EProject_ID = @ProjectID;";
+            return SqlDataAccess.SaveData<EmployeeModel>(sql, data);
+        }
+        public static List<PStatusModel> LoadPStatuses()
+        {
+            string sql = "select * from PM.Project_Status;";
+            return SqlDataAccess.LoadData<PStatusModel>(sql);
+        }
+        public static int getTotalEmployees(int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                ProjectID = projectid
+            };
+            string sql = @"select distinct PEmployee_ID from pm.project_employees where eproject_id = @ProjectID;";
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data).Count;
+        }
+		public static ProjectModel GetProject(int projectid)
         {
             var list = LoadProjects();
             ProjectModel found = new ProjectModel();
@@ -124,6 +159,6 @@ namespace DataLibrary.BusinessLogic
                 }
             }
             return (found);
-        }
+		}
     }
 }

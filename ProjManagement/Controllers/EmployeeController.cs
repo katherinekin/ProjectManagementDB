@@ -60,7 +60,7 @@ namespace ProjManagement.Controllers
             return View(model);
         }
         // Map EmployeeModel from DataLibrary to EmployeeModel from ProjManagement if found, for Edit, Details, Delete
-        public EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
+        public static EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
         {
             List<EmployeeModel> foundEmployee = new List<EmployeeModel>();
             foreach (var row in data)
