@@ -50,8 +50,11 @@ namespace ProjManagement
                         //Get the roles stored as UserData into ticket
 
                         string[] roles;
-
-                        if (IsManager(int.Parse(HttpContext.Current.User.Identity.Name)))
+                        if (int.Parse(HttpContext.Current.User.Identity.Name) == 1)
+                        {
+                            roles = new string[1] { "Admin" };
+                        }
+                        else if (IsManager(int.Parse(HttpContext.Current.User.Identity.Name)))
                         {
                             roles = new string[1]{"Manager"};
                         }

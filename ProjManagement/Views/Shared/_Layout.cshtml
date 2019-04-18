@@ -37,24 +37,31 @@
                             ViewData["role"] = "Manager";
                         }
                     }
-                    if (ViewData["role"].Equals("Employee"))
+                    if (HttpContext.Current.User.IsInRole("Employee"))
                     {
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("My Account", "UserProfile", "User", new { id = ViewData["id"] }, null)</li>
-                                <li>@Html.ActionLink("My Projects", "UserProjects", "User", new { id = ViewData["id"] }, null)</li>
-                                <li>@Html.ActionLink("Log Hours", "UserLogMenu", "User", new { id = ViewData["id"] }, null)</li>
-                            </ul>
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("My Account", "UserProfile", "User", new { id = ViewData["id"] }, null)</li>
+                            <li>@Html.ActionLink("My Projects", "UserProjects", "User", new { id = ViewData["id"] }, null)</li>
+                            <li>@Html.ActionLink("Log Hours", "UserLogMenu", "User", new { id = ViewData["id"] }, null)</li>
+                        </ul>
                     }
-                    else if (ViewData["role"].Equals("Manager"))
+                    else if (HttpContext.Current.User.IsInRole("Manager"))
                     {
-                            <ul class="nav navbar-nav">
-                                <li>@Html.ActionLink("Home", "Index", "Manager")</li>
-                                <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, null)</li>
-                                <li>@Html.ActionLink("My Employees", "ManagerEmployees", "Manager")</li>
-                                <li>@Html.ActionLink("My Projects", "ManagerProjects", "Manager")</li>
-                                <li>@Html.ActionLink("All Project", "Index", "Project")</li>
-                                <li>@Html.ActionLink("Reports", "ProjectAnalysis", "Analytics")</li>
-                            </ul>
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Home", "Index", "Manager")</li>
+                            <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, null)</li>
+                            <li>@Html.ActionLink("My Employees", "ManagerEmployees", "Manager")</li>
+                            <li>@Html.ActionLink("My Projects", "ManagerProjects", "Manager")</li>
+                            <li>@Html.ActionLink("Reports", "ProjectAnalysis", "Analytics")</li>
+                        </ul>
+                    }
+                    else if (HttpContext.Current.User.IsInRole("Admin"))
+                    {
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("All Employees", "Index", "Employee")</li>
+                            <li>@Html.ActionLink("All Projects", "Index", "Project")</li>
+                            <li>@Html.ActionLink("Reports", "ProjectAnalysis", "Analytics")</li>
+                        </ul>
                     }
                 }
 
