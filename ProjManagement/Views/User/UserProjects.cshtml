@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<ProjManagement.Models.ProjectModel>
 
 @{
-    ViewBag.Title = "ViewProjects";
+    ViewBag.Title = "My Projects";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Projects employee is involved in.</h2>
+<h2>My Projects</h2>
 
 <table class="table">
     <tr>
@@ -83,9 +83,9 @@
             </td>
             <td>
 
-                @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
-                @Html.ActionLink("Hours", "Hours", "Employee",
-                    new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
+                @Html.ActionLink("Details", "UserProjectDetails", "User", new { id = item.ProjectID }, null)
+                @Html.ActionLink("Hours", "UserHours", "User",
+                new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
 
             </td>
         </tr>
@@ -93,7 +93,3 @@
 
 </table>
 <hr />
-    <div>
-        @Html.ActionLink("Back to Employee Profile", "Details", "Employee", new { id = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null) |
-        @Html.ActionLink("Back to Employee List", "Index", "Employee")
-    </div>

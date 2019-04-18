@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProjManagement.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "ViewEmployees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employees involved in project.</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profession)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuperName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EDname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profession)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuperName)
+            </td>
+        </tr>
+    }
+
+</table>
+<div>
+    @Html.ActionLink("Back to Project", "UserProjectDetails", new { id = Model.Cast<ProjManagement.Models.EmployeeModel>().First().ProjectID }) |
+    @Html.ActionLink("Back to Project List", "UserProjects", new { id = ViewData["id"]})
+</div>

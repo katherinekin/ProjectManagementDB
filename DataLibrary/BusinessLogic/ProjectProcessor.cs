@@ -155,5 +155,19 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select distinct PEmployee_ID from pm.project_employees where eproject_id = @ProjectID;";
             return SqlDataAccess.LoadData<EmployeeModel>(sql, data).Count;
         }
+		public static ProjectModel GetProject(int projectid)
+        {
+            var list = LoadProjects();
+            ProjectModel found = new ProjectModel();
+            foreach (ProjectModel item in list)
+            {
+                if (item.Project_ID == projectid)
+                {
+                    found = item;
+                    break;
+                }
+            }
+            return (found);
+		}
     }
 }

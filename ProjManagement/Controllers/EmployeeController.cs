@@ -20,6 +20,10 @@ namespace ProjManagement.Controllers
             List<EmployeeModel> employees = new List<EmployeeModel>();
             foreach (var row in data)
             {
+                if (row.Employee_ID == 1)
+                {
+                    continue;
+                }
                 employees.Add(new EmployeeModel
                 {
                     EmployeeID = row.Employee_ID,
@@ -279,7 +283,7 @@ namespace ProjManagement.Controllers
         {
             EmployeeProcessor.NewHours(data.AEmployee_ID, data.AProject_ID, data.Description, data.Weekly_Hours, data.Week_Date);
             ViewData["Pname"] = 0;
-            return View();
+            return View(data);
         }
     }
 }
