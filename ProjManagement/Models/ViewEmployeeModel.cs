@@ -33,7 +33,7 @@ namespace ProjManagement.Models
         public string SelectedStatus { get; set; }
         public int EmployeeID { get; set; }
         public int ProjectID { get; set; }
-
+        public string Pname { get; set; }
         public ViewEmployeeModel()
         {
             employee = new EmployeeModel();
@@ -44,7 +44,7 @@ namespace ProjManagement.Models
             SelectedStatus = "";
             ProjectID = employee.ProjectID;
             EmployeeID = employee.EmployeeID;
-
+            Pname = "";
             var departments = EmployeeProcessor.LoadDepartmentNames();
             DepSelectList = departments.Select(x => new SelectListItem()
             {

@@ -98,6 +98,15 @@ namespace DataLibrary.BusinessLogic
             }
             return (found);
         }
+        public static string getProjectName(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid
+            };            
+            string sql = "select Pname from pm.project where Project_ID = @Project_ID;";
+            return SqlDataAccess.LoadData<string>(sql, data)[0];
+        }
         public static List<ProjectModel> FindProjectsByEmployee(int employeeid)
         {
             EmployeeModel data = new EmployeeModel

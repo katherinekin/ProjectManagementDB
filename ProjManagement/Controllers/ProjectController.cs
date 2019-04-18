@@ -209,7 +209,7 @@ namespace ProjManagement.Controllers
                 {
                     employees.Add(new ViewEmployeeModel
                     {
-                        employee = new EmployeeModel{
+                        employee = new EmployeeModel {
                             EmployeeID = row.Employee_ID,
                             FName = row.Fname,
                             LName = row.Lname,
@@ -221,15 +221,21 @@ namespace ProjManagement.Controllers
                             Profession = row.Profession,
                             SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
                             ProjectID = id
-                        }
+                        },
+                        ProjectID = id                        
                     });
                 }
                 if (employees.Count == 0)
                 {
                     employees.Add(new ViewEmployeeModel
                     {
-                        ProjectID = id
+                        ProjectID = id,
+                        Pname = ProjectProcessor.getProjectName(id)
                     });
+                }
+                else
+                {
+                    employees.First().Pname = ProjectProcessor.getProjectName(id);
                 }
                 return View(employees);
             }
