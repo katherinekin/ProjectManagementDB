@@ -46,11 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\BudgetProcessor.cs" />
     <Compile Include="Models\ActivitiesModel.cs" />
     <Compile Include="BusinessLogic\EmployeeProcessor.cs" />
     <Compile Include="BusinessLogic\LoginProcessor.cs" />
     <Compile Include="BusinessLogic\ProjectProcessor.cs" />
     <Compile Include="DataAccess\SqlDataAccess.cs" />
+    <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Models\EProfessionModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />

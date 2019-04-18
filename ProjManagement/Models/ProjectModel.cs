@@ -25,7 +25,7 @@ namespace ProjManagement.Models
         public string Client { get; set; }
 
         [Required(ErrorMessage = "You must enter a value")]
-        [Display(Name = "PDescription")]
+        [Display(Name = "Description")]
         public string PDescription { get; set; }
 
         [Required(ErrorMessage = "You must enter a value")]

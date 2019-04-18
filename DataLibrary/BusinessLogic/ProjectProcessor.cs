@@ -115,5 +115,14 @@ namespace DataLibrary.BusinessLogic
             string sql = "select * from PM.Project_Status;";
             return SqlDataAccess.LoadData<PStatusModel>(sql);
         }
+        public static int getTotalEmployees(int projectid)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                ProjectID = projectid
+            };
+            string sql = @"select distinct PEmployee_ID from pm.project_employees where eproject_id = @ProjectID;";
+            return SqlDataAccess.LoadData<EmployeeModel>(sql, data).Count;
+        }
     }
 }
