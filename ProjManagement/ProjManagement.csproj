@@ -239,7 +239,6 @@
     <Content Include="Views\Manager\ManagerProjects.cshtml" />
     <Content Include="Views\Project\AddEmployee.cshtml" />
     <Content Include="Views\Project\RemoveEmployee.cshtml" />
-    <Content Include="Views\ProjectAnalysis.cshtml" />
     <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
   </ItemGroup>
   <ItemGroup>
