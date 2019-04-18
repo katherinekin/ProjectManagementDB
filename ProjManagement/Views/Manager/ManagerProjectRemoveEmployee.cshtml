@@ -1,0 +1,57 @@
+﻿@model ProjManagement.Models.ViewEmployeeModel
+
+@{
+    ViewBag.Title = "Remove Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remove employee from project.</h2>
+
+<h3>Are you sure you want to remove this employee from the project?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.ProjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.employee.ProjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedProf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedProf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectedStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectedStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remove" class="btn btn-default" /> |
+            @Html.ActionLink("Back to Project", "ManagerProjectEmployees", "Manager", new { id = Model.employee.ProjectID }, null)
+        </div>
+    }
+</div>

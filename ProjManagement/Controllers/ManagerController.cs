@@ -11,6 +11,30 @@ namespace ProjManagement.Controllers
     [Authorize]
     public class ManagerController : Controller
     {
+        //Imported special method from project controller
+        public ProjectModel pToModel(List<DataLibrary.Models.ProjectModel> data)
+        {
+            List<ProjectModel> foundProject = new List<ProjectModel>();
+            foreach (var row in data)
+            {
+                foundProject.Add(new ProjectModel
+                {
+                    ProjectID = row.Project_ID,
+                    PName = row.Pname,
+                    PDName = row.PDname,
+                    Client = row.Client,
+                    PDescription = row.Pdescription,
+                    Deliverables = row.Deliverables,
+                    Open_Date = row.Open_Date,
+                    Close_Date = row.Close_Date,
+                    Completion_Date = row.Completion_Date,
+                    Collaborators = row.Collaborators,
+                    Pstatus = row.Pstatus
+                });
+            }
+            return foundProject[0];
+        }
+
         //Imported special method from employee controller
         public static EmployeeModel mapToModel(List<DataLibrary.Models.EmployeeModel> data)
         {
@@ -319,6 +343,239 @@ namespace ProjManagement.Controllers
             EmployeeProcessor.NewHours(data.AEmployee_ID, data.AProject_ID, data.Description, data.Weekly_Hours, data.Week_Date);
             ViewData["Pname"] = 0;
             return View(data);
+        }
+
+        public ActionResult ManagerCreateProject()
+        {
+            var x = new ViewEmployeeModel();
+            x.SelectedDep = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().EDname;
+            return View(new ViewProjectModel());
+        }
+
+        // POST: Project/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ManagerCreateProject(ViewProjectModel model)
+        {
+            int Pstatus = 2;
+            ViewBag.Message = "Create a new project profile.";
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                Pstatus = Int32.Parse(model.SelectedPStatus);
+            }
+            catch
+            {
+                Pstatus = 2;
+            }
+            ProjectProcessor.CreateProject(model.project.ProjectID,
+                model.project.PName, model.SelectedDep, model.project.Client, model.project.PDescription, model.project.Deliverables,
+                model.project.Open_Date, model.project.Close_Date, model.project.Completion_Date, model.project.Collaborators, Pstatus);
+
+            return RedirectToAction("ManagerSuccessProject", new { Model = model });
+
+        }
+        public ActionResult ManagerSuccessProject(ProjectModel model)
+        {
+            return View(model);
+        }
+
+        public ActionResult ManagerProjectEdit(int id)
+        {
+            var data = ProjectProcessor.FindProject(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            ProjectModel found = pToModel(data);
+            ViewProjectModel viewFound = new ViewProjectModel
+            {
+                project = found
+            };
+            return View(viewFound);
+        }
+
+        [HttpPost]
+        public ActionResult ManagerProjectEdit(int id, ViewProjectModel model)
+        {
+            var data = ProjectProcessor.FindProject(id);
+            ProjectModel oldModel = pToModel(data);
+            HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.PsetToPairs();
+            //returns a HashSet of the old model only if has not been set
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            try
+            {
+                model.project.Pstatus = Int32.Parse(model.SelectedPStatus);
+            }
+            catch
+            {
+                model.project.Pstatus = oldModel.Pstatus;
+            }
+            try
+            {
+                model.project.PDName = model.SelectedDep.ToString();
+            }
+            catch
+            {
+                model.project.PDName = oldModel.PDName;
+            }
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.project.PsetToPairs();
+            newModelHashSet.ExceptWith(oldModelHashSet);
+            foreach (var pair in newModelHashSet)
+            {
+                ProjectProcessor.EditProject(pair, model.project.ProjectID);
+            }
+            return RedirectToAction("ManagerProjectDetails", new { id = model.project.ProjectID });
+        }
+
+        public ActionResult ManagerProjectDelete(int id)
+        {
+            var data1 = ProjectProcessor.FindProject(id);
+            if (data1.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            ProjectModel found = pToModel(data1);
+            return View(found);
+        }
+
+        [HttpPost]
+        public ActionResult ManagerProjectDelete(int id, ProjectModel model)
+        {
+            try
+            {
+                ProjectProcessor.DeleteProject(id);
+                return RedirectToAction("ManagerProjects");
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+
+        public ActionResult ManagerProjectDetails(int id)
+        {
+            var data = ProjectProcessor.FindProject(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            ProjectModel found = pToModel(data);
+            ViewProjectModel viewFound = new ViewProjectModel
+            {
+                project = found
+            };
+            return View(viewFound);
+        }
+
+        public ActionResult ManagerProjectEmployees(int id)
+        {
+            try
+            {
+                var data = EmployeeProcessor.FindEmployeesByProject(id);
+                List<ViewEmployeeModel> employees = new List<ViewEmployeeModel>();
+                foreach (var row in data)
+                {
+                    employees.Add(new ViewEmployeeModel
+                    {
+                        employee = new EmployeeModel
+                        {
+                            EmployeeID = row.Employee_ID,
+                            FName = row.Fname,
+                            LName = row.Lname,
+                            DateOfBirth = row.Date_Of_Birth,
+                            Type = row.Type,
+                            Salary = row.Salary,
+                            Estatus = row.Estatus,
+                            EDname = row.EDname,
+                            Profession = row.Profession,
+                            SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
+                            ProjectID = id,
+                            SuperSsn = row.Super_Ssn
+                        },
+                        ProjectID = id
+                    });
+                }
+                if (employees.Count == 0)
+                {
+                    employees.Add(new ViewEmployeeModel
+                    {
+                        ProjectID = id,
+                        Pname = ProjectProcessor.getProjectName(id)
+                    });
+                }
+                else
+                {
+                    employees.First().Pname = ProjectProcessor.getProjectName(id);
+                }
+                return View(employees);
+            }
+            catch
+            {
+                return RedirectToAction("ManagerProjectDetails", new { id = id });
+            }
+        }
+
+        public ActionResult ManagerProjectRemoveEmployee(int employeeid, int projectid)
+        {
+            ViewEmployeeModel model = new ViewEmployeeModel
+            {
+                employee = new EmployeeModel
+                {
+                    EmployeeID = employeeid,
+                    ProjectID = projectid
+                }
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ManagerProjectRemoveEmployee(int employeeid, ViewEmployeeModel model)
+        {
+
+            try
+            {
+                ProjectProcessor.DeleteEmployeeFromProject(employeeid, model.ProjectID);
+                return RedirectToAction("ManagerProjectEmployees", new { id = model.ProjectID });
+            }
+            catch
+            {
+                return View(model);
+            }
+        }
+
+        public ActionResult ManagerProjectAddEmployee(int projectid)
+        {
+            ViewProjectModel model = new ViewProjectModel();
+            model.ProjectID = projectid;
+            // Populate dropdown list
+            var employees = EmployeeProcessor.FindEmployeesNotInProject(projectid);
+            model.EmpSelectList = employees.Select(x => new SelectListItem()
+            {
+                Text = x.Fname + " " + x.Lname,
+                Value = x.Employee_ID.ToString()
+            });
+
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ManagerProjectAddEmployee(int projectid, ViewProjectModel model)
+        {
+            try
+            {
+                ProjectProcessor.AddEmployeeToProject(Int32.Parse(model.SelectedEmp), projectid);
+                return RedirectToAction("ManagerProjectEmployees", new { id = projectid });
+            }
+            catch
+            {
+                return View(model);
+            }
         }
     }
 }

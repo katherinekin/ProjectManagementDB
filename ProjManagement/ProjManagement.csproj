@@ -249,6 +249,14 @@
     <Content Include="Views\Manager\ManagerEmployeeProjectHours.cshtml" />
     <Content Include="Views\Manager\ManagerEmployeeProjectLogHours.cshtml" />
     <Content Include="Views\Manager\ManagerEmployeeProjectLogHoursSuccess.cshtml" />
+    <Content Include="Views\Manager\ManagerCreateProject.cshtml" />
+    <Content Include="Views\Manager\ManagerSuccessProject.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectDetails.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectEdit.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectEmployees.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectAddEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectRemoveEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
