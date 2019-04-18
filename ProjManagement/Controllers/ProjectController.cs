@@ -15,22 +15,26 @@ namespace ProjManagement.Controllers
         {
             ViewBag.Message = "All projects";
             var data = ProjectProcessor.LoadProjects();
-            List<ProjectModel> projects = new List<ProjectModel>();
+            List<ViewProjectModel> projects = new List<ViewProjectModel>();
             foreach (var row in data)
             {
-                projects.Add(new ProjectModel
-                {
-                    ProjectID = row.Project_ID,
-                    PName = row.Pname,
-                    PDName = row.PDname,
-                    Client = row.Client,
-                    PDescription = row.Pdescription,
-                    Deliverables = row.Deliverables,
-                    Open_Date = row.Open_Date,
-                    Close_Date = row.Close_Date,
-                    Completion_Date = row.Completion_Date,
-                    Collaborators = row.Collaborators,
-                    Pstatus = row.Pstatus
+                projects.Add(
+                    new ViewProjectModel
+                    {
+                        project = new ProjectModel
+                        {
+                            ProjectID = row.Project_ID,
+                            PName = row.Pname,
+                            PDName = row.PDname,
+                            Client = row.Client,
+                            PDescription = row.Pdescription,
+                            Deliverables = row.Deliverables,
+                            Open_Date = row.Open_Date,
+                            Close_Date = row.Close_Date,
+                            Completion_Date = row.Completion_Date,
+                            Collaborators = row.Collaborators,
+                            Pstatus = row.Pstatus
+                        }
                 });
             }
             return View(projects);
@@ -68,32 +72,43 @@ namespace ProjManagement.Controllers
                 return HttpNotFound();
             }
             ProjectModel found = pToModel(data);
-            return View(found);
+            ViewProjectModel viewFound = new ViewProjectModel
+            {
+                project = found
+            };
+            return View(viewFound);
         }
 
         // GET: Project/Create
         public ActionResult CreateProject()
         {
-            return View();
+            return View(new ViewProjectModel());
         }
 
         // POST: Project/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProject(ProjectModel collection)
+        public ActionResult CreateProject(ViewProjectModel model)
         {
+            int Pstatus = 2;
             ViewBag.Message = "Create a new project profile.";
             if (!ModelState.IsValid)
             {
-                return View(collection);
+                return View(model);
             }
-            ProjectProcessor.CreateProject(collection.ProjectID,
-                  collection.PName, collection.PDName, collection.Client, collection.PDescription, collection.Deliverables, collection.Open_Date, collection.Close_Date,
-                  collection.Completion_Date, collection.Collaborators, collection.Pstatus);
-            var data = ProjectProcessor.LoadProjects();
-            
-            //Add a way to get the details page for the new employee here, or success page
-            return RedirectToAction("SuccessProject", new { Model = collection });
+            try
+            {
+                Pstatus = Int32.Parse(model.SelectedPStatus);
+            }
+            catch
+            {
+                Pstatus = 2;
+            }         
+            ProjectProcessor.CreateProject(model.project.ProjectID,
+                model.project.PName, model.SelectedDep, model.project.Client, model.project.PDescription, model.project.Deliverables,
+                model.project.Open_Date, model.project.Close_Date, model.project.Completion_Date, model.project.Collaborators, Pstatus);
+                       
+            return RedirectToAction("SuccessProject", new { Model = model });
 
         }
         public ActionResult SuccessProject(ProjectModel model)
@@ -111,32 +126,49 @@ namespace ProjManagement.Controllers
                 return HttpNotFound();
             }
             ProjectModel found = pToModel(data);
-            return View(found);
+            ViewProjectModel viewFound = new ViewProjectModel
+            {
+                project = found
+            };
+            return View(viewFound);
         }
 
         // POST: project/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, ProjectModel model)
+        public ActionResult Edit(int id, ViewProjectModel model)
         {
             var data = ProjectProcessor.FindProject(id);
             ProjectModel oldModel = pToModel(data);
-
             HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.PsetToPairs();
-
             //returns a HashSet of the old model only if has not been set
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-
-            HashSet<KeyValuePair<string, string>> newModelHashSet = model.PsetToPairs();
+            try
+            {
+                model.project.Pstatus = Int32.Parse(model.SelectedPStatus);
+            }
+            catch
+            {
+                model.project.Pstatus = oldModel.Pstatus;
+            }
+            try
+            {
+                model.project.PDName = model.SelectedDep.ToString();
+            }
+            catch
+            {
+                model.project.PDName = oldModel.PDName;
+            }
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.project.PsetToPairs();
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
             {
-                ProjectProcessor.EditProject(pair, model.ProjectID);
+                ProjectProcessor.EditProject(pair, model.project.ProjectID);
             }
-            return RedirectToAction("Details", new { id = model.ProjectID });
+            return RedirectToAction("Details", new { id = model.project.ProjectID });
         }
         //--------------------------------------------------------------Edit not yet
 
@@ -171,35 +203,29 @@ namespace ProjManagement.Controllers
             try
             {
                 var data = EmployeeProcessor.FindEmployeesByProject(id);
-                List<EmployeeModel> employees = new List<EmployeeModel>();
+                List<ViewEmployeeModel> employees = new List<ViewEmployeeModel>();
                 foreach (var row in data)
                 {
-                    employees.Add(new EmployeeModel
+                    employees.Add(new ViewEmployeeModel
                     {
-                        EmployeeID = row.Employee_ID,
-                        FName = row.Fname,
-                        LName = row.Lname,
-                        DateOfBirth = row.Date_Of_Birth,
-                        Ssn = row.Ssn,
-                        Address = row.Address,
-                        Type = row.Type,
-                        Gender = row.Gender,
-                        Salary = row.Salary,
-                        StartDate = row.Start_Date,
-                        Estatus = row.Estatus,
-                        EDname = row.EDname,
-                        Profession = row.Profession,
-                        SuperSsn = row.Super_Ssn,
-                        SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
-                        ProjectID = id
+                        employee = new EmployeeModel{
+                            EmployeeID = row.Employee_ID,
+                            FName = row.Fname,
+                            LName = row.Lname,
+                            DateOfBirth = row.Date_Of_Birth,
+                            Type = row.Type,
+                            Salary = row.Salary,
+                            Estatus = row.Estatus,
+                            EDname = row.EDname,
+                            Profession = row.Profession,
+                            SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
+                            ProjectID = id
+                        }
                     });
                 }
                 if (employees.Count == 0)
                 {
-                    employees.Add(new EmployeeModel
-                    {
-                        ProjectID = id
-                    });
+                    employees.Add(new ViewEmployeeModel());
                 }
                 return View(employees);
             }

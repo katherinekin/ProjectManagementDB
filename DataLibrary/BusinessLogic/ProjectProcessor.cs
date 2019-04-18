@@ -110,5 +110,10 @@ namespace DataLibrary.BusinessLogic
             
             return SqlDataAccess.LoadData<ProjectModel>(sql, data);
         }
+        public static List<PStatusModel> LoadPStatuses()
+        {
+            string sql = "select * from PM.Project_Status;";
+            return SqlDataAccess.LoadData<PStatusModel>(sql);
+        }
     }
 }

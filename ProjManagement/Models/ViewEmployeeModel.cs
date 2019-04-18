@@ -34,6 +34,7 @@ namespace ProjManagement.Models
 
         public ViewEmployeeModel()
         {
+            employee = new EmployeeModel();
             // Default values
             SelectedDep = "";
             SelectedProf = "";

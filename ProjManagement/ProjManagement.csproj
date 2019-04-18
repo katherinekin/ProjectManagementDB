@@ -142,11 +142,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ActivitiesModel.cs" />
+    <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\ViewEmployeeModel.cs" />
+    <Compile Include="Models\ViewProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

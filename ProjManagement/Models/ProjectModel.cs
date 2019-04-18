@@ -17,7 +17,6 @@ namespace ProjManagement.Models
         [Display(Name = "Project Name")]
         public string PName { get; set; }
 
-        [Required(ErrorMessage = "You must enter a value")]
         [Display(Name = "Department Name")]
         public string PDName { get; set; }
 
