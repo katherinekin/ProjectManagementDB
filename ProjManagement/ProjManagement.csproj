@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -142,11 +143,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ActivitiesModel.cs" />
+    <Compile Include="Models\BudgetModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProjAnalysisModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\ViewEmployeeModel.cs" />
+    <Compile Include="Models\ViewProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +237,10 @@
     <Content Include="Views\User\UserProjectCoworkers.cshtml" />
     <Content Include="Views\Manager\ManagerEmployees.cshtml" />
     <Content Include="Views\Manager\ManagerProjects.cshtml" />
+    <Content Include="Views\Project\AddEmployee.cshtml" />
+    <Content Include="Views\Project\RemoveEmployee.cshtml" />
+    <Content Include="Views\ProjectAnalysis.cshtml" />
+    <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
