@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Logged Hours Successfully";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model ProjManagement.Models.ActivitiesModel
+@using DataLibrary.BusinessLogic
+<h2>Successfully logged @Model.Weekly_Hours hours for @ProjectProcessor.GetProject(Model.AProject_ID).Pname</h2>
+
+<div>@Html.ActionLink("Return to employee's project hours", "ManagerEmployeeProjectHours", "Manager", new { projectid = Model.AProject_ID, employeeid = Model.AEmployee_ID }, null) </div>
+
+<div>@Html.ActionLink("Return to employee's projects", "ManagerEmployeeProjects", "Manager", new { id = Model.AEmployee_ID }, null) </div>
+
+<div>@Html.ActionLink("Return to employee's details", "ManagerEmployeeDetails", "Manager", new { id = Model.AEmployee_ID }, null) </div>
+
+<div>@Html.ActionLink("Return to my employees", "ManagerEmployees", "Manager") </div>
+
+<div>@Html.ActionLink("Return to my projects", "ManagerProjects", "Manager") </div>

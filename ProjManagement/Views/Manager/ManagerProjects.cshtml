@@ -1,47 +1,37 @@
-﻿@model IEnumerable<ProjManagement.Models.ProjectModel>
+﻿@model IEnumerable<ProjManagement.Models.ViewProjectModel>
 
 @{
-    ViewBag.Title = "ViewProjects";
+    ViewBag.Title = "Project List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Projects employee is involved in.</h2>
+<h2>Project List</h2>
 
+<p>
+    @Html.ActionLink("Create New", "CreateProject", "Project")
+</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectID)
+            @Html.DisplayNameFor(model => model.project.ProjectID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PName)
+            @Html.DisplayNameFor(model => model.project.PName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDName)
+            @Html.DisplayNameFor(model => model.project.PDName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client)
+            @Html.DisplayNameFor(model => model.project.Client)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDescription)
+            @Html.DisplayNameFor(model => model.project.PDescription)
         </th>
+
         <th>
-            @Html.DisplayNameFor(model => model.Deliverables)
+            @Html.DisplayNameFor(model => model.project.Pstatus)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Open_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Close_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completion_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pstatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Collaborators)
-        </th>
+
         <th></th>
     </tr>
 
@@ -49,47 +39,33 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProjectID)
+                @Html.DisplayFor(modelItem => item.project.ProjectID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PName)
+                @Html.DisplayFor(modelItem => item.project.PName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PDName)
+                @Html.DisplayFor(modelItem => item.project.PDName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client)
+                @Html.DisplayFor(modelItem => item.project.Client)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PDescription)
+                @Html.DisplayFor(modelItem => item.project.PDescription)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deliverables)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Open_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Close_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Completion_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pstatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Collaborators)
-            </td>
-            <td>
 
-                @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
-                @Html.ActionLink("Hours", "Hours", "Employee",
-                    new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
 
+            <td>
+                @Html.DisplayFor(modelItem => item.PStatusSelectList.Skip(item.project.Pstatus - 1).First().Text)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Project", new { id = item.project.ProjectID }, null)
+                @Html.ActionLink("Details", "Details", "Project", new { id = item.project.ProjectID }, null)
+                @Html.ActionLink("Delete", "Delete", "Project", new { id = item.project.ProjectID }, null)
+                @Html.ActionLink("View Employees", "ViewEmployees", "Project", new { id = item.project.ProjectID }, null)
             </td>
         </tr>
     }
 
 </table>
-<hr />

@@ -240,6 +240,15 @@
     <Content Include="Views\Project\AddEmployee.cshtml" />
     <Content Include="Views\Project\RemoveEmployee.cshtml" />
     <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
+    <Content Include="Views\Manager\ManagerCreateEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerSuccessEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeDetails.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeEdit.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeDelete.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjects.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectHours.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectLogHours.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectLogHoursSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

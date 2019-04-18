@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProjManagement.Models.ActivitiesModel>
+
+@{
+    ViewBag.Title = "Hours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hours</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.AProject_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weekly_Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Week_Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AProject_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weekly_Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Week_Date)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "ManagerEmployeeHoursEdit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "ManagerEmployeeHoursDelete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Add New", "ManagerEmployeeProjectLogHours", "Manager", new { pid = ViewData["pid"], eid = ViewData["eid"] }, null)
+</p>

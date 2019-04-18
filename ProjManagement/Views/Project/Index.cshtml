@@ -8,7 +8,7 @@
 <h2>Project List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateProject")
+    @Html.ActionLink("Create New", "CreateProject", "Project")
 </p>
 <table class="table">
     <tr>
@@ -59,10 +59,10 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.project.ProjectID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.project.ProjectID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.project.ProjectID }) |
-            @Html.ActionLink("View Employees", "ViewEmployees", new { id = item.project.ProjectID })
+            @Html.ActionLink("Edit", "Edit", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("Details", "Details", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("Delete", "Delete", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("View Employees", "ViewEmployees", "Project", new { id = item.project.ProjectID }, null)
         </td>
     </tr>
 }

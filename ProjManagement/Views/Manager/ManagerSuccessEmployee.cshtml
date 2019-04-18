@@ -1,0 +1,11 @@
+﻿
+@model ProjManagement.Models.EmployeeModel
+@{
+    ViewBag.Title = "SuccessEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee record has been successfully created.</h2>
+<p>
+    @Html.ActionLink("Back to List", "ManagerEmployees")
+</p>

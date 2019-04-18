@@ -8,7 +8,7 @@
 <h2>Employee List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateEmployee")
+    @Html.ActionLink("Create New", "ManagerCreateEmployee")
 </p>
 <table class="table">
     <tr>
@@ -45,9 +45,9 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", "Employee", new { id = item.EmployeeID }, null) |
-                @Html.ActionLink("Details", "Details", "Employee", new { id = item.EmployeeID }, null) |
-                @Html.ActionLink("Delete", "Delete", "Employee", new { id = item.EmployeeID }, null)
+                @Html.ActionLink("Edit", "ManagerEmployeeEdit", "Manager", new { id = item.EmployeeID }, null) |
+                @Html.ActionLink("Details", "ManagerEmployeeDetails", "Manager", new { id = item.EmployeeID }, null) |
+                @Html.ActionLink("Delete", "ManagerEmployeeDelete", "Manager", new { id = item.EmployeeID }, null)
             </td>
         </tr>
     }
