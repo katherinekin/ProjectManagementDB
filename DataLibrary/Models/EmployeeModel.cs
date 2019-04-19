@@ -13,14 +13,15 @@ namespace DataLibrary.Models
         public int Employee_ID { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
-        public string Date_Of_Birth { get; set; }
+        public DateTime Date_Of_Birth { get; set; }
         public int Ssn { get; set; }
         
         public string Address { get; set; }
         public int Type { get; set; }
         public string Gender { get; set; }
         public double Salary { get; set; }
-        public string Start_Date { get; set; }
+
+        public DateTime Start_Date { get; set; }
         public int Estatus { get; set; }
         public string EDname { get; set; }
         public int Profession { get; set; }
@@ -33,13 +34,13 @@ namespace DataLibrary.Models
             Employee_ID = 0;
             Fname = "";
             Lname = "";
-            Date_Of_Birth = "";
+            //Date_Of_Birth = "";
             Ssn = 0;
             Address = "";
             Type = 0;
             Gender = "";
             Salary = 0;
-            Start_Date = "";
+            //Start_Date = "";
             Estatus = 0;
             EDname = "";
             Profession = 0;

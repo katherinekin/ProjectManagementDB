@@ -20,11 +20,9 @@ namespace ProjManagement.Models
         [Required(ErrorMessage = "You must enter a value.")]
         [Display(Name = "Last Name")]
         public string LName { get; set; }
-        
-        //[Required(ErrorMessage = "You must enter a value.")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]             
         [Display(Name = "Date of Birth")]
-        public string DateOfBirth { get; set; } = "";
+        public DateTime DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "You must enter a value.")]
         [Display(Name = "SSN")]
@@ -33,7 +31,7 @@ namespace ProjManagement.Models
 
         public string Address { get; set; }
 
-        [Display(Name = "Part or Full Time")]
+        [Display(Name = "Type")]
         public int Type { get; set; }
 
         public string Gender { get; set; }
@@ -42,7 +40,7 @@ namespace ProjManagement.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Start Date")]
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [Display(Name = "Status")]
         public int Estatus { get; set; } //call in manager edit function, not create
@@ -61,13 +59,13 @@ namespace ProjManagement.Models
             EmployeeID = 0;
             FName = "";
             LName = "";
-            DateOfBirth = "";
+            //DateOfBirth = "";
             Ssn = 0;
             Address = "";
             Type = 0;
             Gender = "";
             Salary = 0;
-            StartDate = "";
+            //StartDate = "";
             Estatus = 0;
             EDname = "";
             Profession = 0;
@@ -83,14 +81,13 @@ namespace ProjManagement.Models
                 new KeyValuePair<string, string>("Employee_ID", this.EmployeeID.ToString()),
                 new KeyValuePair<string, string>("Fname", this.FName),
                 new KeyValuePair<string, string>("Lname", this.LName),
-                new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
+                new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth.ToShortDateString()),
                 new KeyValuePair<string, string>("Ssn", this.Ssn.ToString()),
                 new KeyValuePair<string, string>("Address", this.Address),
-                new KeyValuePair<string, string>("Type", this.Type.ToString()),
-                new KeyValuePair<string, string>("Date_Of_Birth", this.DateOfBirth),
+                new KeyValuePair<string, string>("Type", this.Type.ToString()),                
                 new KeyValuePair<string, string>("Gender", this.Gender),
                 new KeyValuePair<string, string>("Salary", this.Salary.ToString()),
-                new KeyValuePair<string, string>("Start_Date", this.StartDate),
+                new KeyValuePair<string, string>("Start_Date", this.StartDate.ToShortDateString()),
                 new KeyValuePair<string, string>("Estatus", this.Estatus.ToString()),
                 new KeyValuePair<string, string>("EDname", this.EDname),
                 new KeyValuePair<string, string>("Profession", this.Profession.ToString()),

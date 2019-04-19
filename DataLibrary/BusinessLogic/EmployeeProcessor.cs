@@ -11,8 +11,8 @@ namespace DataLibrary.BusinessLogic
     public static class EmployeeProcessor
     {
         //This method creates an employee setting not null values, and returns number of records affected
-        public static int CreateEmployee(string fname, string lname, string dob, int ssn, string address,
-            int type, string gender, double salary, string start, string edname, int profession)
+        public static int CreateEmployee(string fname, string lname, DateTime dob, int ssn, string address,
+            int type, string gender, double salary, DateTime start, string edname, int profession)
         {
             EmployeeModel data = new EmployeeModel
             {

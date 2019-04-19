@@ -1,23 +1,4 @@
 using DataLibrary.BusinessLogic;
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace ProjManagement.Controllers
-{
-    public class AnalyticsController : Controller
-    {
-        // GET: Analytics
-        public ActionResult Index()
-        {
-            return View();
-        }
-    }
-}
-
-﻿using DataLibrary.BusinessLogic;
 using ProjManagement.Models;
 using System;
 using System.Collections.Generic;

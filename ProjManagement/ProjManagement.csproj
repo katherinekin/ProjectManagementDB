@@ -132,7 +132,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -229,39 +228,38 @@
     <Content Include="Views\Employee\Hours.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Employee\Success.cshtml" />
-    <Content Include="Views\User\LogHoursUser.cshtml" />    
-    <Content Include="Views\User\LogHoursUserSuccess.cshtml" />   
-    <Content Include="Views\User\UserProjectDetails.cshtml" />    
-    <Content Include="Views\User\UserHours.cshtml" />   
-    <Content Include="Views\User\UserLogMenu.cshtml" />   
-    <Content Include="Views\User\LogHoursUserFail.cshtml" />    
-    <Content Include="Views\User\UserProjectCoworkers.cshtml" />    
-    <Content Include="Views\Manager\ManagerEmployees.cshtml" />   
-    <Content Include="Views\Manager\ManagerProjects.cshtml" />    
-    <Content Include="Views\Project\AddEmployee.cshtml" />    
-    <Content Include="Views\Project\RemoveEmployee.cshtml" />   
-    <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />    
-    <Content Include="Views\Manager\ManagerCreateEmployee.cshtml" />    
-    <Content Include="Views\Manager\ManagerSuccessEmployee.cshtml" />   
-    <Content Include="Views\Manager\ManagerEmployeeDetails.cshtml" />   
-    <Content Include="Views\Manager\ManagerEmployeeEdit.cshtml" />    
-    <Content Include="Views\Manager\ManagerEmployeeDelete.cshtml" />    
-    <Content Include="Views\Manager\ManagerEmployeeProjects.cshtml" />    
-    <Content Include="Views\Manager\ManagerEmployeeProjectHours.cshtml" />    
-    <Content Include="Views\Manager\ManagerEmployeeProjectLogHours.cshtml" />   
-    <Content Include="Views\Manager\ManagerEmployeeProjectLogHoursSuccess.cshtml" />    
-    <Content Include="Views\Manager\ManagerCreateProject.cshtml" />   
-    <Content Include="Views\Manager\ManagerSuccessProject.cshtml" />    
-    <Content Include="Views\Manager\ManagerProjectDetails.cshtml" />    
-    <Content Include="Views\Manager\ManagerProjectEdit.cshtml" />   
-    <Content Include="Views\Manager\ManagerProjectEmployees.cshtml" />    
-    <Content Include="Views\Manager\ManagerProjectAddEmployee.cshtml" />    
-    <Content Include="Views\Manager\ManagerProjectRemoveEmployee.cshtml" />   
+    <Content Include="Views\User\LogHoursUser.cshtml" />
+    <Content Include="Views\User\LogHoursUserSuccess.cshtml" />
+    <Content Include="Views\User\UserProjectDetails.cshtml" />
+    <Content Include="Views\User\UserHours.cshtml" />
+    <Content Include="Views\User\UserLogMenu.cshtml" />
+    <Content Include="Views\User\LogHoursUserFail.cshtml" />
+    <Content Include="Views\User\UserProjectCoworkers.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployees.cshtml" />
+    <Content Include="Views\Manager\ManagerProjects.cshtml" />
+    <Content Include="Views\Project\AddEmployee.cshtml" />
+    <Content Include="Views\Project\RemoveEmployee.cshtml" />
+    <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
+    <Content Include="Views\Manager\ManagerCreateEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerSuccessEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeDetails.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeEdit.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeDelete.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjects.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectHours.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectLogHours.cshtml" />
+    <Content Include="Views\Manager\ManagerEmployeeProjectLogHoursSuccess.cshtml" />
+    <Content Include="Views\Manager\ManagerCreateProject.cshtml" />
+    <Content Include="Views\Manager\ManagerSuccessProject.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectDetails.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectEdit.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectEmployees.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectAddEmployee.cshtml" />
+    <Content Include="Views\Manager\ManagerProjectRemoveEmployee.cshtml" />
     <Content Include="Views\Manager\ManagerProjectDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Analytics\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

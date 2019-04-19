@@ -14,9 +14,9 @@ namespace DataLibrary.Models
         public string Client { get; set; }
         public string Pdescription { get; set; }
         public string Deliverables { get; set; }
-        public string Open_Date { get; set; }
-        public string Close_Date { get; set; }
-        public string Completion_Date { get; set; }
+        public DateTime Open_Date { get; set; }
+        public DateTime Close_Date { get; set; }
+        public DateTime Completion_Date { get; set; }
         public int Pstatus { get; set; }
         public string Collaborators { get; set; }
 
@@ -27,14 +27,9 @@ namespace DataLibrary.Models
             PDname = "";
             Client = "";
             Pdescription = "";
-            Deliverables = "";
-            Open_Date = "";
-            Close_Date = "";
-            Completion_Date = "";
+            Deliverables = "";            
             Pstatus = 0;
             Collaborators = "";
-
-        }
-       
+        }       
     }
 }
