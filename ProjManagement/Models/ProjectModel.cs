@@ -34,15 +34,15 @@ namespace ProjManagement.Models
 
         [DataType(DataType.Date)]
         [Display(Name = "Open Date")]
-        public string Open_Date { get; set; } = "";
+        public DateTime Open_Date { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Close Date")]
-        public string Close_Date { get; set; } = "";
+        public DateTime Close_Date { get; set; }
 
         [DataType(DataType.Date)]
         [Display(Name = "Completion Date")]
-        public string Completion_Date { get; set; } = "";
+        public DateTime Completion_Date { get; set; }
 
         [Display(Name = "Status")]
         public int Pstatus { get; set; }
@@ -60,9 +60,6 @@ namespace ProjManagement.Models
             Client = "";
             PDescription = "";
             Deliverables = "";
-            Open_Date = "";
-            Close_Date = "";
-            Completion_Date = "";
             Pstatus = 0;
             Collaborators = "";
             EmployeeID = 0;
@@ -78,9 +75,9 @@ namespace ProjManagement.Models
                 new KeyValuePair<string, string>("Client", this.Client),
                 new KeyValuePair<string, string>("Pdescription", this.PDescription),
                 new KeyValuePair<string, string>("Deliverables", this.Deliverables),
-                new KeyValuePair<string, string>("Open_Date", this.Open_Date),
-                new KeyValuePair<string, string>("Close_Date", this.Close_Date),
-                new KeyValuePair<string, string>("Completion_Date", this.Completion_Date),
+                new KeyValuePair<string, string>("Open_Date", this.Open_Date.ToShortDateString()),
+                new KeyValuePair<string, string>("Close_Date", this.Close_Date.ToShortDateString()),
+                new KeyValuePair<string, string>("Completion_Date", this.Completion_Date.ToShortDateString()),
                 new KeyValuePair<string, string>("Pstatus", this.Pstatus.ToString()),
                 new KeyValuePair<string, string>("Collaborators", this.Collaborators),
             };

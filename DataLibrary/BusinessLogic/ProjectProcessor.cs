@@ -11,7 +11,7 @@ namespace DataLibrary.BusinessLogic
     public class ProjectProcessor
     {
         public static int CreateProject(int projectid, string PName1, string PDName1, string Client1, string PDescription1, 
-            string Deliverables1, string Open_Date1, string Close_Date1, string Completion_Date1, string Collaborators1, int Pstatus1)
+            string Deliverables1, DateTime Open_Date1, DateTime Close_Date1, DateTime Completion_Date1, string Collaborators1, int Pstatus1)
         {
             ProjectModel data = new ProjectModel
             {
@@ -82,8 +82,7 @@ namespace DataLibrary.BusinessLogic
             set " + pair.Key + " = @StringValue where Project_ID = @Project_ID;";
 
             return SqlDataAccess.SaveData(sql, data);
-        }
-        //--------------------------------------------------------Edit Project
+        }        
         // FInd project----------------------------------
         public static List<ProjectModel> FindProject(int projectid)
         {

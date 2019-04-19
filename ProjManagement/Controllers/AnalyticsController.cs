@@ -1,4 +1,4 @@
-﻿using DataLibrary.BusinessLogic;
+using DataLibrary.BusinessLogic;
 using ProjManagement.Models;
 using System;
 using System.Collections.Generic;
@@ -36,3 +36,4 @@ namespace ProjManagement.Controllers
         }
     }
 }
+
