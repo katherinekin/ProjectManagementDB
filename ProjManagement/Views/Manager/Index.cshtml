@@ -1,11 +1,11 @@
-﻿
+﻿@using DataLibrary.BusinessLogic
 @{
     ViewBag.Title = "Manager Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="jumbotron">
-    <h1>Welcome, Manager.</h1>
+    <h1>Welcome, @EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().Fname</h1>
     <p class="lead">
         Manage my employees and projects here.
     </p>
@@ -16,8 +16,8 @@
     <div class="col-md-6">
         <h2>Management</h2>
         <hr />
-        <p><a href="~/Manager/ManagerEmployees" class="btn btn-primary btn-lg">Employee Management &raquo;</a></p>
-        <p><a href="~/Manager/ManagerProjects" class="btn btn-primary btn-lg">Project Management &raquo;</a></p>
+        <p><a href="~/Employee/Index" class="btn btn-primary btn-lg">Employee Management &raquo;</a></p>
+        <p><a href="~/Project/Index" class="btn btn-primary btn-lg">Project Management &raquo;</a></p>
     </div>
     <div class="col-md-6">
         <h2>My tasks</h2>

@@ -129,7 +129,7 @@ namespace ProjManagement.Controllers
         {
             var x = new ViewEmployeeModel();
             x.SelectedDep = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().EDname;
-            return View(new ViewEmployeeModel());
+            return View(x);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -140,9 +140,9 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
-            EmployeeProcessor.CreateEmployee(model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn,
+            /*EmployeeProcessor.CreateEmployee(model.employee.EmployeeID, model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn,
                 model.employee.Address, Int32.Parse(model.SelectedType), model.employee.Gender, model.employee.Salary, model.employee.StartDate,
-                model.SelectedDep, Int32.Parse(model.SelectedProf));
+                model.SelectedDep, Int32.Parse(model.SelectedProf));*/
 
             return RedirectToAction("ManagerSuccessEmployee", new { Model = model });
         }
@@ -182,7 +182,7 @@ namespace ProjManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult ManagerEmployeEdit(int id, ViewEmployeeModel model)
+        public ActionResult ManagerEmployeeEdit(int id, ViewEmployeeModel model)
         {
             var data = EmployeeProcessor.FindEmployee(id);
             EmployeeModel oldModel = mapToModel(data);
@@ -347,9 +347,9 @@ namespace ProjManagement.Controllers
 
         public ActionResult ManagerCreateProject()
         {
-            var x = new ViewEmployeeModel();
+            var x = new ViewProjectModel();
             x.SelectedDep = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().EDname;
-            return View(new ViewProjectModel());
+            return View(x);
         }
 
         // POST: Project/Create
@@ -498,7 +498,8 @@ namespace ProjManagement.Controllers
                             Profession = row.Profession,
                             SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
                             ProjectID = id,
-                            SuperSsn = row.Super_Ssn
+                            SuperSsn = row.Super_Ssn,
+                            Ssn = row.Ssn
                         },
                         ProjectID = id
                     });

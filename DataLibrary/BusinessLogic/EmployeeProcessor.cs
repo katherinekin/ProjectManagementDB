@@ -36,6 +36,35 @@ namespace DataLibrary.BusinessLogic
                             @Start_Date, 1, @EDname, @Profession, 377093932);";
             return SqlDataAccess.SaveData(sql, data);
         }
+
+        public static int CreateEmployee(int id, string fname, string lname, string dob, int ssn, string address,
+            int type, string gender, double salary, string start, string edname, int profession, int superssn)
+        {
+            EmployeeModel data = new EmployeeModel
+            {
+                Employee_ID = id,
+                Fname = fname,
+                Lname = lname,
+                Date_Of_Birth = dob,
+                Ssn = ssn,
+                Address = address,
+                Type = type,
+                Gender = gender,
+                Salary = salary,
+                Start_Date = start,
+                Estatus = 0,
+                EDname = edname,
+                Profession = profession,
+                Super_Ssn = superssn
+
+            };
+            string sql = @"insert into PM.Employee (Employee_ID, Fname, Lname, Date_Of_Birth, Ssn, Address,
+                            Type, Gender, Salary, Start_Date, Estatus, EDname, Profession, Super_ssn) 
+                            values (@Employee_ID, @Fname, @Lname, @Date_Of_Birth, @Ssn, @Address, @Type, @Gender, @Salary, 
+                            @Start_Date, 1, @EDname, @Profession, @Super_Ssn);";
+            return SqlDataAccess.SaveData(sql, data);
+        }
+
         // Loads all of the employees back into DataLibrary.Models.EmployeeModel
         public static List<EmployeeModel> LoadEmployees()
         {

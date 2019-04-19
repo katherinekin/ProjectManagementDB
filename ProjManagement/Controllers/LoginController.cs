@@ -47,14 +47,9 @@ namespace ProjManagement.Controllers
                     var x = User.Identity.Name;*/
                     int EmployeeID = item.LEmployee_ID;
                     
-                    if (EmployeeID == 1)
-                    {
-                        return RedirectToAction("Index", "Employee");
-                    }
-
                     foreach (int managerID in managerList)
                     {
-                        if (EmployeeID == managerID)
+                        if (EmployeeID == managerID || EmployeeID == 1)
                         {
                             return RedirectToAction("Index", "Manager");
                         }

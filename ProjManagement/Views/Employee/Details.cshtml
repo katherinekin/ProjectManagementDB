@@ -1,141 +1,255 @@
 ﻿@model ProjManagement.Models.ViewEmployeeModel
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Details";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        <h4>View employee profile details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.EmployeeID)
+            </dt>
 
-<div>
-    <h4>View employee profile details</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.EmployeeID)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.EmployeeID)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.EmployeeID)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.FName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.FName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.FName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.FName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.LName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.LName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.LName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.LName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.DateOfBirth)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.DateOfBirth)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.DateOfBirth)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.DateOfBirth)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Ssn)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Ssn)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.Ssn)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.Ssn)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Address)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Address)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.Address)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.Address)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Type)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Type)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TypeSelectList.
+                 Skip((model.employee.Type - 1) > -1 ? (model.employee.Type - 1) : 0).First().Text)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TypeSelectList.
-                Skip((model.employee.Type - 1) > -1 ? (model.employee.Type - 1) : 0).First().Text)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Gender)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Gender)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.Gender)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.Gender)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Salary)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Salary)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.Salary)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.Salary)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.StartDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.StartDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.StartDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.StartDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Estatus)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Estatus)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StatusSelectList.
+                     Skip((model.employee.Estatus - 1) > -1 ? (model.employee.Estatus - 1) : 0).First().Text)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.StatusSelectList.
-                    Skip((model.employee.Estatus - 1) > -1 ? (model.employee.Estatus - 1) : 0).First().Text)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.EDname)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.EDname)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.EDname)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.EDname)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Profession)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.Profession)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ProfSelectList.
+                     Skip((model.employee.Profession - 1) > -1 ? (model.employee.Profession - 1) : 0).First().Text)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProfSelectList.
-                    Skip((model.employee.Profession - 1) > -1 ? (model.employee.Profession - 1) : 0).First().Text)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.SuperSsn)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.employee.SuperSsn)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.employee.SuperName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.employee.SuperName)
-        </dd>
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("View Projects", "ViewProjects", new { id = Model.employee.EmployeeID },
+            new { @class = "btn btn-primary btn-lg" })
 
-    </dl>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            @Html.ActionLink("View Projects", "ViewProjects", new { id = Model.employee.EmployeeID },
-           new { @class = "btn btn-primary btn-lg"})
-            
+            </div>
         </div>
     </div>
-</div>
+}
+else if (User.IsInRole("Manager"))
+{
+    <div>
+        <h4>View employee profile details</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.EmployeeID)
+            </dt>
 
+            <dd>
+                @Html.DisplayFor(model => model.employee.EmployeeID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.FName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.FName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.LName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.LName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.Address)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TypeSelectList.
+                 Skip((model.employee.Type - 1) > -1 ? (model.employee.Type - 1) : 0).First().Text)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.Gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Salary)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.Salary)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Estatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StatusSelectList.
+                     Skip((model.employee.Estatus - 1) > -1 ? (model.employee.Estatus - 1) : 0).First().Text)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.EDname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.EDname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.employee.Profession)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProfSelectList.
+                     Skip((model.employee.Profession - 1) > -1 ? (model.employee.Profession - 1) : 0).First().Text)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.employee.SuperName)
+            </dd>
+
+        </dl>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                @Html.ActionLink("View Projects", "ViewProjects", new { id = Model.employee.EmployeeID },
+            new { @class = "btn btn-primary btn-lg" })
+
+            </div>
+        </div>
+    </div>
+}
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.employee.EmployeeID }) |
     @Html.ActionLink("Back to List", "Index")

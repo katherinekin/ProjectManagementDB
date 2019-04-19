@@ -93,10 +93,10 @@
                 @Html.DisplayFor(modelItem => item.employee.SuperName)
             </td>
             <td>
-                @if (item.employee.SuperSsn == EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().Ssn)
-                {
-                    @Html.ActionLink("Details", "ManagerEmployeeDetails", "Manager", new { id = item.employee.EmployeeID }, null)
-                }
+                @if (item.employee.SuperSsn == EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().Ssn || item.employee.Ssn == EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First().Ssn)
+                    { 
+                        @Html.ActionLink("Details", "ManagerEmployeeDetails", "Manager", new { id = item.employee.EmployeeID }, null)  
+                    } |
                 @Html.ActionLink("Remove", "ManagerProjectRemoveEmployee", "Manager",
                     new { employeeid = item.employee.EmployeeID, projectid = item.employee.ProjectID }, null)
             </td>

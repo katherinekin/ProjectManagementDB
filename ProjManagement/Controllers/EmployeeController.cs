@@ -15,6 +15,9 @@ namespace ProjManagement.Controllers
         // GET: Employee
         public ActionResult Index()
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
             ViewBag.Message = "All employees";
             var data = EmployeeProcessor.LoadEmployees();
             List<EmployeeModel> employees = new List<EmployeeModel>();
@@ -30,14 +33,27 @@ namespace ProjManagement.Controllers
                     FName = row.Fname,
                     LName = row.Lname,
                     DateOfBirth = row.Date_Of_Birth,
-                    Ssn = row.Ssn
+                    Ssn = row.Ssn,
+                    SuperSsn = row.Super_Ssn
                 });
             }
             return View(employees);
         }
         public ActionResult CreateEmployee()
-        {            
-            return View(new ViewEmployeeModel());
+        {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewEmployeeModel model = new ViewEmployeeModel { SelectedDep = current.EDname, SelectedManager = current.Ssn.ToString() };
+            if (User.IsInRole("Admin"))
+            {
+                var managers = LoginProcessor.LoadManagerList();
+                model.ManagerSelectList = managers.Select(x => new SelectListItem()
+                {
+                    Text = x.Fname+" "+x.Lname,
+                    Value = x.Ssn.ToString()
+                });
+            }
+            model.employee.SuperName = current.Fname + " " + current.Lname;
+            return View(model);
         }
 
         [HttpPost]
@@ -49,11 +65,15 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }  
-            EmployeeProcessor.CreateEmployee(model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn, 
+            if (EmployeeProcessor.CreateEmployee(model.employee.EmployeeID, model.employee.FName, model.employee.LName, model.employee.DateOfBirth, model.employee.Ssn, 
                 model.employee.Address, Int32.Parse(model.SelectedType), model.employee.Gender, model.employee.Salary, model.employee.StartDate, 
-                model.SelectedDep, Int32.Parse(model.SelectedProf));
-                    
-            return RedirectToAction("SuccessEmployee", new { Model = model });
+                model.SelectedDep, Int32.Parse(model.SelectedProf), Int32.Parse(model.SelectedManager)) > 0)
+            {
+
+                return RedirectToAction("SuccessEmployee", new { Model = model });
+            }
+
+            return View(model);
         }
         public ActionResult SuccessEmployee(EmployeeModel model)
         {
@@ -105,6 +125,7 @@ namespace ProjManagement.Controllers
         // GET: Employee/Edit/5
         public ActionResult Edit(int id)
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
             var data = EmployeeProcessor.FindEmployee(id);
             if (data.Count == 0)
             {
@@ -113,8 +134,30 @@ namespace ProjManagement.Controllers
             EmployeeModel found = mapToModel(data);
             ViewEmployeeModel viewFound = new ViewEmployeeModel
             {
-                employee = found
+                employee = found,
+                SelectedDep = found.EDname,
+                SelectedManager = found.SuperSsn.ToString(),
+                SelectedProf = found.Profession.ToString(),
+                SelectedStatus = found.Estatus.ToString(),
+                SelectedType = found.Type.ToString()
             };
+            if (found.DateOfBirth != "")
+            {
+                viewFound.DOB = DateTime.Parse(found.DateOfBirth);
+            }
+            if (found.StartDate != "")
+            {
+                viewFound.SD = DateTime.Parse(found.StartDate);
+            }
+            if (User.IsInRole("Admin"))
+            {
+                var managers = LoginProcessor.LoadManagerList();
+                viewFound.ManagerSelectList = managers.Select(x => new SelectListItem()
+                {
+                    Text = x.Fname + " " + x.Lname,
+                    Value = x.Ssn.ToString()
+                });
+            }
             return View(viewFound);
         }
 
@@ -164,8 +207,32 @@ namespace ProjManagement.Controllers
             {
                 model.employee.EDname = oldModel.EDname;
             }
-            
-            
+            try
+            {
+                model.employee.DateOfBirth = model.DOB.ToShortDateString();
+            }
+            catch
+            {
+                model.employee.DateOfBirth = oldModel.DateOfBirth;
+            }
+            try
+            {
+                model.employee.StartDate = model.SD.ToShortDateString();
+            }
+            catch
+            {
+                model.employee.StartDate = oldModel.StartDate;
+            }
+            try
+            {
+                model.employee.SuperSsn = int.Parse(model.SelectedManager);
+            }
+            catch
+            {
+                model.employee.SuperSsn = oldModel.SuperSsn;
+            }
+
+
 
             HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();
             
@@ -208,6 +275,9 @@ namespace ProjManagement.Controllers
         
         public ActionResult ViewProjects(int id)
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
             try
             {
                 var data = ProjectProcessor.FindProjectsByEmployee(id);                
@@ -268,6 +338,8 @@ namespace ProjManagement.Controllers
 
         public ActionResult LogHours(int pid, int eid)
         {
+            var emp = EmployeeProcessor.FindEmployee(eid).First();
+            ViewBag.name = emp.Fname + " " + emp.Lname;
             var model = new Models.ActivitiesModel {
                 AEmployee_ID = eid,
                 AProject_ID = pid,
@@ -282,7 +354,6 @@ namespace ProjManagement.Controllers
         public ActionResult Success(ActivitiesModel data)
         {
             EmployeeProcessor.NewHours(data.AEmployee_ID, data.AProject_ID, data.Description, data.Weekly_Hours, data.Week_Date);
-            ViewData["Pname"] = 0;
             return View(data);
         }
     }

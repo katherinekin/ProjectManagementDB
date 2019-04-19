@@ -20,7 +20,7 @@ namespace ProjManagement.Models
         [Required(ErrorMessage = "You must enter a value.")]
         [Display(Name = "Last Name")]
         public string LName { get; set; }
-        
+
         //[Required(ErrorMessage = "You must enter a value.")]
         [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
@@ -53,6 +53,7 @@ namespace ProjManagement.Models
         public int Profession { get; set; }
         [Display(Name = "Manager")]
         public int SuperSsn { get; set; } //call in edit function, not create
+        [Display(Name = "Manager")]
         public string SuperName { get; set; }
         public int ProjectID { get; set; }
 

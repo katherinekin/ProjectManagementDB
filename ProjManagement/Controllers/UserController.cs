@@ -281,5 +281,122 @@ namespace ProjManagement.Controllers
                 return RedirectToAction("UserProjectDetails", new { id = id });
             }
         }
+
+        public ActionResult UserEdit(int id)
+        {
+            var data = EmployeeProcessor.FindEmployee(id);
+            if (data.Count == 0)
+            {
+                return HttpNotFound();
+            }
+            EmployeeModel found = mapToModel(data);
+            ViewEmployeeModel viewFound = new ViewEmployeeModel
+            {
+                employee = found,
+                SelectedDep = found.EDname,
+                SelectedManager = found.SuperSsn.ToString(),
+                SelectedProf = found.Profession.ToString(),
+                SelectedStatus = found.Estatus.ToString(),
+                SelectedType = found.Type.ToString()
+            };
+            if (found.DateOfBirth != "")
+            {
+                viewFound.DOB = DateTime.Parse(found.DateOfBirth);
+            }
+            if (found.StartDate != "")
+            {
+                viewFound.SD = DateTime.Parse(found.StartDate);
+            }
+            if (User.IsInRole("Admin"))
+            {
+                var managers = LoginProcessor.LoadManagerList();
+                viewFound.ManagerSelectList = managers.Select(x => new SelectListItem()
+                {
+                    Text = x.Fname + " " + x.Lname,
+                    Value = x.Ssn.ToString()
+                });
+            }
+            return View(viewFound);
+        }
+
+        [HttpPost]
+        public ActionResult UserEdit(int id, ViewEmployeeModel model)
+        {
+            var data = EmployeeProcessor.FindEmployee(id);
+            EmployeeModel oldModel = mapToModel(data);
+            HashSet<KeyValuePair<string, string>> oldModelHashSet = oldModel.setToPairs();
+            //returns a HashSet of the old model only if has not been set
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            // Set status, type, profession, department variables
+            try
+            {
+                model.employee.Estatus = Int32.Parse(model.SelectedStatus);
+            }
+            catch
+            {
+                model.employee.Estatus = oldModel.Estatus;
+            }
+            try
+            {
+                model.employee.Type = Int32.Parse(model.SelectedType);
+            }
+            catch
+            {
+                model.employee.Type = oldModel.Estatus;
+            }
+            try
+            {
+                model.employee.Profession = Int32.Parse(model.SelectedProf);
+            }
+            catch
+            {
+                model.employee.Profession = oldModel.Profession;
+            }
+            try
+            {
+                model.employee.EDname = model.SelectedDep.ToString();
+            }
+            catch
+            {
+                model.employee.EDname = oldModel.EDname;
+            }
+            try
+            {
+                model.employee.DateOfBirth = model.DOB.ToShortDateString();
+            }
+            catch
+            {
+                model.employee.DateOfBirth = oldModel.DateOfBirth;
+            }
+            try
+            {
+                model.employee.StartDate = model.SD.ToShortDateString();
+            }
+            catch
+            {
+                model.employee.StartDate = oldModel.StartDate;
+            }
+            try
+            {
+                model.employee.SuperSsn = int.Parse(model.SelectedManager);
+            }
+            catch
+            {
+                model.employee.SuperSsn = oldModel.SuperSsn;
+            }
+
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();
+
+            newModelHashSet.ExceptWith(oldModelHashSet);
+            foreach (var pair in newModelHashSet)
+            {
+                EmployeeProcessor.EditEmployee(pair, model.employee.EmployeeID);
+            }
+            return RedirectToAction("Index", new { id = id });
+        }
     }
 }

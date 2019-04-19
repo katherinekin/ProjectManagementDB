@@ -82,10 +82,12 @@
                 @Html.DisplayFor(modelItem => item.Collaborators)
             </td>
             <td>
-
+                @if(ViewBag.dep == item.PDName || User.IsInRole("Admin"))
+                { 
                 @Html.ActionLink("Details", "Details", "Project", new { id = item.ProjectID }, null)
                 @Html.ActionLink("Hours", "Hours", "Employee",
                     new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
+                }
 
             </td>
         </tr>

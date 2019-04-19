@@ -20,6 +20,18 @@ namespace ProjManagement.Models
 
         public IEnumerable<SelectListItem> StatusSelectList { get; set; }
 
+        public IEnumerable<SelectListItem> ManagerSelectList { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date of Birth")]
+        public DateTime DOB { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Start Date")]
+        public DateTime SD { get; set; }
+
         [Display(Name = "Department")]
         public string SelectedDep { get; set; }
 
@@ -31,6 +43,10 @@ namespace ProjManagement.Models
 
         [Display(Name = "Status")]
         public string SelectedStatus { get; set; }
+
+        [Display(Name = "Manager")]
+        public string SelectedManager { get; set; }
+
         public int EmployeeID { get; set; }
         public int ProjectID { get; set; }
         public string Pname { get; set; }

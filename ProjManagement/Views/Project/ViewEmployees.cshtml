@@ -91,8 +91,18 @@
             @Html.DisplayFor(modelItem => item.employee.SuperName)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", "Employee", new { id = item.employee.EmployeeID }, null) | 
-            @Html.ActionLink("Remove", "RemoveEmployee", "Project", 
+            @if (ViewBag.ssn == item.employee.SuperSsn || User.IsInRole("Admin"))
+            {
+                if (ViewBag.ssn == item.employee.Ssn)
+                {
+                    @Html.ActionLink("Details", "Index", "User", new { id = item.employee.EmployeeID }, null)
+                }
+                else
+                {
+                    @Html.ActionLink("Details", "Details", "Employee", new { id = item.employee.EmployeeID }, null)//|
+                }
+            }
+            @Html.ActionLink("Remove", "RemoveEmployee", "Project",
                 new { employeeid = item.employee.EmployeeID, projectid = item.employee.ProjectID }, null)
         </td>
     </tr>

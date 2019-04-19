@@ -29,6 +29,8 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (ViewBag.ssn == item.SuperSsn || User.IsInRole("Admin"))
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.EmployeeID)
@@ -49,6 +51,7 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
         </td>
     </tr>
+    }
 }
 
 </table>

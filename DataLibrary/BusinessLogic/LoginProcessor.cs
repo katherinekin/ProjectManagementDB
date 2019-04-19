@@ -40,5 +40,17 @@ namespace DataLibrary.BusinessLogic
             string sql = @"select Manager_ID from pm.department";
             return SqlDataAccess.LoadData<int>(sql);
         }
+
+        public static List<EmployeeModel> LoadManagerList()
+        {
+            string sql = @"select Manager_ID from pm.department";
+            List<int> x = SqlDataAccess.LoadData<int>(sql);
+            List<EmployeeModel> list = new List<EmployeeModel>();
+            foreach (var item in x)
+            {
+                list.Add(EmployeeProcessor.FindEmployee(item).First());
+            }
+            return list;
+        }
     }
 }

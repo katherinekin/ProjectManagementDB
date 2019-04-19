@@ -36,6 +36,8 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (ViewBag.dep == item.project.PDName || User.IsInRole("Admin"))
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.project.ProjectID)
@@ -59,12 +61,13 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", "Project", new { id = item.project.ProjectID }, null)
-            @Html.ActionLink("Details", "Details", "Project", new { id = item.project.ProjectID }, null)
-            @Html.ActionLink("Delete", "Delete", "Project", new { id = item.project.ProjectID }, null)
+            @Html.ActionLink("Edit", "Edit", "Project", new { id = item.project.ProjectID }, null) |
+            @Html.ActionLink("Details", "Details", "Project", new { id = item.project.ProjectID }, null) |
+            @Html.ActionLink("Delete", "Delete", "Project", new { id = item.project.ProjectID }, null) |
             @Html.ActionLink("View Employees", "ViewEmployees", "Project", new { id = item.project.ProjectID }, null)
         </td>
     </tr>
+    }
 }
 
 </table>

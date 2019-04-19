@@ -257,6 +257,7 @@
     <Content Include="Views\Manager\ManagerProjectAddEmployee.cshtml" />
     <Content Include="Views\Manager\ManagerProjectRemoveEmployee.cshtml" />
     <Content Include="Views\Manager\ManagerProjectDelete.cshtml" />
+    <Content Include="Views\User\UserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,9 @@ namespace ProjManagement.Controllers
         // GET: Project
         public ActionResult Index()
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
             ViewBag.Message = "All projects";
             var data = ProjectProcessor.LoadProjects();
             List<ViewProjectModel> projects = new List<ViewProjectModel>();
@@ -201,6 +204,9 @@ namespace ProjManagement.Controllers
         // GET: Project/ViewEmployees--------------------------------------------------------------
         public ActionResult ViewEmployees(int id)
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
             try
             {
                 var data = EmployeeProcessor.FindEmployeesByProject(id);
