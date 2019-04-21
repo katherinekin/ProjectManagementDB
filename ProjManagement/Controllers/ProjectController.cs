@@ -171,6 +171,30 @@ namespace ProjManagement.Controllers
             {
                 model.project.PDName = oldModel.PDName;
             }
+            try
+            {
+                model.project.Open_Date = model.OpenDate;
+            }
+            catch
+            {
+                model.project.Open_Date = oldModel.Open_Date;
+            }
+            try
+            {
+                model.project.Close_Date = model.CloseDate;
+            }
+            catch
+            {
+                model.project.Close_Date = oldModel.Close_Date;
+            }
+            try
+            {
+                model.project.Completion_Date = model.CompletionDate;
+            }
+            catch
+            {
+                model.project.Completion_Date = oldModel.Completion_Date;
+            }
             HashSet<KeyValuePair<string, string>> newModelHashSet = model.project.PsetToPairs();
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
