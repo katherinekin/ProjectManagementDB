@@ -32,15 +32,15 @@ namespace ProjManagement.Models
         [Display(Name = "Deliverables")]
         public string Deliverables { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]        
         [Display(Name = "Open Date")]
         public DateTime Open_Date { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]        
         [Display(Name = "Close Date")]
         public DateTime Close_Date { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]        
         [Display(Name = "Completion Date")]
         public DateTime Completion_Date { get; set; }
 

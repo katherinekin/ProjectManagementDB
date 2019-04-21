@@ -25,6 +25,18 @@ namespace ProjManagement.Models
         public IEnumerable<SelectListItem> EmpSelectList { get; set; }
         [Display(Name = "Select employee")]
         public string SelectedEmp { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime OpenDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime CloseDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime CompletionDate { get; set; }
         public ViewProjectModel()
         {
             project = new ProjectModel();

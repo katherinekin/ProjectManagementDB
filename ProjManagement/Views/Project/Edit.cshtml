@@ -10,7 +10,7 @@
 @if (User.IsInRole("Admin"))
 {
 
-    @using (Html.BeginForm())
+    using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
@@ -68,7 +68,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.project.Open_Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.project.Open_Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.OpenDate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.project.Open_Date, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -76,7 +76,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.project.Close_Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.project.Close_Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.CloseDate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.project.Close_Date, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -84,7 +84,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.project.Completion_Date, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.project.Completion_Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.CompletionDate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.project.Completion_Date, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -114,7 +114,7 @@
 }
 else if (User.IsInRole("Manager"))
 {
-    @using (Html.BeginForm())
+    using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 

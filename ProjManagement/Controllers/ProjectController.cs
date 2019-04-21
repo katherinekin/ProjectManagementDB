@@ -132,8 +132,13 @@ namespace ProjManagement.Controllers
             ProjectModel found = pToModel(data);
             ViewProjectModel viewFound = new ViewProjectModel
             {
-                project = found
-            };
+                project = found,
+                SelectedDep = found.PDName,
+                SelectedPStatus = found.Pstatus.ToString(),
+                OpenDate = found.Open_Date,
+                CloseDate = found.Close_Date,
+                CompletionDate = found.Completion_Date
+            };        
             return View(viewFound);
         }
 
