@@ -334,5 +334,10 @@ namespace ProjManagement.Controllers
                 return View(model);
             }
         }
+        public ActionResult ViewBudget(int projectid)
+        {
+            //get list of budgets related to project, sorted by date
+            return View();
+        }
     }
 }

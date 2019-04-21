@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Project Analysis</h2>
+<h2>ProjectAnalysis</h2>
 
 
 <table class="table">
@@ -20,15 +20,8 @@
             @Html.DisplayNameFor(model => model.EmployeeCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.budget.Estimated_Income)
+            @Html.DisplayNameFor(model => model.Departments)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.budget.Estimated_Expense)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.budget.Estimated_Profit)
-        </th>
-
         <th></th>
     </tr>
 
@@ -36,23 +29,16 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ProjectID)
-        </td>        
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Pname)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EmployeeCount)
         </td>
-        <th>
-            @Html.DisplayFor(model => item.budget.Estimated_Income)
-        </th>
-        <th>
-            @Html.DisplayFor(model => item.budget.Estimated_Expense)
-        </th>
-        <th>
-            @Html.DisplayFor(model => item.budget.Estimated_Profit)
-        </th>
-        
+        <td>            
+            @Html.DisplayFor(modelItem => item.Departments)                       
+        </td>
     </tr>
 }
 

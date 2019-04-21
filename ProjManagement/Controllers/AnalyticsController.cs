@@ -14,6 +14,24 @@ namespace ProjManagement.Controllers
         public ActionResult ProjectAnalysis()
         {            
             // Assume for now every BProject_ID entry in LoadBudget is unique
+            var data = ProjectProcessor.LoadProjects();
+            List<ProjAnalysisModel> list = new List<ProjAnalysisModel>();
+            foreach (var row in data)
+            {
+                list.Add(new ProjAnalysisModel
+                {
+                    ProjectID = row.Project_ID,
+                    Pname = row.Pname,
+                    EmployeeCount = ProjectProcessor.getTotalEmployees(row.Project_ID),
+                    Departments = String.Join(", ", ProjectProcessor.getAllDepartments(row.Project_ID))
+                });
+
+            }
+            return View(list);
+        }
+        public ActionResult ProjectBudget()
+        {
+            // Assume for now every BProject_ID entry in LoadBudget is unique
             var data = BudgetProcessor.LoadBudgets();
             List<ProjAnalysisModel> list = new List<ProjAnalysisModel>();
             foreach (var row in data)
@@ -28,7 +46,7 @@ namespace ProjManagement.Controllers
                         Estimated_Expense = row.Estimated_Expense,
                         Estimated_Income = row.Estimated_Income,
                         Estimated_Profit = row.Estimated_Profit
-                    }                    
+                    }
                 });
             }
             return View(list);
