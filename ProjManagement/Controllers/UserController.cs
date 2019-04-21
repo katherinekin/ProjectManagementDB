@@ -299,13 +299,13 @@ namespace ProjManagement.Controllers
                 SelectedStatus = found.Estatus.ToString(),
                 SelectedType = found.Type.ToString()
             };
-            if (found.DateOfBirth != "")
+            if (found.DateOfBirth.ToShortDateString() != "")
             {
-                viewFound.DOB = DateTime.Parse(found.DateOfBirth);
+                viewFound.DOB = found.DateOfBirth;
             }
-            if (found.StartDate != "")
+            if (found.StartDate.ToShortDateString() != "")
             {
-                viewFound.SD = DateTime.Parse(found.StartDate);
+                viewFound.SD = found.StartDate;
             }
             if (User.IsInRole("Admin"))
             {
@@ -366,7 +366,7 @@ namespace ProjManagement.Controllers
             }
             try
             {
-                model.employee.DateOfBirth = model.DOB.ToShortDateString();
+                model.employee.DateOfBirth = model.DOB;
             }
             catch
             {
@@ -374,7 +374,7 @@ namespace ProjManagement.Controllers
             }
             try
             {
-                model.employee.StartDate = model.SD.ToShortDateString();
+                model.employee.StartDate = model.SD;
             }
             catch
             {

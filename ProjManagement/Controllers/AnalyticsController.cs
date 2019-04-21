@@ -12,8 +12,7 @@ namespace ProjManagement.Controllers
     {
         // GET: Analytics
         public ActionResult ProjectAnalysis()
-        {
-            
+        {            
             // Assume for now every BProject_ID entry in LoadBudget is unique
             var data = BudgetProcessor.LoadBudgets();
             List<ProjAnalysisModel> list = new List<ProjAnalysisModel>();

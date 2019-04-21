@@ -22,13 +22,13 @@ namespace ProjManagement.Models
 
         public IEnumerable<SelectListItem> ManagerSelectList { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date of Birth")]
         public DateTime DOB { get; set; }
 
-        [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Start Date")]
         public DateTime SD { get; set; }
 
@@ -53,13 +53,13 @@ namespace ProjManagement.Models
         public ViewEmployeeModel()
         {
             employee = new EmployeeModel();
-            // Default values
+            // Default values            
             SelectedDep = "";
             SelectedProf = "";
             SelectedType = "";
             SelectedStatus = "";
             ProjectID = employee.ProjectID;
-            EmployeeID = employee.EmployeeID;
+            EmployeeID = employee.EmployeeID;            
             Pname = "";
             var departments = EmployeeProcessor.LoadDepartmentNames();
             DepSelectList = departments.Select(x => new SelectListItem()

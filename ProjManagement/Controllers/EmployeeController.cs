@@ -141,14 +141,10 @@ namespace ProjManagement.Controllers
                 SelectedStatus = found.Estatus.ToString(),
                 SelectedType = found.Type.ToString()
             };
-            if (found.DateOfBirth != "")
-            {
-                viewFound.DOB = DateTime.Parse(found.DateOfBirth);
-            }
-            if (found.StartDate != "")
-            {
-                viewFound.SD = DateTime.Parse(found.StartDate);
-            }
+            
+            viewFound.DOB = found.DateOfBirth;   
+            viewFound.SD = found.StartDate;
+            
             if (User.IsInRole("Admin"))
             {
                 var managers = LoginProcessor.LoadManagerList();
@@ -209,7 +205,7 @@ namespace ProjManagement.Controllers
             }
             try
             {
-                model.employee.DateOfBirth = model.DOB.ToShortDateString();
+                model.employee.DateOfBirth = model.DOB;
             }
             catch
             {
@@ -217,7 +213,7 @@ namespace ProjManagement.Controllers
             }
             try
             {
-                model.employee.StartDate = model.SD.ToShortDateString();
+                model.employee.StartDate = model.SD;
             }
             catch
             {
@@ -232,10 +228,7 @@ namespace ProjManagement.Controllers
                 model.employee.SuperSsn = oldModel.SuperSsn;
             }
 
-
-
-            HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();
-            
+            HashSet<KeyValuePair<string, string>> newModelHashSet = model.employee.setToPairs();            
             newModelHashSet.ExceptWith(oldModelHashSet);
             foreach (var pair in newModelHashSet)
             {

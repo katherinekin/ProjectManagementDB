@@ -37,8 +37,8 @@ namespace DataLibrary.BusinessLogic
             return SqlDataAccess.SaveData(sql, data);
         }
 
-        public static int CreateEmployee(int id, string fname, string lname, string dob, int ssn, string address,
-            int type, string gender, double salary, string start, string edname, int profession, int superssn)
+        public static int CreateEmployee(int id, string fname, string lname, DateTime dob, int ssn, string address,
+            int type, string gender, double salary, DateTime start, string edname, int profession, int superssn)
         {
             EmployeeModel data = new EmployeeModel
             {
