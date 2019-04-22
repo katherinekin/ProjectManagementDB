@@ -33,19 +33,19 @@ namespace ProjManagement.Controllers
         {
             // Assume for now every BProject_ID entry in LoadBudget is unique
             var data = BudgetProcessor.LoadBudgets();
-            List<ProjAnalysisModel> list = new List<ProjAnalysisModel>();
+            List<ProjBudgetModel> list = new List<ProjBudgetModel>();
             foreach (var row in data)
             {
-                list.Add(new ProjAnalysisModel
+                list.Add(new ProjBudgetModel
                 {
                     ProjectID = row.BProject_ID,
-                    Pname = ProjectProcessor.FindProject(row.BProject_ID)[0].Pname,
-                    EmployeeCount = ProjectProcessor.getTotalEmployees(row.BProject_ID),
+                    Pname = ProjectProcessor.FindProject(row.BProject_ID)[0].Pname,                    
                     budget = new BudgetModel
                     {
                         Estimated_Expense = row.Estimated_Expense,
                         Estimated_Income = row.Estimated_Income,
-                        Estimated_Profit = row.Estimated_Profit
+                        Estimated_Profit = row.Estimated_Profit,
+                        BDate = row.BDate
                     }
                 });
             }

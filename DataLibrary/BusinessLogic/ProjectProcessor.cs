@@ -164,19 +164,6 @@ namespace DataLibrary.BusinessLogic
                     where EProject_ID = @Project_ID and Employee_ID = PEmployee_ID;";
             return SqlDataAccess.LoadData<string>(sql, data);
         }
-		public static ProjectModel GetProject(int projectid)
-        {
-            var list = LoadProjects();
-            ProjectModel found = new ProjectModel();
-            foreach (ProjectModel item in list)
-            {
-                if (item.Project_ID == projectid)
-                {
-                    found = item;
-                    break;
-                }
-            }
-            return (found);
-		}
+          
     }
 }

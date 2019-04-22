@@ -21,6 +21,6 @@ namespace ProjManagement.Models
         public List<string> Managers { get; set; }
         [Display(Name = "Departments Involved")]
         public string Departments { get; set; }
-        public BudgetModel budget { get; set; }                  
+        public BudgetModel budget { get; set; }   
     }
 }

@@ -133,6 +133,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
+    <Compile Include="Controllers\BudgetController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProjAnalysisModel.cs" />
+    <Compile Include="Models\ProjBudgetModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\ViewEmployeeModel.cs" />
     <Compile Include="Models\ViewProjectModel.cs" />
@@ -257,8 +259,9 @@
     <Content Include="Views\Manager\ManagerProjectRemoveEmployee.cshtml" />
     <Content Include="Views\Manager\ManagerProjectDelete.cshtml" />
     <Content Include="Views\User\UserEdit.cshtml" />
-    <Content Include="Views\Analytics\ProjectBudget.cshtml" />
     <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
+    <Content Include="Views\Analytics\ProjectBudget.cshtml" />
+    <Content Include="Views\Budget\ViewBudget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

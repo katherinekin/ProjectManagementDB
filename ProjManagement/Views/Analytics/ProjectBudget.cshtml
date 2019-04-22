@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ProjManagement.Models.ProjBudgetModel>
+
 @{
     ViewBag.Title = "ProjectBudget";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,53 @@
 
 <h2>Project Budget</h2>
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BudgetDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.budget.Estimated_Income)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.budget.Estimated_Expense)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.budget.Estimated_Profit)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BudgetDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Income)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Expense)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Profit)
+        </td>        
+    </tr>
+}
+
+</table>
