@@ -23,7 +23,8 @@ namespace ProjManagement.Controllers
                     ProjectID = row.Project_ID,
                     Pname = row.Pname,
                     EmployeeCount = ProjectProcessor.getTotalEmployees(row.Project_ID),
-                    Departments = String.Join(", ", ProjectProcessor.getAllDepartments(row.Project_ID))
+                    Departments = String.Join(", ", ProjectProcessor.getAllDepartments(row.Project_ID)
+                                                                    .Where(s => !string.IsNullOrWhiteSpace(s)))
                 });
 
             }
@@ -44,9 +45,9 @@ namespace ProjManagement.Controllers
                     {
                         Estimated_Expense = row.Estimated_Expense,
                         Estimated_Income = row.Estimated_Income,
-                        Estimated_Profit = row.Estimated_Profit,
-                        BDate = row.BDate
-                    }
+                        Estimated_Profit = row.Estimated_Profit                        
+                    },
+                    BudgetDate = row.BDate                    
                 });
             }
             return View(list);

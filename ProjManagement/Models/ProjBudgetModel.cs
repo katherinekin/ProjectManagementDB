@@ -13,7 +13,8 @@ namespace ProjManagement.Models
 
         [Display(Name = "Project Name")]
         public string Pname { get; set; }
-        
+
+        [DataType(DataType.Date)]
         [Display(Name = "Date")]
         public DateTime BudgetDate {get;set;}
         public BudgetModel budget { get; set; }
