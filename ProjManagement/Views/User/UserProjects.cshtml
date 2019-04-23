@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjManagement.Models.ProjectModel>
+﻿@model IEnumerable<ProjManagement.Models.ViewProjectModel>
 
 @{
     ViewBag.Title = "My Projects";
@@ -10,37 +10,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProjectID)
+            @Html.DisplayNameFor(model => model.project.ProjectID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PName)
+            @Html.DisplayNameFor(model => model.project.PName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDName)
+            @Html.DisplayNameFor(model => model.project.PDName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Client)
+            @Html.DisplayNameFor(model => model.project.Client)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PDescription)
+            @Html.DisplayNameFor(model => model.project.PDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Deliverables)
+            @Html.DisplayNameFor(model => model.project.Pstatus)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Open_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Close_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Completion_Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pstatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Collaborators)
+            @Html.DisplayNameFor(model => model.project.Collaborators)
         </th>
         <th></th>
     </tr>
@@ -49,43 +37,31 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProjectID)
+                @Html.DisplayFor(modelItem => item.project.ProjectID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PName)
+                @Html.DisplayFor(modelItem => item.project.PName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PDName)
+                @Html.DisplayFor(modelItem => item.project.PDName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Client)
+                @Html.DisplayFor(modelItem => item.project.Client)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PDescription)
+                @Html.DisplayFor(modelItem => item.project.PDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Deliverables)
+                @Html.DisplayFor(modelItem => item.PStatusSelectList.Skip(item.project.Pstatus - 1).First().Text)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Open_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Close_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Completion_Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pstatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Collaborators)
+                @Html.DisplayFor(modelItem => item.project.Collaborators)
             </td>
             <td>
 
-                @Html.ActionLink("Details", "UserProjectDetails", "User", new { id = item.ProjectID }, null)
+                @Html.ActionLink("Details", "UserProjectDetails", "User", new { id = item.project.ProjectID }, null)
                 @Html.ActionLink("Hours", "UserHours", "User",
-                new { projectid = item.ProjectID, employeeid = Model.Cast<ProjManagement.Models.ProjectModel>().First().EmployeeID }, null)
+                new { projectid = item.project.ProjectID, employeeid = int.Parse(User.Identity.Name) }, null)
 
             </td>
         </tr>

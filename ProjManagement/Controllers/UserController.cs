@@ -104,33 +104,29 @@ namespace ProjManagement.Controllers
             try
             {
                 var data = ProjectProcessor.FindProjectsByEmployee(id);
-                List<ProjectModel> projects = new List<ProjectModel>();
-                foreach (var row in data)
-                {
-                    projects.Add(new ProjectModel
+                List<ViewProjectModel> projects = new List<ViewProjectModel>();
+            foreach (var row in data)
+            {
+                projects.Add(
+                    new ViewProjectModel
                     {
-                        ProjectID = row.Project_ID,
-                        PName = row.Pname,
-                        PDName = row.PDname,
-                        Client = row.Client,
-                        PDescription = row.Pdescription,
-                        Deliverables = row.Deliverables,
-                        Open_Date = row.Open_Date,
-                        Close_Date = row.Close_Date,
-                        Completion_Date = row.Completion_Date,
-                        Collaborators = row.Collaborators,
-                        Pstatus = row.Pstatus,
-                        EmployeeID = id
-                    });
-                }
-                if (projects.Count == 0)
-                {
-                    projects.Add(new ProjectModel
-                    {
-                        EmployeeID = id
-                    });
-                }
-                return View(projects);
+                        project = new ProjectModel
+                        {
+                            ProjectID = row.Project_ID,
+                            PName = row.Pname,
+                            PDName = row.PDname,
+                            Client = row.Client,
+                            PDescription = row.Pdescription,
+                            Deliverables = row.Deliverables,
+                            Open_Date = row.Open_Date,
+                            Close_Date = row.Close_Date,
+                            Completion_Date = row.Completion_Date,
+                            Collaborators = row.Collaborators,
+                            Pstatus = row.Pstatus
+                        }
+                });
+            }
+            return View(projects);
             }
             catch
             {
@@ -147,7 +143,11 @@ namespace ProjManagement.Controllers
                 return HttpNotFound();
             }
             ProjectModel found = pToModel(data);
-            return View(found);
+            ViewProjectModel viewFound = new ViewProjectModel
+            {
+                project = found
+            };
+            return View(viewFound);
         }
 
         public ActionResult UserHours(int projectid, int employeeid)
