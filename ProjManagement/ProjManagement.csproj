@@ -265,6 +265,7 @@
     <Content Include="Views\Budget\ViewBudget.cshtml" />
     <Content Include="Views\Budget\CreateBudget.cshtml" />
     <Content Include="Views\Budget\Delete.cshtml" />
+    <Content Include="Views\Budget\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

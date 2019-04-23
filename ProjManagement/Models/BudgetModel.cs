@@ -18,8 +18,7 @@ namespace ProjManagement.Models
         public double Estimated_Profit { get; set; }
 
         [DataType(DataType.Date)]
-        [Display(Name = "Date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Date")]        
         public DateTime BDate { get; set; }
         public BudgetModel()
         {
@@ -27,6 +26,18 @@ namespace ProjManagement.Models
             Estimated_Income = 0;
             Estimated_Expense = 0;
             Estimated_Profit = 0;
+        }
+        public HashSet<KeyValuePair<string, string>> setToPairs()
+        {
+            HashSet<KeyValuePair<string, string>> hashSetPairs = new HashSet<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("BProject_ID", this.BProject_ID.ToString()),
+                new KeyValuePair<string, string>("Estimated_Income", this.Estimated_Income.ToString()),
+                new KeyValuePair<string, string>("Estimated_Expense", this.Estimated_Expense.ToString()),
+                new KeyValuePair<string, string>("Estimated_Profit", this.Estimated_Profit.ToString()),
+                new KeyValuePair<string, string>("BDate", this.BDate.ToShortDateString()),
+            };
+            return hashSetPairs;
         }
     }
 }

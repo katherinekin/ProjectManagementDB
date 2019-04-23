@@ -93,5 +93,14 @@ namespace DataLibrary.BusinessLogic
             }
             return (found);
         }
+        public static List<DateTime> getBudgetDates(int projectid)
+        {
+            BudgetModel data = new BudgetModel
+            {
+                BProject_ID = projectid
+            };
+            string sql = @"select BDate from PM.Budget where BProject_ID = @BProject_ID;";
+            return SqlDataAccess.LoadData<DateTime>(sql, data);
+        }
     }
 }
