@@ -14,21 +14,26 @@ namespace ProjManagement.Controllers
         // GET: Budget
         public ActionResult ViewBudget(int id)
         {
-            List<BudgetModel> model = new List<BudgetModel>();
-            var budgets = BudgetProcessor.FindBudgetsForProject(id);
-            //get list of budgets related to project, sorted by date
-            foreach (var row in budgets)
+            List<ViewBudgetModel> budgets = new List<ViewBudgetModel>();
+            var data = BudgetProcessor.FindBudgetsForProject(id);
+            
+            foreach (var row in data)
             {
-                model.Add(new BudgetModel
+                budgets.Add(new ViewBudgetModel
                 {
-                    BProject_ID = row.BProject_ID,
+                    budget = new BudgetModel
+                    {
+                        BProject_ID = row.BProject_ID,
+                        BDate = row.BDate,
+                        Estimated_Income = row.Estimated_Income,
+                        Estimated_Expense = row.Estimated_Expense,
+                        Estimated_Profit = row.Estimated_Profit
+                    },
                     BDate = row.BDate,
-                    Estimated_Income = row.Estimated_Income,
-                    Estimated_Expense = row.Estimated_Expense,
-                    Estimated_Profit = row.Estimated_Profit
+                    BProjectID = row.BProject_ID
                 });
             }
-            return View(model);
+            return View(budgets);
         }
         // GET: Budget/CreateBudget
         public ActionResult CreateBudget(int id)
@@ -101,7 +106,7 @@ namespace ProjManagement.Controllers
                 return View(model);
             }    
         }
-        // Helper funciton mapToModel
+        // Helper function mapToModel
         public BudgetModel mapToModel(List<DataLibrary.Models.BudgetModel> data)
         {
             List<BudgetModel> foundBudget = new List<BudgetModel>();
@@ -131,7 +136,8 @@ namespace ProjManagement.Controllers
             {
                 budget = found,
                 BProjectID = found.BProject_ID,
-                BDate = found.BDate
+                BDate = found.BDate,
+                SelectedBDate = found.BDate.ToString()
             };
             return View(viewFound);
         }
@@ -147,13 +153,23 @@ namespace ProjManagement.Controllers
             {
                 return View(model);
             }
+            model.budget.BProject_ID = model.BProjectID;
+            model.budget.BDate = DateTime.Parse(model.SelectedBDate);            
             try
             {
-                model.budget.BDate = model.BDate;
+                model.budget.Estimated_Expense = model.budget.Estimated_Expense;
             }
             catch
             {
-                model.budget.BDate = oldModel.BDate;
+                model.budget.Estimated_Expense = oldModel.Estimated_Expense;
+            }
+            try
+            {
+                model.budget.Estimated_Income = model.budget.Estimated_Income;
+            }
+            catch
+            {
+                model.budget.Estimated_Income = oldModel.Estimated_Income;
             }
             model.budget.Estimated_Profit = model.budget.Estimated_Income - model.budget.Estimated_Expense;
             HashSet<KeyValuePair<string, string>> newModelHashSet = model.budget.setToPairs();
