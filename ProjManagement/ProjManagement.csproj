@@ -151,6 +151,7 @@
     <Compile Include="Models\ProjAnalysisModel.cs" />
     <Compile Include="Models\ProjBudgetModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\ViewBudgetModel.cs" />
     <Compile Include="Models\ViewEmployeeModel.cs" />
     <Compile Include="Models\ViewProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,6 +244,8 @@
     <Content Include="Views\Analytics\ProjectAnalysis.cshtml" />
     <Content Include="Views\Analytics\ProjectBudget.cshtml" />
     <Content Include="Views\Budget\ViewBudget.cshtml" />
+    <Content Include="Views\Budget\CreateBudget.cshtml" />
+    <Content Include="Views\Budget\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
