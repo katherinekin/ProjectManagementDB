@@ -40,7 +40,7 @@
                     if (HttpContext.Current.User.IsInRole("Employee"))
                     {
                         <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("My Account", "UserProfile", "User", new { id = ViewData["id"] }, null)</li>
+                            <li>@Html.ActionLink("My Account", "Index", "User", new { id = ViewData["id"] }, null)</li>
                             <li>@Html.ActionLink("My Projects", "UserProjects", "User", new { id = ViewData["id"] }, null)</li>
                             <li>@Html.ActionLink("Log Hours", "UserLogMenu", "User", new { id = ViewData["id"] }, null)</li>
                         </ul>

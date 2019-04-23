@@ -23,6 +23,29 @@ namespace ProjManagement.Controllers
             return View(model);
         }
 
+        public ActionResult Failed(LoginModel old)
+        {
+            if (old.Password == null)
+            {
+                ViewBag.ErrorMessage = "Wrong password";
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Wrong username";
+                old.Username = null;
+            }
+
+            ModelState.Clear();
+
+            AuthVM model = new AuthVM
+            {
+                RecoverForm = new LoginModelForgot(),
+                LoginForm = old
+            };
+            ViewData["State"] = "initial";
+            return View("Login", model);
+        }
+
         //Validation of correct Login information
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -56,9 +79,14 @@ namespace ProjManagement.Controllers
                     }
                     return RedirectToAction("Index", "User", new { id = EmployeeID });
                 }
+                if(model.Username == item.Username && model.Password != item.Password)
+                {
+                    model.Password = null;
+                    break;
+                }
             }         
             
-            return View();
+            return RedirectToAction("Failed", model);
         }
 
         [HttpPost]

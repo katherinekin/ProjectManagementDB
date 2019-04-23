@@ -234,7 +234,7 @@ else if (User.IsInRole("Manager"))
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.SuperSsn, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.SelectedManager, "", new { @class = "form-control", @readonly = "readonly" })
+                    @Html.TextBoxFor(model => model.employee.SuperName, "", new { @class = "form-control", @readonly = "readonly" })
                 </div>
             </div>
 

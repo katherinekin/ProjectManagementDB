@@ -102,6 +102,10 @@
                  Skip((model.employee.Profession - 1) > -1 ? (model.employee.Profession - 1) : 0).First().Text)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.employee.SuperName)
+        </dt>
+
         <dd>
             @Html.DisplayFor(model => model.employee.SuperName)
         </dd>

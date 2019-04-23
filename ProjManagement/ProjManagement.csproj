@@ -201,7 +201,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Success.cshtml" />
-    <Content Include="Views\Shared\ManagerLayout.cshtml" />
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
@@ -223,7 +222,6 @@
     <Content Include="Views\Shared\_LoginPartialView.cshtml" />
     <Content Include="Views\Login\Update.cshtml" />
     <Content Include="Views\Login\Logout.cshtml" />
-    <Content Include="Views\Shared\UserLayout.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
     <Content Include="Views\User\UserProjects.cshtml" />
     <Content Include="Views\Employee\LogHours.cshtml" />
