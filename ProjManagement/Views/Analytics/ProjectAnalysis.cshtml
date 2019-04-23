@@ -36,8 +36,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.EmployeeCount)
         </td>
-        <td>            
-            @Html.DisplayFor(modelItem => item.Departments)                       
+        <td>
+            @Html.DisplayFor(modelItem => item.Departments)
+        </td>
+        <td>
+            @Html.ActionLink("Details  ", "Details", "Project", new { id = item.ProjectID }, null)
         </td>
     </tr>
 }

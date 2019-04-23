@@ -7,9 +7,6 @@
 
 <h2>Project Budget</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -52,7 +49,10 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.budget.Estimated_Profit)
-        </td>        
+        </td>      
+        <td>
+                @Html.ActionLink("Details  ", "Details", "Project", new { id = item.ProjectID }, null)
+        </td>
     </tr>
 }
 

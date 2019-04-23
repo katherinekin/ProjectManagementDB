@@ -13,43 +13,56 @@ namespace ProjManagement.Controllers
     {
         // GET: Analytics
         public ActionResult ProjectAnalysis()
-        {            
+        {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
+
             // Assume for now every BProject_ID entry in LoadBudget is unique
             var data = ProjectProcessor.LoadProjects();
             List<ProjAnalysisModel> list = new List<ProjAnalysisModel>();
             foreach (var row in data)
             {
-                list.Add(new ProjAnalysisModel
+                if (User.IsInRole("Admin") || current.EDname == row.PDname)
                 {
-                    ProjectID = row.Project_ID,
-                    Pname = row.Pname,
-                    EmployeeCount = ProjectProcessor.getTotalEmployees(row.Project_ID),
-                    Departments = String.Join(", ", ProjectProcessor.getAllDepartments(row.Project_ID)
-                                                                    .Where(s => !string.IsNullOrWhiteSpace(s)))
-                });
-
+                    list.Add(new ProjAnalysisModel
+                    {
+                        ProjectID = row.Project_ID,
+                        Pname = row.Pname,
+                        EmployeeCount = ProjectProcessor.getTotalEmployees(row.Project_ID),
+                        Departments = String.Join(", ", ProjectProcessor.getAllDepartments(row.Project_ID)
+                                                                        .Where(s => !string.IsNullOrWhiteSpace(s)))
+                    });
+                }
             }
             return View(list);
         }
         public ActionResult ProjectBudget()
         {
+            var current = EmployeeProcessor.FindEmployee(int.Parse(User.Identity.Name)).First();
+            ViewBag.ssn = current.Ssn;
+            ViewBag.dep = current.EDname;
+
             // Assume for now every BProject_ID entry in LoadBudget is unique
             var data = BudgetProcessor.LoadBudgets();
             List<ProjBudgetModel> list = new List<ProjBudgetModel>();
             foreach (var row in data)
             {
-                list.Add(new ProjBudgetModel
+                if (User.IsInRole("Admin") || current.EDname == ProjectProcessor.FindProject(row.BProject_ID).First().PDname)
                 {
-                    ProjectID = row.BProject_ID,
-                    Pname = ProjectProcessor.FindProject(row.BProject_ID)[0].Pname,                    
-                    budget = new BudgetModel
+                    list.Add(new ProjBudgetModel
                     {
-                        Estimated_Expense = row.Estimated_Expense,
-                        Estimated_Income = row.Estimated_Income,
-                        Estimated_Profit = row.Estimated_Profit                        
-                    },
-                    BudgetDate = row.BDate                    
-                });
+                        ProjectID = row.BProject_ID,
+                        Pname = ProjectProcessor.FindProject(row.BProject_ID)[0].Pname,
+                        budget = new BudgetModel
+                        {
+                            Estimated_Expense = row.Estimated_Expense,
+                            Estimated_Income = row.Estimated_Income,
+                            Estimated_Profit = row.Estimated_Profit
+                        },
+                        BudgetDate = row.BDate
+                    });
+                }
             }
             return View(list);
         }
