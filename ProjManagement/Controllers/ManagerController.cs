@@ -8,7 +8,7 @@ using ProjManagement.Models;
 
 namespace ProjManagement.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Manager,Admin")]
     public class ManagerController : Controller
     {
         //Imported special method from project controller

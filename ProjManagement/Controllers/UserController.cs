@@ -72,13 +72,12 @@ namespace ProjManagement.Controllers
                 ViewData["id"] = int.Parse(User.Identity.Name);
                 ViewData["role"] = "Employee";
             }
-
-            if (data.Count == 0)
-            {
-                return HttpNotFound();
-            }
             EmployeeModel found = mapToModel(data);
-            return View(found);
+            ViewEmployeeModel viewFound = new ViewEmployeeModel
+            {
+                employee = found
+            };
+            return View(viewFound);
         }
         //needs testing
         public ActionResult UserProfile(int id)

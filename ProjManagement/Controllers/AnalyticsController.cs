@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProjManagement.Controllers
 {
+    [Authorize(Roles = "Manager,Admin")]
     public class AnalyticsController : Controller
     {
         // GET: Analytics

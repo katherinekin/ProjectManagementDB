@@ -52,7 +52,7 @@ namespace ProjManagement
                         string[] roles;
                         if (int.Parse(HttpContext.Current.User.Identity.Name) == 1)
                         {
-                            roles = new string[1] { "Admin" };
+                            roles = new string[1] {"Admin"};
                         }
                         else if (IsManager(int.Parse(HttpContext.Current.User.Identity.Name)))
                         {

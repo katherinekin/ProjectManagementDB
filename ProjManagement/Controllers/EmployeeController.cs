@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace ProjManagement.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Manager,Admin")]
     public class EmployeeController : Controller
     {
         // GET: Employee
