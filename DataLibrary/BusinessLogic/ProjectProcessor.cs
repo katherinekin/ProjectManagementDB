@@ -174,7 +174,7 @@ namespace DataLibrary.BusinessLogic
             List<DateTime> list = new List<DateTime>();
             string sql = @"select Open_Date from  PM.Project where Project_ID = @Project_ID;";
             list.Add(SqlDataAccess.LoadData<DateTime>(sql, data)[0]);
-            sql = @"select Completion_Date from  PM.Project where Project_ID = @Project_ID;";
+            sql = @"select Close_Date from  PM.Project where Project_ID = @Project_ID;";
             list.Add(SqlDataAccess.LoadData<DateTime>(sql, data)[0]);
             return list;
         }
