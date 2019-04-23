@@ -164,6 +164,19 @@ namespace DataLibrary.BusinessLogic
                     where EProject_ID = @Project_ID and Employee_ID = PEmployee_ID;";
             return SqlDataAccess.LoadData<string>(sql, data);
         }
-          
+        // Get open and complete dates for a given project
+        public static List<DateTime> getProjectDates(int projectid)
+        {
+            ProjectModel data = new ProjectModel
+            {
+                Project_ID = projectid
+            };
+            List<DateTime> list = new List<DateTime>();
+            string sql = @"select Open_Date from  PM.Project where Project_ID = @Project_ID;";
+            list.Add(SqlDataAccess.LoadData<DateTime>(sql, data)[0]);
+            sql = @"select Completion_Date from  PM.Project where Project_ID = @Project_ID;";
+            list.Add(SqlDataAccess.LoadData<DateTime>(sql, data)[0]);
+            return list;
+        }
     }
 }
