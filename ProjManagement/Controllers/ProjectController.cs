@@ -255,7 +255,9 @@ namespace ProjManagement.Controllers
                             EDname = row.EDname,
                             Profession = row.Profession,
                             SuperName = EmployeeProcessor.getManagerName(row.Super_Ssn),
-                            ProjectID = id
+                            ProjectID = id,
+                            Ssn = row.Ssn,
+                            SuperSsn = row.Super_Ssn
                         },
                         ProjectID = id                        
                     });

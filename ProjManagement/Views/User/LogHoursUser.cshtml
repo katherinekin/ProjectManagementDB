@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Enter your hours for @ProjectProcessor.GetProject(Model.AProject_ID).Pname</h4>
+        <h4>Enter your hours for @ProjectProcessor.FindProject(Model.AProject_ID).First().Pname</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

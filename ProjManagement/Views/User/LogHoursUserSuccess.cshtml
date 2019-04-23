@@ -6,10 +6,21 @@
 
 @model ProjManagement.Models.ActivitiesModel
 @using DataLibrary.BusinessLogic
-<h2>Successfully logged @Model.Weekly_Hours hours for @ProjectProcessor.GetProject(Model.AProject_ID).Pname on @Model.Week_Date</h2>
+<h2>Successfully logged @Model.Weekly_Hours hours for @ProjectProcessor.FindProject(Model.AProject_ID).First().Pname on @Model.Week_Date</h2>
 
-<div>@Html.ActionLink("Return to project hours", "Hours", "Employee", new { projectid = Model.AProject_ID, employeeid = Model.AEmployee_ID }, null) </div>
+@if (!User.IsInRole("Employee"))
+{
+    <div>@Html.ActionLink("Return to project hours", "Hours", "Employee", new { projectid = Model.AProject_ID, employeeid = Model.AEmployee_ID }, null) </div>
 
-<div>@Html.ActionLink("Return to project details", "Details", "Project", new { id = Model.AProject_ID }, null) </div>
+    <div>@Html.ActionLink("Return to project details", "Details", "Project", new { id = Model.AProject_ID }, null) </div>
 
-<div>@Html.ActionLink("Return to my projects", "ViewProjects", "Employee", new { id = Model.AEmployee_ID }, null) </div>
+    <div>@Html.ActionLink("Return to my projects", "ViewProjects", "Employee", new { id = Model.AEmployee_ID }, null) </div>
+}
+else
+{
+    <div>@Html.ActionLink("Return to project hours", "UserHours", "User", new { projectid = Model.AProject_ID, employeeid = Model.AEmployee_ID }, null) </div>
+
+    <div>@Html.ActionLink("Return to project details", "UserProjectDetails", "User", new { id = Model.AProject_ID }, null) </div>
+
+    <div>@Html.ActionLink("Return to my projects", "UserProjects", "User", new { id = Model.AEmployee_ID }, null) </div>
+}
