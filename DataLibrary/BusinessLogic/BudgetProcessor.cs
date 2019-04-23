@@ -44,19 +44,19 @@ namespace DataLibrary.BusinessLogic
         public static int EditBudget(KeyValuePair<string, string> pair, int projectid, DateTime bdate)
         {
             ColumnModel data;
-            int setToNum = 0;
+            double setToNum = 0;
             string sql = "";
             // Tries to convert value as an integer
-            if (Int32.TryParse(pair.Value, out setToNum))
+            if (Double.TryParse(pair.Value, out setToNum))
             {
                 data = new ColumnModel()
                 {
                     Project_ID = projectid,
                     SomeDate = bdate,
-                    IntValue = setToNum
+                    DoubleValue = setToNum
                 };
                 sql = @"update pm.budget
-                set " + pair.Key + " = @IntValue where BProject_ID = @Project_ID and Date = @SomeDate;";
+                set " + pair.Key + " = @DoubleValue where BProject_ID = @Project_ID and BDate = @SomeDate;";
                 return SqlDataAccess.SaveData(sql, data);
             }
             data = new ColumnModel()
@@ -66,7 +66,7 @@ namespace DataLibrary.BusinessLogic
                 StringValue = pair.Value
             };
             sql = @"update pm.budget
-            set " + pair.Key + " = @IntValue where BProject_ID = @Project_ID and Date = @SomeDate;"; ;
+            set " + pair.Key + " = @DoubleValue where BProject_ID = @Project_ID and BDate = @SomeDate;"; ;
 
             return SqlDataAccess.SaveData(sql, data);
         }

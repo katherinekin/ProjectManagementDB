@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjManagement.Models.BudgetModel>
+﻿@model IEnumerable<ProjManagement.Models.ViewBudgetModel>
 
 @{
     ViewBag.Title = "ViewBudget";
@@ -9,21 +9,21 @@
 
 <p>
     @Html.ActionLink("Add new", "CreateBudget", 
-            new { id = Model.Cast<ProjManagement.Models.BudgetModel>().First().BProject_ID}, null)
+            new { id = Model.Cast<ProjManagement.Models.ViewBudgetModel>().First().BProjectID}, null)
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BDate)
+            @Html.DisplayNameFor(model => model.budget.BDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estimated_Income)
+            @Html.DisplayNameFor(model => model.budget.Estimated_Income)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estimated_Expense)
+            @Html.DisplayNameFor(model => model.budget.Estimated_Expense)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estimated_Profit)
+            @Html.DisplayNameFor(model => model.budget.Estimated_Profit)
         </th>
         
         <th></th>
@@ -32,21 +32,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.BDate)
+            @Html.DisplayFor(modelItem => item.budget.BDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estimated_Income)
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Income)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estimated_Expense)
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Expense)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Estimated_Profit)
+            @Html.DisplayFor(modelItem => item.budget.Estimated_Profit)
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BProject_ID, bdate = item.BDate }) |            
-            @Html.ActionLink("Delete", "Delete", new { id=item.BProject_ID, bdate = item.BDate })
+            @Html.ActionLink("Edit", "Edit", new { id=item.BProjectID, bdate = item.BDate }) |            
+            @Html.ActionLink("Delete", "Delete", new { id=item.BProjectID, bdate = item.BDate })
         </td>
     </tr>
 }
