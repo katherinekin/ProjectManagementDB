@@ -8,7 +8,8 @@
 <h2>View budget for project</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add new", "CreateBudget", 
+            new { id = Model.Cast<ProjManagement.Models.BudgetModel>().First().BProject_ID}, null)
 </p>
 <table class="table">
     <tr>
@@ -44,8 +45,8 @@
         </td>
         
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |            
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.BProject_ID, bdate = item.BDate }) |            
+            @Html.ActionLink("Delete", "Delete", new { id=item.BProject_ID, bdate = item.BDate })
         </td>
     </tr>
 }

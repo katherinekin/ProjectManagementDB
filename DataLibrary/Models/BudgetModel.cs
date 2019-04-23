@@ -19,6 +19,6 @@ namespace DataLibrary.Models
             Estimated_Income = 0;
             Estimated_Expense = 0;
             Estimated_Profit = 0;
-        }
+        }        
     }    
 }

@@ -50,6 +50,14 @@ namespace DataLibrary.DataAccess
             }
             throw new NotImplementedException();
         }
+        public static List<T> LoadData<T>(string sql, BudgetModel data)
+        {
+            using (IDbConnection cnn = new SqlConnection(GetConnectionString()))
+            {
+                return cnn.Query<T>(sql, data).ToList();
+            }
+            throw new NotImplementedException();
+        }
         // Executes sql query with given parameters
         public static int SaveData<T>(string sql, T data)
         {
@@ -64,8 +72,6 @@ namespace DataLibrary.DataAccess
                     return 0;
                 }
             }
-        }
-
-        
+        }        
     }
 }
