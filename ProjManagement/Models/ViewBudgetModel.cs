@@ -14,6 +14,9 @@ namespace ProjManagement.Models
         public int BProjectID { get; set; }
         public IEnumerable<SelectListItem> BDateSelectList { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime BDate { get; set; }
         public ViewBudgetModel()
         {
             budget = new BudgetModel();            
