@@ -10,6 +10,8 @@ namespace DataLibrary.Models
     public class ColumnModel
     {
         public int Employee_ID { get; set; }
+        public int Project_ID { get; set; }
+        public DateTime SomeDate { get; set; }
         public string ColumnName { get; set; }
         public string StringValue { get; set; }
         public int IntValue { get; set; }
